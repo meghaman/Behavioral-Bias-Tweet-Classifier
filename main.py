@@ -3453,14 +3453,16 @@ def print_tweets(tweets, handle):
     if len(sorted_tweets) > 10:
         print(f"\nShowing 10 of {len(sorted_tweets)} tweets. Use DEBUG_MODE for full details.")
 
-def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
-    """Save tweets to JSON file in the requested format."""
-    # Save in the repository's data/ folder
+def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
+    """Save tweets to a new JSON file with a timestamp-based name."""
     output_dir = "data"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    # Generate timestamp in YYYY-MM-DD_HHMM format (e.g., 2025-06-12_1618 for 04:18 PM EDT)
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    filename = f"{filename_prefix}_{timestamp}.json"
     output_path = os.path.join(output_dir, filename)
-    
+    print(f"Attempting to save to: {output_path}")
     simplified_tweets = [
         {
             "user": tweet["user"],
@@ -3469,8 +3471,12 @@ def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
         }
         for tweet in tweets
     ]
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(simplified_tweets, f, indent=2, ensure_ascii=False)
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(simplified_tweets, f, indent=2, ensure_ascii=False)
+        print(f"Successfully saved to {output_path}")
+    except Exception as e:
+        print(f"Error saving file: {str(e)}")
 
 def main():
     print("Starting Twitter scraper with bias detection...")
@@ -3501,9 +3507,11 @@ def main():
             if DEBUG_MODE:
                 traceback.print_exc()
     
-    # Save tweets to JSON file
+    # Generate timestamp for the filename
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    # Save tweets to a new JSON file with timestamp
     save_tweets_to_json(all_tweets)
-    print(f"Tweets saved to data/tweets_with_bias.json")
+    print(f"Tweets saved to data/tweets_with_bias_{timestamp}.json")
     
     driver.quit()
     print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
