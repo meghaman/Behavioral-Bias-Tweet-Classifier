@@ -27,6 +27,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium-browser chromium-chromedriver
+          # Verify Chromedriver installation
+          chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
         run: |
@@ -39,6 +41,8 @@ jobs:
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
           python main.py
+          # Display directory contents for debugging
+          ls -la data/ || echo "data directory not found or empty"
 
       - name: Commit and push JSON file
         uses: EndBug/add-and-commit@v9
