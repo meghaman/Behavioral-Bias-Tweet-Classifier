@@ -45,8 +45,10 @@ jobs:
           # Increase timeout for slow environments
           export SCRIPT_TIMEOUT=600
           python main.py
-          ls -la data/
-          ls -la debug_screenshots/ || echo "No debug screenshots"
+          tar czf debug_artifacts.tar.gz debug_screenshots/ debug_html/ data/
+          ls -la data/ || echo "data directory not found or empty"
+          ls -la debug_screenshots/ || echo "screenshots directory not found"
+          ls -la debug_html/ || echo "HTML directory not found"
 
       - name: Commit and push JSON files
         uses: EndBug/add-and-commit@v9
@@ -54,10 +56,14 @@ jobs:
           add: 'data/tweets_with_bias_*.json'
           message: 'chore: update tweets classification data'
           default_author: github_actions
-
-      - name: Upload debug screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4  # Updated to v4
+      
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: debug-screenshots
-          path: debug_screenshots/
+          name: debug-artifacts
+          path: |
+            debug_artifacts.tar.gz
+            debug_screenshots/
+            debug_html/
+            data/
