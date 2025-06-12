@@ -3258,41 +3258,94 @@ def setup_driver():
 
 def login_twitter(driver, username, password):
     driver.get("https://x.com/login")
-    time.sleep(2)
+    time.sleep(3)
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
     
     try:
-        username_field = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.NAME, "text"))
-        )
+        # Handle different login page variations
+        try:
+            username_field = WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.NAME, "text"))
+            )
+        except:
+            username_field = WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.XPATH, "//input[@autocomplete='username']"))
+            )
+        
         username_field.send_keys(username)
-        driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+        
+        # Find and click next button
+        next_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
+        if next_buttons:
+            next_buttons[0].click()
+        else:
+            # Try alternative next button locator
+            alt_buttons = driver.find_elements(By.XPATH, "//div[@role='button' and .//span[text()='Next']]")
+            if alt_buttons:
+                alt_buttons[0].click()
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
+            time.sleep(2)
         
-        password_field = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.NAME, "password"))
-        )
-        password_field.send_keys(password)
+        # Handle potential security checks
+        security_check_passed = True
+        try:
+            # Check if security challenge appears
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, "//span[contains(text(),'unusual login attempt')]"))
+            )
+            security_check_passed = False
+            if DEBUG_MODE:
+                print("Security challenge detected")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/02a_security_challenge.png")
+        except:
+            pass
         
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
+        if security_check_passed:
+            # Find password field with multiple selectors
+            try:
+                password_field = WebDriverWait(driver, 15).until(
+                    EC.visibility_of_element_located((By.NAME, "password"))
+                )
+            except:
+                password_field = WebDriverWait(driver, 15).until(
+                    EC.visibility_of_element_located((By.XPATH, "//input[@type='password']"))
+                )
+            
+            password_field.send_keys(password)
+            
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
+                time.sleep(2)
+            
+            # Find and click login button
+            login_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Log in')]/..")
+            if login_buttons:
+                login_buttons[0].click()
+            else:
+                # Try alternative login button locator
+                alt_login_buttons = driver.find_elements(By.XPATH, "//div[@data-testid='LoginForm_Login_Button']")
+                if alt_login_buttons:
+                    alt_login_buttons[0].click()
+            
+            # Verify successful login
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
+            )
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
+            return True
         
-        driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
-        
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
-        )
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
-        return True
+        return False
         
     except Exception as e:
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
+            with open(f"{SCREENSHOT_DIR}/05_login_error.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
             print(f"Login error: {str(e)}")
             traceback.print_exc()
         return False
