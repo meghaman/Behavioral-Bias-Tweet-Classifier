@@ -3223,7 +3223,6 @@ if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
 
 def setup_driver():
     chrome_options = Options()
-    chrome_options.binary_location = "/usr/bin/chromium-browser"
     
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
     chrome_options.add_argument(f"user-agent={user_agent}")
@@ -3456,29 +3455,23 @@ def print_tweets(tweets, handle):
         print(f"\nShowing 10 of {len(sorted_tweets)} tweets. Use DEBUG_MODE for full details.")
 
 def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
-    """Save tweets to a new JSON file with a timestamp-based name."""
     output_dir = "data"
     if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    # Generate timestamp in YYYY-MM-DD_HHMM format (e.g., 2025-06-12_1618 for 04:18 PM EDT)
+        os.makedirs(output_dir, exist_ok=True)  # Ensure directory exists
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
     filename = f"{filename_prefix}_{timestamp}.json"
     output_path = os.path.join(output_dir, filename)
-    print(f"Attempting to save to: {output_path}")
-    simplified_tweets = [
-        {
-            "user": tweet["user"],
-            "text": tweet["text"],
-            "bias": tweet["bias"] if tweet["bias"] else "None"
-        }
-        for tweet in tweets
-    ]
+    print(f"Saving tweets to: {output_path}")
+    
     try:
         with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(simplified_tweets, f, indent=2, ensure_ascii=False)
-        print(f"Successfully saved to {output_path}")
+            json.dump(tweets, f, indent=2, ensure_ascii=False)
+        print(f"Successfully saved {len(tweets)} tweets to {output_path}")
+        return output_path
     except Exception as e:
         print(f"Error saving file: {str(e)}")
+        traceback.print_exc()
+        return None
 
 def main():
     print("Starting Twitter scraper with bias detection...")
@@ -3514,11 +3507,12 @@ def main():
     print(f"Generated timestamp: {timestamp}")
     save_tweets_to_json(all_tweets)
     output_path = f"data/tweets_with_bias_{timestamp}.json"
-    if os.path.exists(output_path):
-        print(f"File {output_path} created, size: {os.path.getsize(output_path)} bytes")
+    output_path = save_tweets_to_json(all_tweets)
+    if output_path and os.path.exists(output_path):
+        print(f"File created: {output_path}, size: {os.path.getsize(output_path)} bytes")
     else:
-        print(f"WARNING: File {output_path} not created")
-    
+        print("ERROR: File was not created successfully")
+        
     driver.quit()
     print(f"Scraping completed. Total tweets: {len(all_tweets)}")
     print(f"Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
