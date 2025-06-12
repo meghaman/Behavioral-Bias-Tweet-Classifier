@@ -3223,6 +3223,7 @@ if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
 
 def setup_driver():
     chrome_options = Options()
+    chrome_options.binary_location = "/usr/bin/chromium-browser"
     
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
     chrome_options.add_argument(f"user-agent={user_agent}")
