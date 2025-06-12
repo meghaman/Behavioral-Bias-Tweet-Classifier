@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 import traceback
+import sys
 
 TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
 TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
@@ -3480,9 +3481,9 @@ def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
 
 def main():
     print("Starting Twitter scraper with bias detection...")
-    print(f"Running on environment: {os.name}, Python version: {sys.version}")
+    print(f"Environment: {os.name}")
     driver = setup_driver()
-    print("Driver initialized")
+    print("Driver initialized successfully")
     
     if not login_twitter(driver, TWITTER_USERNAME, TWITTER_PASSWORD):
         print(f"Login failed. TWITTER_USERNAME: {TWITTER_USERNAME}, TWITTER_PASSWORD set: {TWITTER_PASSWORD is not None}")
@@ -3496,11 +3497,11 @@ def main():
     all_tweets = []
     for handle in CREATOR_HANDLES:
         try:
-            print(f"\nScraping @{handle}...")
+            print(f"\nStarting scrape for @{handle}...")
             start_time = time.time()
             tweets = scrape_tweets(driver, handle, time_threshold)
             duration = time.time() - start_time
-            print(f"Scraped {len(tweets)} tweets from @{handle}")
+            print(f"Scraped {len(tweets)} tweets from @{handle} in {duration:.1f} seconds")
             print_tweets(tweets, handle)
             all_tweets.extend(tweets)
         except Exception as e:
@@ -3508,21 +3509,18 @@ def main():
             if DEBUG_MODE:
                 traceback.print_exc()
     
-    # Generate timestamp for the filename
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
     print(f"Generated timestamp: {timestamp}")
-    # Save tweets to a new JSON file with timestamp
     save_tweets_to_json(all_tweets)
-    # Check if file exists after saving
     output_path = f"data/tweets_with_bias_{timestamp}.json"
     if os.path.exists(output_path):
-        print(f"File {output_path} successfully created, size: {os.path.getsize(output_path)} bytes")
+        print(f"File {output_path} created, size: {os.path.getsize(output_path)} bytes")
     else:
-        print(f"WARNING: File {output_path} was not created")
+        print(f"WARNING: File {output_path} not created")
     
     driver.quit()
-    print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
-    print(f"Time range covered: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+    print(f"Scraping completed. Total tweets: {len(all_tweets)}")
+    print(f"Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
 
 if __name__ == "__main__":
     main()
