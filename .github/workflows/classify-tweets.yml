@@ -30,12 +30,20 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium webdriver-manager
+          pip install selenium
 
       - name: Create directories
         run: |
           mkdir -p data
           mkdir -p debug_screenshots
+
+      - name: Debug Secrets
+        run: |
+          echo "TWITTER_USERNAME is set: ${TWITTER_USERNAME:-not set}"
+          echo "TWITTER_PASSWORD is set: ${TWITTER_PASSWORD:-not set}"
+        env:
+          TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
+          TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
 
       - name: Run Tweet Classifier
         env:
@@ -45,10 +53,9 @@ jobs:
           # Increase timeout for slow environments
           export SCRIPT_TIMEOUT=600
           python main.py
-          tar czf debug_artifacts.tar.gz debug_screenshots/ debug_html/ data/
+          echo "Directory contents after script:"
           ls -la data/ || echo "data directory not found or empty"
           ls -la debug_screenshots/ || echo "screenshots directory not found"
-          ls -la debug_html/ || echo "HTML directory not found"
 
       - name: Commit and push JSON files
         uses: EndBug/add-and-commit@v9
@@ -56,14 +63,12 @@ jobs:
           add: 'data/tweets_with_bias_*.json'
           message: 'chore: update tweets classification data'
           default_author: github_actions
-      
+
       - name: Upload debug artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: debug-artifacts
           path: |
-            debug_artifacts.tar.gz
             debug_screenshots/
-            debug_html/
             data/
