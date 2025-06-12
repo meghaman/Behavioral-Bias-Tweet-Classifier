@@ -1,16 +1,20 @@
 name: Daily Tweet Classifier
 
+# Trigger at 14:00 UTC (04:10 PM EDT) daily, and allow manual runs
 on:
   schedule:
-    - cron: '0 14 * * *'      # 14:00 UTC = 10:00 AM EDT daily
-  workflow_dispatch:          # manual trigger support
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # allow committing back to the repo
 
 jobs:
   classify-tweets:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python 3.10
@@ -23,7 +27,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y chromium-browser chromium-chromedriver
 
-      - name: Install Python deps
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -33,9 +37,9 @@ jobs:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
-          python twitter_scraper_with_bias.py
+          python main.py
 
-      - name: Commit and push results
+      - name: Commit and push JSON file
         uses: EndBug/add-and-commit@v9
         with:
           add: 'data/tweets_with_bias.json'
