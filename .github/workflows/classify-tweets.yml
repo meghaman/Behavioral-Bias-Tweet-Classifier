@@ -16,54 +16,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Remove unused sys import
-        run: |
-          # delete any line that says "import sys"
-          sed -i '/import sys/d' main.py
-
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install Chrome, Chromedriver & Xvfb
+      - name: Install Chrome & Chromedriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            chromium-browser \
-            chromium-chromedriver \
-            xvfb
+          sudo apt-get install -y chromium-browser chromium-chromedriver
           chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install selenium webdriver-manager
 
       - name: Create directories
         run: |
           mkdir -p data
           mkdir -p debug_screenshots
 
-      - name: Debug Secrets
-        env:
-          TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
-          TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
-        run: |
-          echo "TWITTER_USERNAME is set: ${TWITTER_USERNAME:-not set}"
-          echo "TWITTER_PASSWORD is set: ${TWITTER_PASSWORD:-not set}"
-
       - name: Run Tweet Classifier
         env:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
+          # Increase timeout for slow environments
           export SCRIPT_TIMEOUT=600
-          xvfb-run --auto-servernum --server-args='-screen 0 1920x1200x24' \
-            python main.py
-          echo "Directory contents after script:"
-          ls -la data/ || echo "data directory not found or empty"
-          ls -la debug_screenshots/ || echo "screenshots directory not found"
+          python main.py
+          ls -la data/
+          ls -la debug_screenshots/ || echo "No debug screenshots"
 
       - name: Commit and push JSON files
         uses: EndBug/add-and-commit@v9
@@ -72,11 +55,9 @@ jobs:
           message: 'chore: update tweets classification data'
           default_author: github_actions
 
-      - name: Upload debug artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Upload debug screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4  # Updated to v4
         with:
-          name: debug-artifacts
-          path: |
-            debug_screenshots/
-            data/
+          name: debug-screenshots
+          path: debug_screenshots/
