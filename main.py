@@ -3456,7 +3456,7 @@ def print_tweets(tweets, handle):
 
 def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
     """Save tweets to JSON file in the requested format."""
-    output_dir = "/Users/aarushchugh/Downloads"
+    output_dir = "data"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     output_path = os.path.join(output_dir, filename)
