@@ -15,7 +15,23 @@ import traceback
 
 TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
 TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
-CREATOR_HANDLES = ["elonmusk", "TechCrunch", "TheEconomist"]
+CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
+"RiskReversal",
+"CarterBWorth",
+"jonnajarian",
+"GRDecter",
+"NorthmanTrader",
+"biancoresearch",
+"TommyThornton",
+"KeithMcCullough",
+"Beth_Kindig",
+"RedDogT3",
+"alphatrends",
+"NYSEguru",
+"leadlagreport",
+"allstarcharts",
+"markminervini"
+]
 HEADLESS_MODE = True
 DEBUG_MODE = True
 SCREENSHOT_DIR = "debug_screenshots"
