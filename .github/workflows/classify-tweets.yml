@@ -1,14 +1,12 @@
 name: Daily Tweet Classifier
 
-# Trigger at 14:00 UTC (10:00 AM EDT during DST, 10:00 AM EST otherwise) daily, and allow manual runs
-# Note: 14:00 UTC aligns with 10:00 AM EDT (DST) or 10:00 AM EST (standard time)
 on:
   schedule:
     - cron: '0 14 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write   # allow committing back to the repo
+  contents: write
 
 jobs:
   classify-tweets:
@@ -27,7 +25,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium-browser chromium-chromedriver
-          # Verify Chromedriver installation
           chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
@@ -35,18 +32,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium webdriver-manager
 
+      - name: Create directories
+        run: |
+          mkdir -p data
+          mkdir -p debug_screenshots
+
       - name: Run Tweet Classifier
         env:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
           python main.py
-          # Display directory contents for debugging
-          ls -la data/ || echo "data directory not found or empty"
+          ls -la data/
+          ls -la debug_screenshots/ || echo "No debug screenshots"
 
-      - name: Commit and push JSON file
+      - name: Commit and push JSON files
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'data/tweets_with_bias_*.json'  # Keep this pattern
+          add: 'data/tweets_with_bias_*.json'
           message: 'chore: update tweets classification data'
           default_author: github_actions
+
+      - name: Upload debug screenshots
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-screenshots
+          path: debug_screenshots/
