@@ -14,8 +14,8 @@ from selenium.common.exceptions import StaleElementReferenceException
 import traceback
 import sys
 
-TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
-TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
+TWITTER_USERNAME = "bigjobbohoho"
+TWITTER_PASSWORD = "PASSWORD56!"
 CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
 "RiskReversal",
 "CarterBWorth",
