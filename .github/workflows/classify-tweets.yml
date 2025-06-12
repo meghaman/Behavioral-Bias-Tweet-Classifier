@@ -21,16 +21,19 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Chrome & Chromedriver
+      - name: Install Chrome, Chromedriver & Xvfb
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
+          sudo apt-get install -y \
+            chromium-browser \
+            chromium-chromedriver \
+            xvfb
           chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium
+          pip install -r requirements.txt
 
       - name: Create directories
         run: |
@@ -50,9 +53,13 @@ jobs:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
-          # Increase timeout for slow environments
+          # Allow extra time in CI
           export SCRIPT_TIMEOUT=600
-          python main.py
+
+          # Use Xvfb to give Chrome a display
+          xvfb-run --auto-servernum --server-args='-screen 0 1920x1200x24' \
+            python main.py
+
           echo "Directory contents after script:"
           ls -la data/ || echo "data directory not found or empty"
           ls -la debug_screenshots/ || echo "screenshots directory not found"
