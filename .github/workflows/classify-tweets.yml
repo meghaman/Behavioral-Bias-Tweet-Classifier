@@ -26,7 +26,8 @@ jobs:
       - name: Install Chrome & Chromedriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver=114.0.5735.90-0ubuntu0.18.04.1
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+          # Verify Chromedriver installation
           chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
@@ -40,12 +41,12 @@ jobs:
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
           python main.py
-          echo "Directory contents after script:"
+          # Display directory contents for debugging
           ls -la data/ || echo "data directory not found or empty"
 
       - name: Commit and push JSON file
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'data/tweets_with_bias_*.json'  # Match timestamped files
-          message: 'chore: update tweets_with_bias.json'
+          add: 'data/tweets_with_bias_*.json'  # Keep this pattern
+          message: 'chore: update tweets classification data'
           default_author: github_actions
