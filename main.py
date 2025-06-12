@@ -3505,17 +3505,35 @@ def main():
     
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
     print(f"Generated timestamp: {timestamp}")
-    save_tweets_to_json(all_tweets)
-    output_path = f"data/tweets_with_bias_{timestamp}.json"
-   output_path = save_tweets_to_json(all_tweets)
+    output_path = save_tweets_to_json(all_tweets)  # CORRECTED INDENTATION
     if output_path and os.path.exists(output_path):
         print(f"File created: {output_path}, size: {os.path.getsize(output_path)} bytes")
     else:
         print("ERROR: File was not created successfully")
-        
+    
     driver.quit()
     print(f"Scraping completed. Total tweets: {len(all_tweets)}")
     print(f"Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+
+# Make sure to update the save_tweets_to_json function as well
+def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
+    """Save tweets to a new JSON file with a timestamp-based name."""
+    output_dir = "data"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    filename = f"{filename_prefix}_{timestamp}.json"
+    output_path = os.path.join(output_dir, filename)
+    print(f"Attempting to save to: {output_path}")
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(tweets, f, indent=2, ensure_ascii=False)
+        print(f"Successfully saved to {output_path}")
+        return output_path
+    except Exception as e:
+        print(f"Error saving file: {str(e)}")
+        traceback.print_exc()
+        return None
 
 if __name__ == "__main__":
     main()
