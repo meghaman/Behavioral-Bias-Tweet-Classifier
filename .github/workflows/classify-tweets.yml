@@ -26,8 +26,7 @@ jobs:
       - name: Install Chrome & Chromedriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-          # Verify Chromedriver installation
+          sudo apt-get install -y chromium-browser chromium-chromedriver=114.0.5735.90-0ubuntu0.18.04.1
           chromedriver --version || echo "Chromedriver installation failed"
 
       - name: Install Python dependencies
@@ -41,7 +40,7 @@ jobs:
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
           python main.py
-          # Display directory contents for debugging
+          echo "Directory contents after script:"
           ls -la data/ || echo "data directory not found or empty"
 
       - name: Commit and push JSON file
