@@ -16,6 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Remove unused sys import
+        run: |
+          # delete any line that says "import sys"
+          sed -i '/import sys/d' main.py
+
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
@@ -41,25 +46,21 @@ jobs:
           mkdir -p debug_screenshots
 
       - name: Debug Secrets
-        run: |
-          echo "TWITTER_USERNAME is set: ${TWITTER_USERNAME:-not set}"
-          echo "TWITTER_PASSWORD is set: ${TWITTER_PASSWORD:-not set}"
         env:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
+        run: |
+          echo "TWITTER_USERNAME is set: ${TWITTER_USERNAME:-not set}"
+          echo "TWITTER_PASSWORD is set: ${TWITTER_PASSWORD:-not set}"
 
       - name: Run Tweet Classifier
         env:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
         run: |
-          # Allow extra time in CI
           export SCRIPT_TIMEOUT=600
-
-          # Use Xvfb to give Chrome a display
           xvfb-run --auto-servernum --server-args='-screen 0 1920x1200x24' \
             python main.py
-
           echo "Directory contents after script:"
           ls -la data/ || echo "data directory not found or empty"
           ls -la debug_screenshots/ || echo "screenshots directory not found"
