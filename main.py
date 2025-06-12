@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 import traceback
+import sys
 
 TWITTER_USERNAME = "bigjobbohoho"
 TWITTER_PASSWORD = "PASSWORD56!"
@@ -3224,25 +3225,38 @@ def setup_driver():
     chrome_options = Options()
     
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    
+    # Mimic real browser more closely
     chrome_options.add_argument(f"user-agent={user_agent}")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
-    
-    if HEADLESS_MODE:
-        chrome_options.add_argument("--headless=new")
-    
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1200")
+    chrome_options.add_argument("--start-maximized")
+    
+    # Add additional capabilities
+    chrome_options.add_argument("--disable-web-security")
+    chrome_options.add_argument("--allow-running-insecure-content")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--disable-popup-blocking")
+    chrome_options.add_argument("--disable-notifications")
+    
+    # Headless configuration
+    if HEADLESS_MODE:
+        chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--remote-debugging-port=9222")
     
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
         options=chrome_options
     )
     
+    # Mask Selenium detection
     driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
         'source': '''
             Object.defineProperty(navigator, 'webdriver', {
@@ -3251,47 +3265,106 @@ def setup_driver():
             window.chrome = {
                 runtime: {},
             };
+            Object.defineProperty(navigator, 'plugins', {
+                get: () => [1, 2, 3],
+            });
+            Object.defineProperty(navigator, 'languages', {
+                get: () => ['en-US', 'en'],
+            });
         '''
     })
     return driver
 
 def login_twitter(driver, username, password):
     driver.get("https://x.com/login")
-    time.sleep(2)
+    time.sleep(3)
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
     
     try:
-        username_field = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.NAME, "text"))
-        )
+        # Handle different login page variations
+        try:
+            username_field = WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.NAME, "text"))
+            )
+        except:
+            username_field = WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.XPATH, "//input[@autocomplete='username']"))
+            )
+        
         username_field.send_keys(username)
-        driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+        
+        # Find and click next button
+        next_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
+        if next_buttons:
+            next_buttons[0].click()
+        else:
+            # Try alternative next button locator
+            alt_buttons = driver.find_elements(By.XPATH, "//div[@role='button' and .//span[text()='Next']]")
+            if alt_buttons:
+                alt_buttons[0].click()
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
+            time.sleep(2)
         
-        password_field = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.NAME, "password"))
-        )
-        password_field.send_keys(password)
+        # Handle potential security checks
+        security_check_passed = True
+        try:
+            # Check if security challenge appears
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, "//span[contains(text(),'unusual login attempt')]"))
+            )
+            security_check_passed = False
+            if DEBUG_MODE:
+                print("Security challenge detected")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/02a_security_challenge.png")
+        except:
+            pass
         
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
+        if security_check_passed:
+            # Find password field with multiple selectors
+            try:
+                password_field = WebDriverWait(driver, 15).until(
+                    EC.visibility_of_element_located((By.NAME, "password"))
+                )
+            except:
+                password_field = WebDriverWait(driver, 15).until(
+                    EC.visibility_of_element_located((By.XPATH, "//input[@type='password']"))
+                )
+            
+            password_field.send_keys(password)
+            
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
+                time.sleep(2)
+            
+            # Find and click login button
+            login_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Log in')]/..")
+            if login_buttons:
+                login_buttons[0].click()
+            else:
+                # Try alternative login button locator
+                alt_login_buttons = driver.find_elements(By.XPATH, "//div[@data-testid='LoginForm_Login_Button']")
+                if alt_login_buttons:
+                    alt_login_buttons[0].click()
+            
+            # Verify successful login
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
+            )
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
+            return True
         
-        driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
-        
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
-        )
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
-        return True
+        return False
         
     except Exception as e:
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
+            with open(f"{SCREENSHOT_DIR}/05_login_error.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
             print(f"Login error: {str(e)}")
             traceback.print_exc()
         return False
@@ -3313,7 +3386,7 @@ def detect_bias(tweet_text):
     for keyword, bias in CLASSIFIERS.items():
         if keyword.lower() in tweet_text:
             return bias
-    return None  # No bias detected
+    return None
 
 def scrape_tweets(driver, handle, cutoff_time):
     driver.get(f"https://x.com/{handle}")
@@ -3389,7 +3462,6 @@ def scrape_tweets(driver, handle, cutoff_time):
                 text_div = tweet.find_element(By.XPATH, ".//div[@data-testid='tweetText']")
                 tweet_text = text_div.text
                 
-                # Detect bias
                 bias = detect_bias(tweet_text)
                 
                 metrics = {
@@ -3454,31 +3526,33 @@ def print_tweets(tweets, handle):
     if len(sorted_tweets) > 10:
         print(f"\nShowing 10 of {len(sorted_tweets)} tweets. Use DEBUG_MODE for full details.")
 
-def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
-    """Save tweets to JSON file in the requested format."""
-    output_dir = "/Users/aarushchugh/Downloads"
+def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
+    output_dir = "data"
     if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+        os.makedirs(output_dir, exist_ok=True)  # Ensure directory exists
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    filename = f"{filename_prefix}_{timestamp}.json"
     output_path = os.path.join(output_dir, filename)
+    print(f"Saving tweets to: {output_path}")
     
-    simplified_tweets = [
-        {
-            "user": tweet["user"],
-            "text": tweet["text"],
-            "bias": tweet["bias"] if tweet["bias"] else "None"
-        }
-        for tweet in tweets
-    ]
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(simplified_tweets, f, indent=2, ensure_ascii=False)
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(tweets, f, indent=2, ensure_ascii=False)
+        print(f"Successfully saved {len(tweets)} tweets to {output_path}")
+        return output_path
+    except Exception as e:
+        print(f"Error saving file: {str(e)}")
+        traceback.print_exc()
+        return None
 
 def main():
     print("Starting Twitter scraper with bias detection...")
+    print(f"Environment: {os.name}")
     driver = setup_driver()
-    print("Driver initialized")
+    print("Driver initialized successfully")
     
     if not login_twitter(driver, TWITTER_USERNAME, TWITTER_PASSWORD):
-        print("Login failed. Exiting.")
+        print(f"Login failed. TWITTER_USERNAME: {TWITTER_USERNAME}, TWITTER_PASSWORD set: {TWITTER_PASSWORD is not None}")
         driver.quit()
         return
     print("Login successful")
@@ -3489,11 +3563,11 @@ def main():
     all_tweets = []
     for handle in CREATOR_HANDLES:
         try:
-            print(f"\nScraping @{handle}...")
+            print(f"\nStarting scrape for @{handle}...")
             start_time = time.time()
             tweets = scrape_tweets(driver, handle, time_threshold)
             duration = time.time() - start_time
-            print(f"Scraped {len(tweets)} tweets in {duration:.1f} seconds")
+            print(f"Scraped {len(tweets)} tweets from @{handle} in {duration:.1f} seconds")
             print_tweets(tweets, handle)
             all_tweets.extend(tweets)
         except Exception as e:
@@ -3501,13 +3575,37 @@ def main():
             if DEBUG_MODE:
                 traceback.print_exc()
     
-    # Save tweets to JSON file
-    save_tweets_to_json(all_tweets)
-    print(f"Tweets saved to /Users/aarushchugh/Downloads/tweets_with_bias.json")
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    print(f"Generated timestamp: {timestamp}")
+    output_path = save_tweets_to_json(all_tweets)  # CORRECTED INDENTATION
+    if output_path and os.path.exists(output_path):
+        print(f"File created: {output_path}, size: {os.path.getsize(output_path)} bytes")
+    else:
+        print("ERROR: File was not created successfully")
     
     driver.quit()
-    print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
-    print(f"Time range covered: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+    print(f"Scraping completed. Total tweets: {len(all_tweets)}")
+    print(f"Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+
+# Make sure to update the save_tweets_to_json function as well
+def save_tweets_to_json(tweets, filename_prefix="tweets_with_bias"):
+    """Save tweets to a new JSON file with a timestamp-based name."""
+    output_dir = "data"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    filename = f"{filename_prefix}_{timestamp}.json"
+    output_path = os.path.join(output_dir, filename)
+    print(f"Attempting to save to: {output_path}")
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(tweets, f, indent=2, ensure_ascii=False)
+        print(f"Successfully saved to {output_path}")
+        return output_path
+    except Exception as e:
+        print(f"Error saving file: {str(e)}")
+        traceback.print_exc()
+        return None
 
 if __name__ == "__main__":
     main()
