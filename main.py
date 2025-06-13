@@ -31,8 +31,19 @@ CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
 "NYSEguru",
 "leadlagreport",
 "allstarcharts",
-"markminervini"
+"markminervini",
+"BrianFeroldi", "morganhousel", "LizAnnSonders", "fluentinfinance", "iancassel", 
+  "accentinvesting", "awealthofcs", "deepakshenoy", "ajay_bagga", "grahamstephan", 
+  "michaelbatnick", "arunstockguru", "abnormalreturns", "mashranivivek", "investmattallen", 
+  "valuestockgeek", "investmenttalkk", "lti_finance", "petermallouk", "gunavanthvaid", 
+  "value_invest12", "cathyhc", "emmetlsavage", "rwohlner", "barbfriedberg", 
+  "rossbaird", "franseegull", "arun_kumar_r", "joelsolomon", "coachchadcarson", 
+  "lisagreenhall", "andrewbeebe", "financialmentor", "kcicoletti", "jessmatthewsca", 
+  "iDesignStrategy", "JoeParys", "StackerSatoshi", "OfficialTravlad", "dubzyxbt", 
+  "TedPillows", "IvanOnTech", "boxmining", "conorfkenny", "AltCryptoGems", 
+  "unusual_whales", "RayDalio", "AswathDamodaran", "matt_levine", "davidfaber"
 ]
+
 HEADLESS_MODE = True
 DEBUG_MODE = True
 SCREENSHOT_DIR = "debug_screenshots"
