@@ -3267,14 +3267,24 @@ def login_twitter(driver, username, password):
                 EC.presence_of_element_located((By.NAME, "phone_or_email"))
             )
             if phone_field:
-                phone_field.send_keys("9802203489")  # Enter phone number
+                phone_field.send_keys("9802203489")  # Enter the phone number
                 driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-                time.sleep(2)  # Wait for potential code entry (you may need to handle this separately)
+                time.sleep(5)  # Wait for potential next step (e.g., code entry)
+                
+                # Optional: Check for verification code input (manual for now)
+                try:
+                    code_field = WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.NAME, "verifier"))
+                    )
+                    print("Please enter the verification code sent to 980-220-3489 manually.")
+                    # You would need to manually input the code here or use an SMS API
+                except:
+                    pass  # Proceed if no code prompt
         except:
             pass  # Proceed if no phone verification prompt
         
-        # Enter password
-        password_field = WebDriverWait(driver, 10).until(
+        # Enter password (after verification or directly)
+        password_field = WebDriverWait(driver, 15).until(
             EC.visibility_of_element_located((By.NAME, "password"))
         )
         password_field.send_keys(password)
@@ -3284,6 +3294,7 @@ def login_twitter(driver, username, password):
         
         driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
         
+        # Wait for successful login to home page
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
         )
@@ -3319,20 +3330,23 @@ def detect_bias(tweet_text):
 
 def scrape_tweets(driver, handle, cutoff_time):
     driver.get(f"https://x.com/{handle}")
-    time.sleep(3)
+    time.sleep(5)  # Increased initial wait for page load
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/06_{handle}_profile.png")
     
     try:
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 30).until(  # Ensure tweets are loaded
             EC.presence_of_element_located((By.XPATH, "//article[@data-testid='tweet']"))
         )
+        # Additional wait to ensure more tweets load
+        time.sleep(3)
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/07_{handle}_tweets_loaded.png")
-    except Exception:
+    except Exception as e:
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/08_{handle}_tweets_error.png")
+            print(f"Error loading tweets for @{handle}: {str(e)}")
         return []
     
     all_tweets = []
@@ -3343,35 +3357,48 @@ def scrape_tweets(driver, handle, cutoff_time):
     consecutive_old_tweets = 0
     start_time = time.time()
     
-    scroll_pattern = [random.randint(300, 800) for _ in range(20)]
+    scroll_pattern = [random.randint(500, 1000) for _ in range(20)]  # Consistent scroll distance
     
     while scroll_attempts < MAX_SCROLL_ATTEMPTS:
         scroll_distance = scroll_pattern[min(scroll_attempts, len(scroll_pattern)-1)]
         driver.execute_script(f"window.scrollBy(0, {scroll_distance})")
-        time.sleep(SCROLL_PAUSE_TIME + random.uniform(0, 1.0))
+        time.sleep(SCROLL_PAUSE_TIME + random.uniform(1.5, 2.5))  # Adjusted delay for stability
         
         new_position = driver.execute_script("return window.pageYOffset;")
-        if new_position == last_position:
+        if abs(new_position - last_position) < 100:  # More lenient scroll detection
             scroll_attempts += 1
         else:
             scroll_attempts = 0
             last_position = new_position
         
-        tweet_elements = driver.find_elements(By.XPATH, "//article[@data-testid='tweet']")
+        try:
+            tweet_elements = WebDriverWait(driver, 20).until(  # Increased wait time
+                EC.presence_of_all_elements_located((By.XPATH, "//article[@data-testid='tweet']"))
+            )
+        except Exception as e:
+            if DEBUG_MODE:
+                print(f"Timeout waiting for tweets: {str(e)}")
+            break
         
-        if DEBUG_MODE and scroll_attempts % 5 == 0:
+        if DEBUG_MODE and scroll_attempts % 20 == 0:  # Even less frequent screenshots
             driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_{scroll_attempts}.png")
         
         current_batch = []
         for tweet in tweet_elements:
             try:
+                # Refresh tweet element to avoid stale references
+                tweet = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, f"//article[@data-testid='tweet' and @aria-labelledby='{tweet.get_attribute('aria-labelledby')}']"))
+                )
                 tweet_id = tweet.get_attribute("aria-labelledby")
                 if not tweet_id or tweet_id in seen_tweet_ids:
                     continue
                 
                 seen_tweet_ids.add(tweet_id)
                 
-                time_element = tweet.find_element(By.TAG_NAME, "time")
+                time_element = WebDriverWait(tweet, 10).until(
+                    EC.presence_of_element_located((By.TAG_NAME, "time"))
+                )
                 timestamp_str = time_element.get_attribute("datetime")
                 
                 if timestamp_str.endswith('Z'):
@@ -3388,10 +3415,11 @@ def scrape_tweets(driver, handle, cutoff_time):
                 else:
                     consecutive_old_tweets = 0
                 
-                text_div = tweet.find_element(By.XPATH, ".//div[@data-testid='tweetText']")
+                text_div = WebDriverWait(tweet, 10).until(
+                    EC.presence_of_element_located((By.XPATH, ".//div[@data-testid='tweetText']"))
+                )
                 tweet_text = text_div.text
                 
-                # Detect bias
                 bias = detect_bias(tweet_text)
                 
                 metrics = {
@@ -3413,9 +3441,9 @@ def scrape_tweets(driver, handle, cutoff_time):
                 
             except StaleElementReferenceException:
                 continue
-            except Exception:
+            except Exception as e:
                 if DEBUG_MODE:
-                    traceback.print_exc()
+                    print(f"Error processing tweet: {str(e)}")
                 continue
         
         all_tweets.extend(current_batch)
@@ -3426,7 +3454,7 @@ def scrape_tweets(driver, handle, cutoff_time):
             break
         if len(all_tweets) > 1000:
             break
-        if time.time() - start_time > 300:
+        if time.time() - start_time > 600:  # Increased timeout to 10 minutes
             break
     
     print(f"Scraped {len(all_tweets)} tweets from @{handle}")
