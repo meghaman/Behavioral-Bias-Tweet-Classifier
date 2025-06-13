@@ -12,12 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 import traceback
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Retrieve credentials from environment variables with fallbacks
+# Retrieve credentials from environment variables (set via GitHub Secrets in Actions)
 TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
 TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
 CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay", "RiskReversal", "CarterBWorth", "jonnajarian",
