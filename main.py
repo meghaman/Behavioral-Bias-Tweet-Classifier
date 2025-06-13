@@ -3264,33 +3264,19 @@ def login_twitter(driver, username, password):
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
         
-        # Check for phone verification prompt - FIXED HANDLING
+        # Check for phone verification prompt
         try:
-            # Use more robust element location strategy
             phone_field = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, "//input[@name='phone_or_email']"))
             )
             phone_field.send_keys("9802203489")  # Enter the phone number
             driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-            time.sleep(5)  # Wait for potential next step
+            time.sleep(3)  # Wait for submission
             
-            # Check for verification code prompt
-            try:
-                code_field = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.NAME, "verification_code"))
-                )
-                if not HEADLESS_MODE:
-                    # Only prompt for code if not in headless mode
-                    print("Please enter the verification code sent to 980-220-3489:")
-                    code = input()
-                    code_field.send_keys(code)
-                    driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-                    time.sleep(2)
-                else:
-                    print("Verification code required in headless mode. Cannot proceed automatically.")
-                    return False
-            except TimeoutException:
-                pass  # No code prompt, proceed to password
+            # Skip any potential code verification step
+            # Twitter might just accept the phone number without requiring a code
+            # We'll proceed directly to password entry
+            
         except TimeoutException:
             pass  # No phone verification prompt, proceed to password
         
@@ -3319,7 +3305,6 @@ def login_twitter(driver, username, password):
             print(f"Login error: {str(e)}")
             traceback.print_exc()
         return False
-
 def calculate_time_threshold():
     return datetime.now(timezone.utc) - timedelta(hours=24)
 
