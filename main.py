@@ -12,33 +12,25 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 import traceback
+from dotenv import load_dotenv
 
-TWITTER_USERNAME = "bigjobbohoho"
-TWITTER_PASSWORD = "PASSWORD56!"
-CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
-"RiskReversal",
-"CarterBWorth",
-"jonnajarian",
-"GRDecter",
-"NorthmanTrader",
-"biancoresearch",
-"TommyThornton",
-"KeithMcCullough",
-"Beth_Kindig",
-"RedDogT3",
-"alphatrends",
-"NYSEguru",
-"leadlagreport",
-"allstarcharts",
-"markminervini"
-]
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve credentials from environment variables with fallbacks
+TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
+TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
+CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay", "RiskReversal", "CarterBWorth", "jonnajarian",
+                  "GRDecter", "NorthmanTrader", "biancoresearch", "TommyThornton", "KeithMcCullough",
+                  "Beth_Kindig", "RedDogT3", "alphatrends", "NYSEguru", "leadlagreport", "allstarcharts",
+                  "markminervini"]
 HEADLESS_MODE = True
 DEBUG_MODE = True
 SCREENSHOT_DIR = "debug_screenshots"
 MAX_SCROLL_ATTEMPTS = 30
 SCROLL_PAUSE_TIME = 2.5
 
-# Updated classifiers based on provided tweets and keywords
+# Classifiers will be empty unless defined elsewhere (e.g., .env or another config)
 CLASSIFIERS = {    
     "don't miss": "FOMO",
     "don't miss now": "FOMO",
