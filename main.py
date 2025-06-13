@@ -3211,11 +3211,13 @@ if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
 def setup_driver():
     chrome_options = Options()
     
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
     chrome_options.add_argument(f"user-agent={user_agent}")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument("--start-maximized")
     
     if HEADLESS_MODE:
         chrome_options.add_argument("--headless=new")
@@ -3224,7 +3226,7 @@ def setup_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1200")
+    chrome_options.add_argument("--window-size=1920,1080")
     
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
@@ -3233,48 +3235,58 @@ def setup_driver():
     
     driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
         'source': '''
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined
-            });
-            window.chrome = {
-                runtime: {},
-            };
+            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+            Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+            Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
+            window.chrome = { runtime: {}, app: {} };
         '''
     })
     return driver
 
 def login_twitter(driver, username, password):
     driver.get("https://x.com/login")
-    time.sleep(2)
+    time.sleep(3)  # Increased initial wait for page load
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
     
     try:
-        username_field = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.NAME, "text"))
+        # Wait for the username field (updated XPath for robustness)
+        username_field = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='text']"))
         )
+        username_field.clear()
         username_field.send_keys(username)
-        driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+        driver.find_element(By.XPATH, "//span[contains(text(), 'Next')]/ancestor::button").click()
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
         
-        password_field = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.NAME, "password"))
+        # Wait for the password field (handle potential 2FA or CAPTCHA page)
+        password_field = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='password']")),
+            message="Password field not found, possible CAPTCHA or 2FA"
         )
+        password_field.clear()
         password_field.send_keys(password)
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
         
-        driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
+        # Click login button (updated XPath)
+        login_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Log in')]/ancestor::button"))
+        )
+        login_button.click()
         
+        # Wait for successful login (check for homepage)
         WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/home']")),
+            message="Login failed, check for CAPTCHA or 2FA"
         )
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
+        print("Login successful")
         return True
         
     except Exception as e:
@@ -3282,6 +3294,7 @@ def login_twitter(driver, username, password):
             driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
             print(f"Login error: {str(e)}")
             traceback.print_exc()
+        print("Login failed. Possible causes: incorrect credentials, CAPTCHA, or 2FA.")
         return False
 
 def calculate_time_threshold():
