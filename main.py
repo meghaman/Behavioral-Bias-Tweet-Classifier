@@ -3248,7 +3248,7 @@ def setup_driver():
     return driver
 
 
-def login_twitter(driver, username, password):
+ef login_twitter(driver, username, password):
     print("Navigating to login page...")
     driver.get("https://x.com/login")
     time.sleep(3)
@@ -3265,62 +3265,89 @@ def login_twitter(driver, username, password):
         )
         username_field.send_keys(username)
         print("Username entered, clicking Next...")
-        driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+        next_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
+        if next_buttons:
+            next_buttons[0].click()
+        else:
+            print("No Next button found after username entry")
+            return False
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
             print("Screenshot: 02_username_entered.png saved")
         
         # Check for phone verification prompt
+        phone_entered = False
         try:
             print("Checking for phone verification prompt...")
             phone_field = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, "//input[@name='phone_or_email']"))
+                EC.presence_of_element_located((By.XPATH, "//input[@name='text' and @type='text']"))
             )
             print("Phone verification prompt found, entering phone number...")
-            phone_field.send_keys("9802203489")
-            driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-            print("Phone number submitted")
-            time.sleep(3)  # Wait for submission
+            phone_field.send_keys(TWITTER_PHONE)
             
-            # Skip any potential code verification step
-            print("Skipping code verification if present...")
+            # Take screenshot after entering phone number
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_phone_entered.png")
+                print("Screenshot: 03_phone_entered.png saved")
+            
+            # Find and click Next button after phone entry
+            next_buttons_after_phone = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
+            if next_buttons_after_phone:
+                next_buttons_after_phone[0].click()
+                phone_entered = True
+                print("Phone number submitted")
+                time.sleep(3)  # Wait for submission
+            else:
+                print("No Next button found after phone entry")
+                return False
             
         except TimeoutException:
             print("No phone verification prompt found, proceeding...")
-            pass
         
-        # Enter password with extended timeout
+        # Enter password
         print("Waiting for password field...")
-        password_field = WebDriverWait(driver, 30).until(
+        password_field = WebDriverWait(driver, 15).until(
             EC.visibility_of_element_located((By.NAME, "password"))
         )
         print("Password field found, entering password...")
         password_field.send_keys(password)
         
         if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
-            print("Screenshot: 03_password_entered.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_password_entered.png")
+            print("Screenshot: 04_password_entered.png saved")
         
         print("Clicking login button...")
-        driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
+        login_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Log in')]/..")
+        if login_buttons:
+            login_buttons[0].click()
+        else:
+            print("No Login button found")
+            return False
         
-        # Wait for successful login to home page with extended timeout
+        # Wait for successful login to home page
         print("Waiting for login confirmation...")
-        WebDriverWait(driver, 45).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
-        )
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
-            print("Screenshot: 04_login_success.png saved")
-        print("Login successful!")
-        return True
+        try:
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
+            )
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_success.png")
+                print("Screenshot: 05_login_success.png saved")
+            print("Login successful!")
+            return True
+        except TimeoutException:
+            print("Login verification timed out, checking if we're logged in anyway...")
+            if "home" in driver.current_url:
+                print("Detected home page URL, assuming login successful")
+                return True
+            return False
         
     except Exception as e:
         print(f"Login error: {str(e)}")
         if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
-            print(f"Screenshot: 05_login_error.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/06_login_error.png")
+            print(f"Screenshot: 06_login_error.png saved")
             traceback.print_exc()
         return False
       
