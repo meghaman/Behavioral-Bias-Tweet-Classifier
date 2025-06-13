@@ -12,10 +12,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 import traceback
+from selenium.common.exceptions import TimeoutException  # Add this import
+
 
 # Retrieve credentials from environment variables (set via GitHub Secrets in Actions)
 TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
 TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
+TWITTER_PHONE = os.getenv("TWITTER_PHONE", "9802203489")
 CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay", "RiskReversal", "CarterBWorth", "jonnajarian",
                   "GRDecter", "NorthmanTrader", "biancoresearch", "TommyThornton", "KeithMcCullough",
                   "Beth_Kindig", "RedDogT3", "alphatrends", "NYSEguru", "leadlagreport", "allstarcharts",
@@ -3261,28 +3264,33 @@ def login_twitter(driver, username, password):
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
         
-        # Check for phone verification prompt
+        # Check for phone verification prompt - FIXED HANDLING
         try:
+            # Use more robust element location strategy
             phone_field = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.NAME, "phone_or_email"))
+                EC.presence_of_element_located((By.XPATH, "//input[@name='phone_or_email']"))
             )
-            if phone_field:
-                phone_field.send_keys("9802203489")  # Enter the phone number
-                driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-                time.sleep(5)  # Wait for potential next step
-                
-                # Check for verification code prompt
-                try:
-                    code_field = WebDriverWait(driver, 10).until(
-                        EC.presence_of_element_located((By.NAME, "verification_code"))
-                    )
+            phone_field.send_keys("9802203489")  # Enter the phone number
+            driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+            time.sleep(5)  # Wait for potential next step
+            
+            # Check for verification code prompt
+            try:
+                code_field = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.NAME, "verification_code"))
+                )
+                if not HEADLESS_MODE:
+                    # Only prompt for code if not in headless mode
                     print("Please enter the verification code sent to 980-220-3489:")
                     code = input()
                     code_field.send_keys(code)
                     driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
                     time.sleep(2)
-                except TimeoutException:
-                    pass  # No code prompt, proceed to password
+                else:
+                    print("Verification code required in headless mode. Cannot proceed automatically.")
+                    return False
+            except TimeoutException:
+                pass  # No code prompt, proceed to password
         except TimeoutException:
             pass  # No phone verification prompt, proceed to password
         
