@@ -16,7 +16,23 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-CREATOR_HANDLES = ["Ashcryptoreal"]
+CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
+"RiskReversal",
+"CarterBWorth",
+"jonnajarian",
+"GRDecter",
+"NorthmanTrader",
+"biancoresearch",
+"TommyThornton",
+"KeithMcCullough",
+"Beth_Kindig",
+"RedDogT3",
+"alphatrends",
+"NYSEguru",
+"leadlagreport",
+"allstarcharts",
+"markminervini"
+]
 HEADLESS_MODE = True
 DEBUG_MODE = True
 SCREENSHOT_DIR = "debug_screenshots"
