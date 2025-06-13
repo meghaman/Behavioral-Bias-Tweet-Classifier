@@ -3564,13 +3564,15 @@ def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
 def main():
     print("Starting Twitter scraper with bias detection...")
     
-    # Get output filename from command line
-    output_file = "data/tweets_with_bias.json"  # Default filename
-    if len(sys.argv) > 1:
-        output_file = sys.argv[1]
-        print(f"Using output file: {output_file}")
-    else:
-        print(f"Using default output file: {output_file}")
+    # Get output filename from environment variable or use default
+    output_file = os.getenv("OUTPUT_FILE", "data/tweets_with_bias.json")
+    print(f"Using output file: {output_file}")
+    
+    # Set headless mode based on environment variable
+    global HEADLESS_MODE
+    if os.getenv("HEADLESS_MODE", "False").lower() in ("true", "1", "t"):
+        HEADLESS_MODE = True
+        print("Running in headless mode")
     
     driver = setup_driver()
     print("Driver initialized with stealth settings")
