@@ -2,6 +2,7 @@ import os
 import time
 import random
 import json
+import time
 from datetime import datetime, timedelta, timezone
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -3246,65 +3247,83 @@ def setup_driver():
     })
     return driver
 
+
 def login_twitter(driver, username, password):
+    print("Navigating to login page...")
     driver.get("https://x.com/login")
-    time.sleep(2)
+    time.sleep(3)
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
+        print("Screenshot: 01_login_page.png saved")
     
     try:
         # Enter username
-        username_field = WebDriverWait(driver, 15).until(
+        print("Entering username...")
+        username_field = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.NAME, "text"))
         )
         username_field.send_keys(username)
+        print("Username entered, clicking Next...")
         driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
+            print("Screenshot: 02_username_entered.png saved")
         
         # Check for phone verification prompt
         try:
+            print("Checking for phone verification prompt...")
             phone_field = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, "//input[@name='phone_or_email']"))
             )
-            phone_field.send_keys("9802203489")  # Enter the phone number
+            print("Phone verification prompt found, entering phone number...")
+            phone_field.send_keys("9802203489")
             driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+            print("Phone number submitted")
             time.sleep(3)  # Wait for submission
             
             # Skip any potential code verification step
-            # Twitter might just accept the phone number without requiring a code
-            # We'll proceed directly to password entry
+            print("Skipping code verification if present...")
             
         except TimeoutException:
-            pass  # No phone verification prompt, proceed to password
+            print("No phone verification prompt found, proceeding...")
+            pass
         
-        # Enter password
-        password_field = WebDriverWait(driver, 15).until(
+        # Enter password with extended timeout
+        print("Waiting for password field...")
+        password_field = WebDriverWait(driver, 30).until(
             EC.visibility_of_element_located((By.NAME, "password"))
         )
+        print("Password field found, entering password...")
         password_field.send_keys(password)
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
+            print("Screenshot: 03_password_entered.png saved")
         
+        print("Clicking login button...")
         driver.find_element(By.XPATH, "//span[contains(text(),'Log in')]/..").click()
         
-        # Wait for successful login to home page
-        WebDriverWait(driver, 30).until(
+        # Wait for successful login to home page with extended timeout
+        print("Waiting for login confirmation...")
+        WebDriverWait(driver, 45).until(
             EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
         )
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
+            print("Screenshot: 04_login_success.png saved")
+        print("Login successful!")
         return True
         
     except Exception as e:
+        print(f"Login error: {str(e)}")
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
-            print(f"Login error: {str(e)}")
+            print(f"Screenshot: 05_login_error.png saved")
             traceback.print_exc()
         return False
+      
 def calculate_time_threshold():
     return datetime.now(timezone.utc) - timedelta(hours=24)
 
@@ -3325,105 +3344,123 @@ def detect_bias(tweet_text):
     return None  # No bias detected
 
 def scrape_tweets(driver, handle, cutoff_time):
+    print(f"\nStarting scrape for @{handle}")
+    print(f"Navigating to profile: https://x.com/{handle}")
     driver.get(f"https://x.com/{handle}")
-    time.sleep(5)  # Increased initial wait for page load
+    time.sleep(5)  # Initial page load
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/06_{handle}_profile.png")
+        print(f"Screenshot: 06_{handle}_profile.png saved")
     
     try:
-        WebDriverWait(driver, 30).until(  # Ensure tweets are loaded
+        print("Waiting for tweets to load...")
+        WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, "//article[@data-testid='tweet']"))
         )
-        # Additional wait to ensure more tweets load
-        time.sleep(3)
+        print("Tweets detected, waiting additional time for content...")
+        time.sleep(4)
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/07_{handle}_tweets_loaded.png")
+            print(f"Screenshot: 07_{handle}_tweets_loaded.png saved")
     except Exception as e:
+        print(f"Error loading tweets for @{handle}: {str(e)}")
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/08_{handle}_tweets_error.png")
-            print(f"Error loading tweets for @{handle}: {str(e)}")
+            print(f"Screenshot: 08_{handle}_tweets_error.png saved")
         return []
     
     all_tweets = []
     seen_tweet_ids = set()
     last_position = driver.execute_script("return window.pageYOffset;")
     scroll_attempts = 0
-    oldest_timestamp = None
     consecutive_old_tweets = 0
     start_time = time.time()
+    scroll_count = 0
     
-    scroll_pattern = [random.randint(500, 1000) for _ in range(20)]  # Consistent scroll distance
+    print(f"Beginning scroll collection for @{handle}...")
     
     while scroll_attempts < MAX_SCROLL_ATTEMPTS:
-        scroll_distance = scroll_pattern[min(scroll_attempts, len(scroll_pattern)-1)]
+        scroll_count += 1
+        print(f"Scroll #{scroll_count} - Attempt {scroll_attempts+1}/{MAX_SCROLL_ATTEMPTS}")
+        
+        # Dynamic scroll distance based on attempt count
+        scroll_distance = 800 + (scroll_count * 200)
         driver.execute_script(f"window.scrollBy(0, {scroll_distance})")
-        time.sleep(SCROLL_PAUSE_TIME + random.uniform(1.5, 2.5))  # Adjusted delay for stability
+        time.sleep(SCROLL_PAUSE_TIME + random.uniform(0.5, 1.5))
         
         new_position = driver.execute_script("return window.pageYOffset;")
-        if abs(new_position - last_position) < 100:  # More lenient scroll detection
+        if abs(new_position - last_position) < 100:
             scroll_attempts += 1
+            print(f"Scroll detected as ineffective ({abs(new_position - last_position)}px moved)")
         else:
             scroll_attempts = 0
             last_position = new_position
+            print(f"Scroll effective ({abs(new_position - last_position)}px moved)")
         
         try:
-            tweet_elements = WebDriverWait(driver, 20).until(  # Increased wait time
+            print("Locating tweet elements...")
+            tweet_elements = WebDriverWait(driver, 15).until(
                 EC.presence_of_all_elements_located((By.XPATH, "//article[@data-testid='tweet']"))
             )
+            print(f"Found {len(tweet_elements)} tweet elements")
         except Exception as e:
+            print(f"Timeout waiting for tweets: {str(e)}")
             if DEBUG_MODE:
-                print(f"Timeout waiting for tweets: {str(e)}")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_error_{scroll_count}.png")
+                print(f"Screenshot: 09_{handle}_scroll_error_{scroll_count}.png saved")
             break
         
-        if DEBUG_MODE and scroll_attempts % 20 == 0:  # Even less frequent screenshots
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_{scroll_attempts}.png")
+        # Take debug screenshot every 5 scrolls
+        if DEBUG_MODE and scroll_count % 5 == 0:
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_{scroll_count}.png")
+            print(f"Screenshot: 09_{handle}_scroll_{scroll_count}.png saved")
         
         current_batch = []
-        for tweet in tweet_elements:
+        print(f"Processing {len(tweet_elements)} tweets...")
+        
+        for idx, tweet in enumerate(tweet_elements):
             try:
-                # Refresh tweet element to avoid stale references
-                tweet = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, f"//article[@data-testid='tweet' and @aria-labelledby='{tweet.get_attribute('aria-labelledby')}']"))
-                )
-                tweet_id = tweet.get_attribute("aria-labelledby")
-                if not tweet_id or tweet_id in seen_tweet_ids:
+                # Get tweet ID
+                tweet_id = tweet.get_attribute("aria-labelledby") or f"unknown_{scroll_count}_{idx}"
+                if tweet_id in seen_tweet_ids:
                     continue
-                
                 seen_tweet_ids.add(tweet_id)
                 
-                time_element = WebDriverWait(tweet, 10).until(
+                # Get timestamp
+                time_element = WebDriverWait(tweet, 5).until(
                     EC.presence_of_element_located((By.TAG_NAME, "time"))
                 )
                 timestamp_str = time_element.get_attribute("datetime")
                 
+                # Parse timestamp
                 if timestamp_str.endswith('Z'):
                     timestamp = datetime.strptime(timestamp_str, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
                 else:
                     timestamp = datetime.fromisoformat(timestamp_str)
                 
-                if oldest_timestamp is None or timestamp < oldest_timestamp:
-                    oldest_timestamp = timestamp
-                
+                # Check if tweet is within time range
                 if timestamp < cutoff_time:
                     consecutive_old_tweets += 1
                     continue
-                else:
-                    consecutive_old_tweets = 0
                 
-                text_div = WebDriverWait(tweet, 10).until(
+                # Get tweet text
+                text_div = WebDriverWait(tweet, 5).until(
                     EC.presence_of_element_located((By.XPATH, ".//div[@data-testid='tweetText']"))
                 )
                 tweet_text = text_div.text
                 
+                # Detect bias
                 bias = detect_bias(tweet_text)
                 
+                # Get engagement metrics
                 metrics = {
                     'replies': safe_extract_metric(tweet, "reply"),
                     'retweets': safe_extract_metric(tweet, "retweet"),
                     'likes': safe_extract_metric(tweet, "like")
                 }
                 
+                # Compile tweet data
                 tweet_data = {
                     'user': f"@{handle}",
                     'text': tweet_text,
@@ -3434,26 +3471,36 @@ def scrape_tweets(driver, handle, cutoff_time):
                 }
                 
                 current_batch.append(tweet_data)
+                consecutive_old_tweets = 0
                 
-            except StaleElementReferenceException:
+            except (StaleElementReferenceException, NoSuchElementException):
                 continue
             except Exception as e:
+                print(f"Error processing tweet: {str(e)}")
                 if DEBUG_MODE:
-                    print(f"Error processing tweet: {str(e)}")
+                    driver.save_screenshot(f"{SCREENSHOT_DIR}/10_{handle}_tweet_error_{scroll_count}_{idx}.png")
+                    print(f"Screenshot: 10_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
                 continue
         
         all_tweets.extend(current_batch)
+        print(f"Added {len(current_batch)} new tweets (total: {len(all_tweets)}")
         
-        if consecutive_old_tweets > 15:
-            break
-        if oldest_timestamp and oldest_timestamp < cutoff_time:
+        # Break conditions
+        if consecutive_old_tweets > 20:
+            print(f"20+ consecutive old tweets, stopping collection")
             break
         if len(all_tweets) > 1000:
+            print(f"Reached 1000 tweet limit, stopping collection")
             break
-        if time.time() - start_time > 600:  # Increased timeout to 10 minutes
+        if time.time() - start_time > 600:  # 10 minute timeout
+            print(f"10 minute timeout reached, stopping collection")
             break
+        if scroll_attempts > MAX_SCROLL_ATTEMPTS/2:
+            print(f"Multiple ineffective scrolls, trying recovery scroll...")
+            driver.execute_script("window.scrollBy(0, 2000)")
+            time.sleep(3)
     
-    print(f"Scraped {len(all_tweets)} tweets from @{handle}")
+    print(f"Finished scrape for @{handle} - {len(all_tweets)} tweets collected")
     return all_tweets
 
 def print_tweets(tweets, handle):
