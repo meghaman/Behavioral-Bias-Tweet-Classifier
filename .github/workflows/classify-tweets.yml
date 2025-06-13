@@ -39,19 +39,23 @@ jobs:
           mkdir -p debug_screenshots
           chmod -R 755 debug_screenshots
 
+      - name: Generate timestamp
+        id: timestamp
+        run: |
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          echo "Generated timestamp: $TIMESTAMP"
+
       - name: Run Tweet Classifier
         env:
           HEADLESS_MODE: "True"  # Force headless mode in CI
           DEBUG_MODE: "True"     # Enable debugging in CI
+          OUTPUT_FILE: "data/tweets_with_bias_${{ env.TIMESTAMP }}.json"
         run: |
-          # Generate timestamped filename with date and time
-          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-          OUTPUT_FILE="data/tweets_with_bias_${TIMESTAMP}.json"
-          
           echo "Output file: $OUTPUT_FILE"
           
-          # Run script with timeout and capture output
-          timeout 15m python main.py "$OUTPUT_FILE"
+          # Run script with timeout
+          timeout 15m python main.py
           
           # Check if output file was created
           if [ -f "$OUTPUT_FILE" ]; then
