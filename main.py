@@ -3245,44 +3245,53 @@ def setup_driver():
 
 def login_twitter(driver, username, password):
     driver.get("https://x.com/login")
-    time.sleep(3)  # Increased initial wait for page load
+    time.sleep(3)  # Initial wait for page load
     
     if DEBUG_MODE:
         driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
     
     try:
-        # Wait for the username field (updated XPath for robustness)
+        # Wait for username field
         username_field = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='text']"))
         )
         username_field.clear()
         username_field.send_keys(username)
-        driver.find_element(By.XPATH, "//span[contains(text(), 'Next')]/ancestor::button").click()
+        next_button = driver.find_element(By.XPATH, "//span[contains(text(), 'Next')]/ancestor::button")
+        next_button.click()
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
         
-        # Wait for the password field (handle potential 2FA or CAPTCHA page)
-        password_field = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='password']")),
-            message="Password field not found, possible CAPTCHA or 2FA"
-        )
+        # Wait for password field with longer timeout and fallback check
+        try:
+            password_field = WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='password']")),
+                message="Password field not found, possible CAPTCHA or 2FA"
+            )
+        except TimeoutException:
+            # Check for CAPTCHA or 2FA indicators
+            if driver.find_elements(By.XPATH, "//div[contains(text(), 'Verify you are not a robot')]") or \
+               driver.find_elements(By.XPATH, "//input[@type='tel']"):  # 2FA phone input
+                raise Exception("CAPTCHA or 2FA detected. Manual intervention required.")
+            raise
+        
         password_field.clear()
         password_field.send_keys(password)
         
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/03_password_entered.png")
         
-        # Click login button (updated XPath)
-        login_button = WebDriverWait(driver, 10).until(
+        # Click login button
+        login_button = WebDriverWait(driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Log in')]/ancestor::button"))
         )
         login_button.click()
         
-        # Wait for successful login (check for homepage)
-        WebDriverWait(driver, 30).until(
+        # Wait for successful login
+        WebDriverWait(driver, 40).until(
             EC.presence_of_element_located((By.XPATH, "//a[@href='/home']")),
-            message="Login failed, check for CAPTCHA or 2FA"
+            message="Login failed, check for CAPTCHA, 2FA, or network issues"
         )
         if DEBUG_MODE:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/04_login_success.png")
@@ -3294,7 +3303,7 @@ def login_twitter(driver, username, password):
             driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_error.png")
             print(f"Login error: {str(e)}")
             traceback.print_exc()
-        print("Login failed. Possible causes: incorrect credentials, CAPTCHA, or 2FA.")
+        print("Login failed. Possible causes: incorrect credentials, CAPTCHA, 2FA, or page structure change.")
         return False
 
 def calculate_time_threshold():
