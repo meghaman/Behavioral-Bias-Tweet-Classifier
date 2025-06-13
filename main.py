@@ -3544,7 +3544,6 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
 
 def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
     """Save tweets to JSON file in the requested format."""
-    # Ensure the directory exists
     output_dir = os.path.dirname(filename)
     if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir)
