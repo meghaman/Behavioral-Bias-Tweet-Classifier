@@ -3544,10 +3544,10 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
 
 def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
     """Save tweets to JSON file in the requested format."""
-    output_dir = "data"
-    if not os.path.exists(output_dir):
+    # Ensure the directory exists
+    output_dir = os.path.dirname(filename)
+    if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    output_path = os.path.join(output_dir, filename)
     
     simplified_tweets = [
         {
@@ -3557,11 +3557,22 @@ def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
         }
         for tweet in tweets
     ]
-    with open(output_path, 'w', encoding='utf-8') as f:
+    
+    with open(filename, 'w', encoding='utf-8') as f:
         json.dump(simplified_tweets, f, indent=2, ensure_ascii=False)
-
+    print(f"Tweets saved to {filename}")
+    
 def main():
     print("Starting Twitter scraper with bias detection...")
+    
+    # Get output filename from command line
+    output_file = "data/tweets_with_bias.json"  # Default filename
+    if len(sys.argv) > 1:
+        output_file = sys.argv[1]
+        print(f"Using output file: {output_file}")
+    else:
+        print(f"Using default output file: {output_file}")
+    
     driver = setup_driver()
     print("Driver initialized with stealth settings")
     
@@ -3583,11 +3594,11 @@ def main():
                 traceback.print_exc()
     
     # Save tweets to JSON file
-    save_tweets_to_json(all_tweets)
-    print(f"Tweets saved to data/tweets_with_bias.json")
+    save_tweets_to_json(all_tweets, output_file)
+    print(f"Total tweets collected: {len(all_tweets)}")
     
     driver.quit()
-    print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
+    print(f"\nScraping completed. Tweets saved to {output_file}")
     print(f"Time range covered: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
 
 if __name__ == "__main__":
