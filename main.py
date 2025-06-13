@@ -3269,21 +3269,24 @@ def login_twitter(driver, username, password):
             if phone_field:
                 phone_field.send_keys("9802203489")  # Enter the phone number
                 driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
-                time.sleep(5)  # Wait for potential next step (e.g., code entry)
+                time.sleep(5)  # Wait for potential next step
                 
-                # Optional: Check for verification code input (manual for now)
+                # Check for verification code prompt
                 try:
                     code_field = WebDriverWait(driver, 10).until(
-                        EC.presence_of_element_located((By.NAME, "verifier"))
+                        EC.presence_of_element_located((By.NAME, "verification_code"))
                     )
-                    print("Please enter the verification code sent to 980-220-3489 manually.")
-                    # You would need to manually input the code here or use an SMS API
-                except:
-                    pass  # Proceed if no code prompt
-        except:
-            pass  # Proceed if no phone verification prompt
+                    print("Please enter the verification code sent to 980-220-3489:")
+                    code = input()
+                    code_field.send_keys(code)
+                    driver.find_element(By.XPATH, "//span[contains(text(),'Next')]/..").click()
+                    time.sleep(2)
+                except TimeoutException:
+                    pass  # No code prompt, proceed to password
+        except TimeoutException:
+            pass  # No phone verification prompt, proceed to password
         
-        # Enter password (after verification or directly)
+        # Enter password
         password_field = WebDriverWait(driver, 15).until(
             EC.visibility_of_element_located((By.NAME, "password"))
         )
