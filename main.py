@@ -3248,7 +3248,7 @@ def setup_driver():
     return driver
 
 
-ef login_twitter(driver, username, password):
+def login_twitter(driver, username, password):
     print("Navigating to login page...")
     driver.get("https://x.com/login")
     time.sleep(3)
@@ -3577,11 +3577,9 @@ def main():
     driver = setup_driver()
     print("Driver initialized")
     
-    if not login_twitter(driver, TWITTER_USERNAME, TWITTER_PASSWORD):
-        print("Login failed. Exiting.")
-        driver.quit()
-        return
-    print("Login successful")
+    # Removed the login check
+    login_twitter(driver, TWITTER_USERNAME, TWITTER_PASSWORD)
+    print("Login attempt completed")
     
     time_threshold = calculate_time_threshold()
     print(f"Scraping tweets since: {time_threshold.strftime('%Y-%m-%d %H:%M UTC')}")
@@ -3603,11 +3601,10 @@ def main():
     
     # Save tweets to JSON file
     save_tweets_to_json(all_tweets)
-    print(f"Tweets saved to /Users/aarushchugh/Downloads/tweets_with_bias.json")
+    print(f"Tweets saved to data/tweets_with_bias.json")
     
     driver.quit()
     print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
     print(f"Time range covered: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
-
 if __name__ == "__main__":
     main()
