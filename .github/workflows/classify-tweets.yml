@@ -2,7 +2,7 @@ name: Daily Tweet Classifier
 
 on:
   schedule:
-    - cron: '0 14 * * *'
+    - cron: '0 14 * * *'  # Runs at 2 PM UTC daily
   workflow_dispatch:
 
 permissions:
@@ -11,6 +11,7 @@ permissions:
 jobs:
   classify-tweets:
     runs-on: ubuntu-latest
+    timeout-minutes: 30  # Set overall job timeout
 
     steps:
       - name: Checkout repository
@@ -30,7 +31,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium webdriver-manager
+          pip install selenium webdriver-manager fake-useragent
 
       - name: Create directories
         run: |
@@ -40,22 +41,39 @@ jobs:
 
       - name: Run Tweet Classifier
         env:
-          TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
-          TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
+          HEADLESS_MODE: "True"  # Force headless mode in CI
+          DEBUG_MODE: "True"     # Enable debugging in CI
         run: |
-          export SCRIPT_TIMEOUT=600
-          python main.py
-          ls -la data/
+          # Generate timestamped filename with date and time
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          OUTPUT_FILE="data/tweets_with_bias_${TIMESTAMP}.json"
+          
+          echo "Output file: $OUTPUT_FILE"
+          
+          # Run script with timeout and capture output
+          timeout 15m python main.py "$OUTPUT_FILE"
+          
+          # Check if output file was created
+          if [ -f "$OUTPUT_FILE" ]; then
+            echo "Output file created: $OUTPUT_FILE"
+            ls -la data/
+          else
+            echo "Error: No output file created!"
+            exit 1
+          fi
+          
+          # List debug screenshots if any
           ls -la debug_screenshots/ || echo "No debug screenshots"
 
       - name: Commit and push JSON files
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'data/tweets_with_bias_*.json'
+          add: 'data/*.json'
           message: 'chore: update tweets classification data'
           default_author: github_actions
 
       - name: Upload debug screenshots
+        if: ${{ always() }}  # Upload even if previous steps fail
         uses: actions/upload-artifact@v4
         with:
           name: debug-screenshots
