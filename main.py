@@ -2,7 +2,6 @@ import os
 import time
 import random
 import json
-import time
 from datetime import datetime, timedelta, timezone
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -11,26 +10,22 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
 import traceback
-from selenium.common.exceptions import TimeoutException  # Add this import
+from fake_useragent import UserAgent
+import re
 
-
-# Retrieve credentials from environment variables (set via GitHub Secrets in Actions)
-TWITTER_USERNAME = os.getenv("TWITTER_USERNAME", "bigjobbohoho")
-TWITTER_PASSWORD = os.getenv("TWITTER_PASSWORD", "PASSWORD56!")
-TWITTER_PHONE = os.getenv("TWITTER_PHONE", "9802203489")
-CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay", "RiskReversal", "CarterBWorth", "jonnajarian",
-                  "GRDecter", "NorthmanTrader", "biancoresearch", "TommyThornton", "KeithMcCullough",
-                  "Beth_Kindig", "RedDogT3", "alphatrends", "NYSEguru", "leadlagreport", "allstarcharts",
-                  "markminervini"]
+# Configuration
+CREATOR_HANDLES = ["Ashcryptoreal"]
 HEADLESS_MODE = True
 DEBUG_MODE = True
 SCREENSHOT_DIR = "debug_screenshots"
 MAX_SCROLL_ATTEMPTS = 30
 SCROLL_PAUSE_TIME = 2.5
+REQUEST_DELAY = random.uniform(2, 5)  # Random delay between requests
+BASE_URL = "https://nitter.net"
 
-# Classifiers will be empty unless defined elsewhere (e.g., .env or another config)
+# Classifiers will be empty unless defined elsewhere
 CLASSIFIERS = {    
     "don't miss": "FOMO",
     "don't miss now": "FOMO",
@@ -3215,152 +3210,70 @@ if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
 def setup_driver():
     chrome_options = Options()
     
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+    # Generate random user agent
+    ua = UserAgent()
+    user_agent = ua.random
     chrome_options.add_argument(f"user-agent={user_agent}")
+    
+    # Stealth options to avoid detection
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument("--start-maximized")
-    
-    if HEADLESS_MODE:
-        chrome_options.add_argument("--headless=new")
-    
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--disable-web-security")
+    chrome_options.add_argument("--allow-running-insecure-content")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--dns-prefetch-disable")
+    chrome_options.add_argument("--disable-geolocation")
+    chrome_options.add_argument("--disable-notifications")
+    
+    # Proxy settings (if available)
+    if os.getenv("PROXY_SERVER"):
+        chrome_options.add_argument(f"--proxy-server={os.getenv('PROXY_SERVER')}")
+    
+    if HEADLESS_MODE:
+        chrome_options.add_argument("--headless=new")
     
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
         options=chrome_options
     )
     
+    # Execute CDP commands to mask automation
     driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
         'source': '''
             Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
             Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
             Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
+            Object.defineProperty(navigator, 'maxTouchPoints', { get: () => 0 });
+            Object.defineProperty(navigator, 'doNotTrack', { get: () => '1' });
             window.chrome = { runtime: {}, app: {} };
         '''
     })
+    
+    # Set common headers
+    driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {
+        'headers': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.google.com/',
+            'Upgrade-Insecure-Requests': '1',
+            'Connection': 'keep-alive',
+            'Cache-Control': 'max-age=0',
+            'TE': 'Trailers'
+        }
+    })
+    
     return driver
 
-
-def login_twitter(driver, username, password):
-    print("Navigating to login page...")
-    driver.get("https://x.com/login")
-    time.sleep(3)
-    
-    if DEBUG_MODE:
-        driver.save_screenshot(f"{SCREENSHOT_DIR}/01_login_page.png")
-        print("Screenshot: 01_login_page.png saved")
-    
-    try:
-        # Enter username
-        print("Entering username...")
-        username_field = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.NAME, "text"))
-        )
-        username_field.send_keys(username)
-        print("Username entered, clicking Next...")
-        next_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
-        if next_buttons:
-            next_buttons[0].click()
-        else:
-            print("No Next button found after username entry")
-            return False
-        
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/02_username_entered.png")
-            print("Screenshot: 02_username_entered.png saved")
-        
-        # Check for phone verification prompt
-        phone_entered = False
-        try:
-            print("Checking for phone verification prompt...")
-            phone_field = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, "//input[@name='text' and @type='text']"))
-            )
-            print("Phone verification prompt found, entering phone number...")
-            phone_field.send_keys(TWITTER_PHONE)
-            
-            # Take screenshot after entering phone number
-            if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_phone_entered.png")
-                print("Screenshot: 03_phone_entered.png saved")
-            
-            # Find and click Next button after phone entry
-            next_buttons_after_phone = driver.find_elements(By.XPATH, "//span[contains(text(),'Next')]/..")
-            if next_buttons_after_phone:
-                next_buttons_after_phone[0].click()
-                phone_entered = True
-                print("Phone number submitted")
-                time.sleep(3)  # Wait for submission
-            else:
-                print("No Next button found after phone entry")
-                return False
-            
-        except TimeoutException:
-            print("No phone verification prompt found, proceeding...")
-        
-        # Enter password
-        print("Waiting for password field...")
-        password_field = WebDriverWait(driver, 15).until(
-            EC.visibility_of_element_located((By.NAME, "password"))
-        )
-        print("Password field found, entering password...")
-        password_field.send_keys(password)
-        
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_password_entered.png")
-            print("Screenshot: 04_password_entered.png saved")
-        
-        print("Clicking login button...")
-        login_buttons = driver.find_elements(By.XPATH, "//span[contains(text(),'Log in')]/..")
-        if login_buttons:
-            login_buttons[0].click()
-        else:
-            print("No Login button found")
-            return False
-        
-        # Wait for successful login to home page
-        print("Waiting for login confirmation...")
-        try:
-            WebDriverWait(driver, 30).until(
-                EC.presence_of_element_located((By.XPATH, "//a[@href='/home']"))
-            )
-            if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/05_login_success.png")
-                print("Screenshot: 05_login_success.png saved")
-            print("Login successful!")
-            return True
-        except TimeoutException:
-            print("Login verification timed out, checking if we're logged in anyway...")
-            if "home" in driver.current_url:
-                print("Detected home page URL, assuming login successful")
-                return True
-            return False
-        
-    except Exception as e:
-        print(f"Login error: {str(e)}")
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/06_login_error.png")
-            print(f"Screenshot: 06_login_error.png saved")
-            traceback.print_exc()
-        return False
-      
 def calculate_time_threshold():
     return datetime.now(timezone.utc) - timedelta(hours=24)
-
-def safe_extract_metric(tweet, metric_type):
-    try:
-        element = tweet.find_element(By.XPATH, f".//div[@data-testid='{metric_type}']//span")
-        value_str = element.get_attribute("aria-label").split()[0]
-        return int(value_str.replace(',', '')) if value_str else 0
-    except:
-        return 0
 
 def detect_bias(tweet_text):
     """Detect the most likely cognitive bias based on classifier keywords."""
@@ -3370,31 +3283,93 @@ def detect_bias(tweet_text):
             return bias
     return None  # No bias detected
 
-def scrape_tweets(driver, handle, cutoff_time):
+def parse_timestamp(timestamp_str):
+    """Parse various timestamp formats from the HTML"""
+    try:
+        # Handle relative time formats (e.g., "1h", "2h", "Jun 12")
+        if 'h' in timestamp_str:
+            hours = int(timestamp_str.replace('h', ''))
+            return datetime.now(timezone.utc) - timedelta(hours=hours)
+        elif '·' in timestamp_str:
+            # Format: "Jun 13, 2025 · 7:57 PM UTC"
+            dt_str = timestamp_str.split('·')[0].strip()
+            return datetime.strptime(dt_str, "%b %d, %Y").replace(tzinfo=timezone.utc)
+        else:
+            # Absolute date format
+            return datetime.strptime(timestamp_str, "%b %d, %Y").replace(tzinfo=timezone.utc)
+    except:
+        return datetime.now(timezone.utc)
+
+def extract_metrics(tweet_element):
+    """Extract engagement metrics from tweet element"""
+    metrics = {
+        'replies': 0,
+        'retweets': 0,
+        'quotes': 0,
+        'likes': 0,
+        'views': 0
+    }
+    
+    try:
+        stats_div = tweet_element.find_element(By.CLASS_NAME, 'tweet-stats')
+        stats = stats_div.find_elements(By.CLASS_NAME, 'tweet-stat')
+        
+        for stat in stats:
+            text = stat.text.strip()
+            if not text:
+                continue
+            
+            # Extract numeric value
+            value = 0
+            numbers = re.findall(r'[\d,]+', text)
+            if numbers:
+                value = int(numbers[0].replace(',', ''))
+            
+            # Determine metric type
+            if 'icon-comment' in stat.get_attribute('innerHTML'):
+                metrics['replies'] = value
+            elif 'icon-retweet' in stat.get_attribute('innerHTML'):
+                metrics['retweets'] = value
+            elif 'icon-quote' in stat.get_attribute('innerHTML'):
+                metrics['quotes'] = value
+            elif 'icon-heart' in stat.get_attribute('innerHTML'):
+                metrics['likes'] = value
+            elif 'icon-play' in stat.get_attribute('innerHTML'):
+                metrics['views'] = value
+    except:
+        pass
+    
+    return metrics
+
+def scrape_creator_tweets(driver, handle, cutoff_time):
     print(f"\nStarting scrape for @{handle}")
-    print(f"Navigating to profile: https://x.com/{handle}")
-    driver.get(f"https://x.com/{handle}")
+    url = f"{BASE_URL}/{handle}"
+    print(f"Navigating to: {url}")
+    
+    # Add random delay before loading page
+    time.sleep(REQUEST_DELAY)
+    driver.get(url)
     time.sleep(5)  # Initial page load
     
     if DEBUG_MODE:
-        driver.save_screenshot(f"{SCREENSHOT_DIR}/06_{handle}_profile.png")
-        print(f"Screenshot: 06_{handle}_profile.png saved")
+        driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{handle}_creator.png")
+        print(f"Screenshot: 01_{handle}_creator.png saved")
     
     try:
-        print("Waiting for tweets to load...")
+        print("Waiting for timeline to load...")
         WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//article[@data-testid='tweet']"))
+            EC.presence_of_element_located((By.CLASS_NAME, 'timeline'))
         )
-        print("Tweets detected, waiting additional time for content...")
-        time.sleep(4)
+        print("Timeline detected, waiting additional time for content...")
+        time.sleep(3)
         if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/07_{handle}_tweets_loaded.png")
-            print(f"Screenshot: 07_{handle}_tweets_loaded.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/02_{handle}_timeline_loaded.png")
+            print(f"Screenshot: 02_{handle}_timeline_loaded.png saved")
     except Exception as e:
-        print(f"Error loading tweets for @{handle}: {str(e)}")
+        print(f"Error loading timeline for @{handle}: {str(e)}")
         if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/08_{handle}_tweets_error.png")
-            print(f"Screenshot: 08_{handle}_tweets_error.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error.png")
+            print(f"Screenshot: 03_{handle}_timeline_error.png saved")
         return []
     
     all_tweets = []
@@ -3402,19 +3377,24 @@ def scrape_tweets(driver, handle, cutoff_time):
     last_position = driver.execute_script("return window.pageYOffset;")
     scroll_attempts = 0
     consecutive_old_tweets = 0
+    consecutive_empty_scrolls = 0  # Track scrolls with no new tweets
     start_time = time.time()
     scroll_count = 0
     
     print(f"Beginning scroll collection for @{handle}...")
     
-    while scroll_attempts < MAX_SCROLL_ATTEMPTS:
+    while scroll_attempts < MAX_SCROLL_ATTEMPTS and consecutive_empty_scrolls < 3:
         scroll_count += 1
         print(f"Scroll #{scroll_count} - Attempt {scroll_attempts+1}/{MAX_SCROLL_ATTEMPTS}")
         
-        # Dynamic scroll distance based on attempt count
+        # Dynamic scroll distance
         scroll_distance = 800 + (scroll_count * 200)
         driver.execute_script(f"window.scrollBy(0, {scroll_distance})")
-        time.sleep(SCROLL_PAUSE_TIME + random.uniform(0.5, 1.5))
+        
+        # Random scroll pause time
+        pause_time = SCROLL_PAUSE_TIME + random.uniform(0.5, 1.5)
+        print(f"Waiting {pause_time:.1f} seconds after scroll...")
+        time.sleep(pause_time)
         
         new_position = driver.execute_script("return window.pageYOffset;")
         if abs(new_position - last_position) < 100:
@@ -3427,74 +3407,96 @@ def scrape_tweets(driver, handle, cutoff_time):
         
         try:
             print("Locating tweet elements...")
-            tweet_elements = WebDriverWait(driver, 15).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//article[@data-testid='tweet']"))
-            )
+            timeline = driver.find_element(By.CLASS_NAME, 'timeline')
+            tweet_elements = timeline.find_elements(By.CLASS_NAME, 'timeline-item')
             print(f"Found {len(tweet_elements)} tweet elements")
         except Exception as e:
-            print(f"Timeout waiting for tweets: {str(e)}")
+            print(f"Error locating tweets: {str(e)}")
             if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_error_{scroll_count}.png")
-                print(f"Screenshot: 09_{handle}_scroll_error_{scroll_count}.png saved")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_error_{scroll_count}.png")
+                print(f"Screenshot: 04_{handle}_scroll_error_{scroll_count}.png saved")
             break
         
         # Take debug screenshot every 5 scrolls
         if DEBUG_MODE and scroll_count % 5 == 0:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/09_{handle}_scroll_{scroll_count}.png")
-            print(f"Screenshot: 09_{handle}_scroll_{scroll_count}.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_{scroll_count}.png")
+            print(f"Screenshot: 04_{handle}_scroll_{scroll_count}.png saved")
         
         current_batch = []
         print(f"Processing {len(tweet_elements)} tweets...")
         
         for idx, tweet in enumerate(tweet_elements):
             try:
+                # Skip pinned tweets
+                try:
+                    if tweet.find_element(By.CLASS_NAME, 'pinned'):
+                        print("Skipping pinned tweet")
+                        continue
+                except NoSuchElementException:
+                    pass
+                
                 # Get tweet ID
-                tweet_id = tweet.get_attribute("aria-labelledby") or f"unknown_{scroll_count}_{idx}"
+                try:
+                    tweet_link = tweet.find_element(By.CLASS_NAME, 'tweet-link')
+                    href = tweet_link.get_attribute('href')
+                    tweet_id = href.split('/')[-1].split('#')[0]
+                except:
+                    tweet_id = f"unknown_{scroll_count}_{idx}"
+                
                 if tweet_id in seen_tweet_ids:
                     continue
                 seen_tweet_ids.add(tweet_id)
                 
                 # Get timestamp
-                time_element = WebDriverWait(tweet, 5).until(
-                    EC.presence_of_element_located((By.TAG_NAME, "time"))
-                )
-                timestamp_str = time_element.get_attribute("datetime")
-                
-                # Parse timestamp
-                if timestamp_str.endswith('Z'):
-                    timestamp = datetime.strptime(timestamp_str, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
-                else:
-                    timestamp = datetime.fromisoformat(timestamp_str)
+                try:
+                    date_elem = tweet.find_element(By.CLASS_NAME, 'tweet-date')
+                    title = date_elem.find_element(By.TAG_NAME, 'a').get_attribute('title')
+                    timestamp = parse_timestamp(title)
+                except:
+                    timestamp = datetime.now(timezone.utc)
                 
                 # Check if tweet is within time range
                 if timestamp < cutoff_time:
                     consecutive_old_tweets += 1
                     continue
                 
+                # Get user handle
+                try:
+                    username_elem = tweet.find_element(By.CLASS_NAME, 'username')
+                    user_handle = username_elem.get_attribute('title')
+                except:
+                    user_handle = f"@{handle}"
+                
                 # Get tweet text
-                text_div = WebDriverWait(tweet, 5).until(
-                    EC.presence_of_element_located((By.XPATH, ".//div[@data-testid='tweetText']"))
-                )
-                tweet_text = text_div.text
+                try:
+                    content_div = tweet.find_element(By.CLASS_NAME, 'tweet-content')
+                    tweet_text = content_div.text
+                except:
+                    tweet_text = ""
                 
                 # Detect bias
                 bias = detect_bias(tweet_text)
                 
                 # Get engagement metrics
-                metrics = {
-                    'replies': safe_extract_metric(tweet, "reply"),
-                    'retweets': safe_extract_metric(tweet, "retweet"),
-                    'likes': safe_extract_metric(tweet, "like")
-                }
+                metrics = extract_metrics(tweet)
+                
+                # Check for media
+                has_media = False
+                try:
+                    tweet.find_element(By.CLASS_NAME, 'attachments')
+                    has_media = True
+                except:
+                    pass
                 
                 # Compile tweet data
                 tweet_data = {
-                    'user': f"@{handle}",
+                    'user': user_handle,
                     'text': tweet_text,
                     'bias': bias,
                     'timestamp': timestamp.isoformat(),
                     'id': tweet_id,
-                    'metrics': metrics
+                    'metrics': metrics,
+                    'has_media': has_media
                 }
                 
                 current_batch.append(tweet_data)
@@ -3505,9 +3507,16 @@ def scrape_tweets(driver, handle, cutoff_time):
             except Exception as e:
                 print(f"Error processing tweet: {str(e)}")
                 if DEBUG_MODE:
-                    driver.save_screenshot(f"{SCREENSHOT_DIR}/10_{handle}_tweet_error_{scroll_count}_{idx}.png")
-                    print(f"Screenshot: 10_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
+                    driver.save_screenshot(f"{SCREENSHOT_DIR}/05_{handle}_tweet_error_{scroll_count}_{idx}.png")
+                    print(f"Screenshot: 05_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
                 continue
+        
+        # Update consecutive empty scrolls counter
+        if len(current_batch) == 0:
+            consecutive_empty_scrolls += 1
+            print(f"No new tweets found in this scroll (consecutive: {consecutive_empty_scrolls}/3)")
+        else:
+            consecutive_empty_scrolls = 0
         
         all_tweets.extend(current_batch)
         print(f"Added {len(current_batch)} new tweets (total: {len(all_tweets)}")
@@ -3515,6 +3524,9 @@ def scrape_tweets(driver, handle, cutoff_time):
         # Break conditions
         if consecutive_old_tweets > 20:
             print(f"20+ consecutive old tweets, stopping collection")
+            break
+        if consecutive_empty_scrolls >= 3:
+            print(f"3 consecutive scrolls with no new tweets, stopping collection")
             break
         if len(all_tweets) > 1000:
             print(f"Reached 1000 tweet limit, stopping collection")
@@ -3529,30 +3541,6 @@ def scrape_tweets(driver, handle, cutoff_time):
     
     print(f"Finished scrape for @{handle} - {len(all_tweets)} tweets collected")
     return all_tweets
-
-def print_tweets(tweets, handle):
-    if not tweets:
-        print(f"\nNo recent tweets found for @{handle}")
-        return
-    
-    sorted_tweets = sorted(tweets, key=lambda x: x['timestamp'], reverse=True)
-    
-    print(f"\nScraped {len(sorted_tweets)} tweets from @{handle} in the last 24 hours")
-    print(f"Time range: {sorted_tweets[-1]['timestamp']} to {sorted_tweets[0]['timestamp']}")
-    print("="*100)
-    
-    for i, tweet in enumerate(sorted_tweets[:10], 1):
-        print(f"Tweet #{i}")
-        print(f"Posted at: {tweet['timestamp']}")
-        print(f"Content:\n{tweet['text'][:300]}{'...' if len(tweet['text']) > 300 else ''}")
-        print(f"Bias: {tweet['bias'] if tweet['bias'] else 'None'}")
-        print(f"Engagement: {tweet['metrics']['replies']} replies | "
-              f"{tweet['metrics']['retweets']} retweets | "
-              f"{tweet['metrics']['likes']} likes")
-        print("-"*100)
-    
-    if len(sorted_tweets) > 10:
-        print(f"\nShowing 10 of {len(sorted_tweets)} tweets. Use DEBUG_MODE for full details.")
 
 def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
     """Save tweets to JSON file in the requested format."""
@@ -3575,11 +3563,7 @@ def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
 def main():
     print("Starting Twitter scraper with bias detection...")
     driver = setup_driver()
-    print("Driver initialized")
-    
-    # Removed the login check
-    login_twitter(driver, TWITTER_USERNAME, TWITTER_PASSWORD)
-    print("Login attempt completed")
+    print("Driver initialized with stealth settings")
     
     time_threshold = calculate_time_threshold()
     print(f"Scraping tweets since: {time_threshold.strftime('%Y-%m-%d %H:%M UTC')}")
@@ -3589,10 +3573,9 @@ def main():
         try:
             print(f"\nScraping @{handle}...")
             start_time = time.time()
-            tweets = scrape_tweets(driver, handle, time_threshold)
+            tweets = scrape_creator_tweets(driver, handle, time_threshold)
             duration = time.time() - start_time
             print(f"Scraped {len(tweets)} tweets in {duration:.1f} seconds")
-            print_tweets(tweets, handle)
             all_tweets.extend(tweets)
         except Exception as e:
             print(f"Error scraping @{handle}: {str(e)}")
@@ -3606,5 +3589,6 @@ def main():
     driver.quit()
     print(f"\nScraping completed. Total tweets collected: {len(all_tweets)}")
     print(f"Time range covered: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+
 if __name__ == "__main__":
     main()
