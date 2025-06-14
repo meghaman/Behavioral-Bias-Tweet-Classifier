@@ -3362,69 +3362,72 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
     url = f"{BASE_URL}/{handle}"
     print(f"Navigating to: {url}")
     
-    # Add random delay before loading page
-    time.sleep(REQUEST_DELAY)
-    driver.get(url)
-    time.sleep(5)  # Initial page load
-    
-    if DEBUG_MODE:
-        driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{handle}_creator.png")
-        print(f"Screenshot: 01_{handle}_creator.png saved")
-    
-    try:
-        print("Waiting for timeline to load...")
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.CLASS_NAME, 'timeline'))
-        )
-        print("Timeline detected, waiting additional time for content...")
-        time.sleep(3)
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/02_{handle}_timeline_loaded.png")
-            print(f"Screenshot: 02_{handle}_timeline_loaded.png saved")
-    except Exception as e:
-        print(f"Error loading timeline for @{handle}: {str(e)}")
-        if DEBUG_MODE:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error.png")
-            print(f"Screenshot: 03_{handle}_timeline_error.png saved")
-        return []
+    # Retry page load up to 3 times
+    for attempt in range(3):
+        try:
+            time.sleep(random.uniform(1, 3))  # Reduced delay
+            driver.get(url)
+            time.sleep(5)  # Initial page load
+            
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{handle}_creator.png")
+                print(f"Screenshot: 01_{handle}_creator.png saved")
+            
+            print("Waiting for timeline to load...")
+            WebDriverWait(driver, 60).until(  # Increased timeout
+                EC.presence_of_element_located((By.CLASS_NAME, 'timeline'))
+            )
+            print("Timeline detected, waiting additional time for content...")
+            time.sleep(3)
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/02_{handle}_timeline_loaded.png")
+                print(f"Screenshot: 02_{handle}_timeline_loaded.png saved")
+            break
+        except Exception as e:
+            print(f"Error loading timeline for @{handle} (attempt {attempt+1}/3): {str(e)}")
+            if DEBUG_MODE:
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error_{attempt+1}.png")
+                print(f"Screenshot: 03_{handle}_timeline_error_{attempt+1}.png saved")
+            if attempt == 2:
+                return []
     
     all_tweets = []
     seen_tweet_ids = set()
-    last_position = driver.execute_script("return window.pageYOffset;")
     scroll_attempts = 0
     consecutive_old_tweets = 0
-    consecutive_empty_scrolls = 0  # Track scrolls with no new tweets
+    consecutive_empty_scrolls = 0
     start_time = time.time()
     scroll_count = 0
     
     print(f"Beginning scroll collection for @{handle}...")
     
-    while scroll_attempts < MAX_SCROLL_ATTEMPTS and consecutive_empty_scrolls < 3:
+    while scroll_attempts < MAX_SCROLL_ATTEMPTS and consecutive_empty_scrolls < 5:  # Increased limit
         scroll_count += 1
         print(f"Scroll #{scroll_count} - Attempt {scroll_attempts+1}/{MAX_SCROLL_ATTEMPTS}")
         
-        # Dynamic scroll distance
-        scroll_distance = 800 + (scroll_count * 200)
-        driver.execute_script(f"window.scrollBy(0, {scroll_distance})")
+        # Scroll to bottom of page
+        last_height = driver.execute_script("return document.body.scrollHeight")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         
-        # Random scroll pause time
-        pause_time = SCROLL_PAUSE_TIME + random.uniform(0.5, 1.5)
+        # Wait for new content
+        pause_time = SCROLL_PAUSE_TIME + random.uniform(0.3, 1.0)  # Reduced variation
         print(f"Waiting {pause_time:.1f} seconds after scroll...")
         time.sleep(pause_time)
         
-        new_position = driver.execute_script("return window.pageYOffset;")
-        if abs(new_position - last_position) < 100:
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        if new_height == last_height:
             scroll_attempts += 1
-            print(f"Scroll detected as ineffective ({abs(new_position - last_position)}px moved)")
+            print(f"Scroll detected as ineffective (no new height)")
         else:
             scroll_attempts = 0
-            last_position = new_position
-            print(f"Scroll effective ({abs(new_position - last_position)}px moved)")
+            print(f"Scroll effective (new height: {new_height}px)")
         
         try:
             print("Locating tweet elements...")
             timeline = driver.find_element(By.CLASS_NAME, 'timeline')
-            tweet_elements = timeline.find_elements(By.CLASS_NAME, 'timeline-item')
+            tweet_elements = WebDriverWait(driver, 10).until(
+                EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "div[class*='timeline-item']"))
+            )
             print(f"Found {len(tweet_elements)} tweet elements")
         except Exception as e:
             print(f"Error locating tweets: {str(e)}")
@@ -3433,8 +3436,8 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 print(f"Screenshot: 04_{handle}_scroll_error_{scroll_count}.png saved")
             break
         
-        # Take debug screenshot every 5 scrolls
-        if DEBUG_MODE and scroll_count % 5 == 0:
+        # Debug screenshot every 10 scrolls
+        if DEBUG_MODE and scroll_count % 10 == 0:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_{scroll_count}.png")
             print(f"Screenshot: 04_{handle}_scroll_{scroll_count}.png saved")
         
@@ -3443,21 +3446,19 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
         
         for idx, tweet in enumerate(tweet_elements):
             try:
-                # Skip pinned tweets
-                try:
-                    if tweet.find_element(By.CLASS_NAME, 'pinned'):
-                        print("Skipping pinned tweet")
-                        continue
-                except NoSuchElementException:
-                    pass
-                
                 # Get tweet ID
                 try:
                     tweet_link = tweet.find_element(By.CLASS_NAME, 'tweet-link')
                     href = tweet_link.get_attribute('href')
                     tweet_id = href.split('/')[-1].split('#')[0]
                 except:
-                    tweet_id = f"unknown_{scroll_count}_{idx}"
+                    # Fallback to timestamp + text snippet
+                    try:
+                        content_div = tweet.find_element(By.CLASS_NAME, 'tweet-content')
+                        text_snippet = content_div.text[:50].replace('\n', '')
+                        tweet_id = f"temp_{scroll_count}_{idx}_{hash(text_snippet)}"
+                    except:
+                        tweet_id = f"unknown_{scroll_count}_{idx}"
                 
                 if tweet_id in seen_tweet_ids:
                     continue
@@ -3471,9 +3472,10 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 except:
                     timestamp = datetime.now(timezone.utc)
                 
-                # Check if tweet is within time range
+                # Check time threshold
                 if timestamp < cutoff_time:
                     consecutive_old_tweets += 1
+                    print(f"Skipping old tweet (timestamp: {timestamp})")
                     continue
                 
                 # Get user handle
@@ -3504,7 +3506,6 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 except:
                     pass
                 
-                # Compile tweet data
                 tweet_data = {
                     'user': user_handle,
                     'text': tweet_text,
@@ -3527,10 +3528,9 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                     print(f"Screenshot: 05_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
                 continue
         
-        # Update consecutive empty scrolls counter
         if len(current_batch) == 0:
             consecutive_empty_scrolls += 1
-            print(f"No new tweets found in this scroll (consecutive: {consecutive_empty_scrolls}/3)")
+            print(f"No new tweets found in this scroll (consecutive: {consecutive_empty_scrolls}/5)")
         else:
             consecutive_empty_scrolls = 0
         
@@ -3538,24 +3538,25 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
         print(f"Added {len(current_batch)} new tweets (total: {len(all_tweets)}")
         
         # Break conditions
-        if consecutive_old_tweets > 20:
-            print(f"20+ consecutive old tweets, stopping collection")
+        if consecutive_old_tweets > 30:  # Increased limit
+            print(f"30+ consecutive old tweets, stopping collection")
             break
-        if consecutive_empty_scrolls >= 3:
-            print(f"3 consecutive scrolls with no new tweets, stopping collection")
+        if consecutive_empty_scrolls >= 5:
+            print(f"5 consecutive scrolls with no new tweets, stopping collection")
             break
         if len(all_tweets) > 1000:
             print(f"Reached 1000 tweet limit, stopping collection")
             break
-        if time.time() - start_time > 600:  # 10 minute timeout
+        if time.time() - start_time > 600:
             print(f"10 minute timeout reached, stopping collection")
             break
         if scroll_attempts > MAX_SCROLL_ATTEMPTS/2:
-            print(f"Multiple ineffective scrolls, trying recovery scroll...")
-            driver.execute_script("window.scrollBy(0, 2000)")
-            time.sleep(3)
+            print(f"Multiple ineffective scrolls, attempting recovery...")
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(5)
     
     print(f"Finished scrape for @{handle} - {len(all_tweets)} tweets collected")
+    print(f"Scraped {len(all_tweets)} tweets in {time.time() - start_time:.1f} seconds")
     return all_tweets
 
 def save_tweets_to_json(tweets, filename="tweets_with_bias.json"):
