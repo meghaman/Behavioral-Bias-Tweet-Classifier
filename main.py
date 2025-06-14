@@ -23,7 +23,6 @@ CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
 "GRDecter",
 "NorthmanTrader",
 "biancoresearch",
-"TommyThornton",
 "KeithMcCullough",
 "Beth_Kindig",
 "RedDogT3",
@@ -3357,24 +3356,27 @@ def extract_metrics(tweet_element):
     
     return metrics
 
+def calculate_time_threshold():
+    """Set time threshold to include tweets from the past 2 days (48 hours)."""
+    return datetime.now(timezone.utc) - timedelta(hours=48)
+
 def scrape_creator_tweets(driver, handle, cutoff_time):
     print(f"\nStarting scrape for @{handle}")
     url = f"{BASE_URL}/{handle}"
     print(f"Navigating to: {url}")
     
-    # Retry page load up to 3 times
     for attempt in range(3):
         try:
-            time.sleep(random.uniform(1, 3))  # Reduced delay
+            time.sleep(random.uniform(1, 3))
             driver.get(url)
-            time.sleep(5)  # Initial page load
+            time.sleep(5)
             
             if DEBUG_MODE:
                 driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{handle}_creator.png")
                 print(f"Screenshot: 01_{handle}_creator.png saved")
             
             print("Waiting for timeline to load...")
-            WebDriverWait(driver, 60).until(  # Increased timeout
+            WebDriverWait(driver, 60).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'timeline'))
             )
             print("Timeline detected, waiting additional time for content...")
@@ -3395,22 +3397,20 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
     seen_tweet_ids = set()
     scroll_attempts = 0
     consecutive_old_tweets = 0
-    consecutive_empty_scrolls = 0
+    consecutive_no_recent_tweets = 0
     start_time = time.time()
     scroll_count = 0
     
     print(f"Beginning scroll collection for @{handle}...")
     
-    while scroll_attempts < MAX_SCROLL_ATTEMPTS and consecutive_empty_scrolls < 5:  # Increased limit
+    while scroll_attempts < MAX_SCROLL_ATTEMPTS and consecutive_no_recent_tweets < 3:
         scroll_count += 1
         print(f"Scroll #{scroll_count} - Attempt {scroll_attempts+1}/{MAX_SCROLL_ATTEMPTS}")
         
-        # Scroll to bottom of page
         last_height = driver.execute_script("return document.body.scrollHeight")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         
-        # Wait for new content
-        pause_time = SCROLL_PAUSE_TIME + random.uniform(0.3, 1.0)  # Reduced variation
+        pause_time = SCROLL_PAUSE_TIME + random.uniform(0.3, 1.0)
         print(f"Waiting {pause_time:.1f} seconds after scroll...")
         time.sleep(pause_time)
         
@@ -3436,23 +3436,21 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 print(f"Screenshot: 04_{handle}_scroll_error_{scroll_count}.png saved")
             break
         
-        # Debug screenshot every 10 scrolls
         if DEBUG_MODE and scroll_count % 10 == 0:
             driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_{scroll_count}.png")
             print(f"Screenshot: 04_{handle}_scroll_{scroll_count}.png saved")
         
         current_batch = []
+        found_recent_tweet = False
         print(f"Processing {len(tweet_elements)} tweets...")
         
         for idx, tweet in enumerate(tweet_elements):
             try:
-                # Get tweet ID
                 try:
                     tweet_link = tweet.find_element(By.CLASS_NAME, 'tweet-link')
                     href = tweet_link.get_attribute('href')
                     tweet_id = href.split('/')[-1].split('#')[0]
                 except:
-                    # Fallback to timestamp + text snippet
                     try:
                         content_div = tweet.find_element(By.CLASS_NAME, 'tweet-content')
                         text_snippet = content_div.text[:50].replace('\n', '')
@@ -3464,7 +3462,6 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                     continue
                 seen_tweet_ids.add(tweet_id)
                 
-                # Get timestamp
                 try:
                     date_elem = tweet.find_element(By.CLASS_NAME, 'tweet-date')
                     title = date_elem.find_element(By.TAG_NAME, 'a').get_attribute('title')
@@ -3472,33 +3469,28 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 except:
                     timestamp = datetime.now(timezone.utc)
                 
-                # Check time threshold
                 if timestamp < cutoff_time:
                     consecutive_old_tweets += 1
                     print(f"Skipping old tweet (timestamp: {timestamp})")
                     continue
                 
-                # Get user handle
+                found_recent_tweet = True
+                
                 try:
                     username_elem = tweet.find_element(By.CLASS_NAME, 'username')
                     user_handle = username_elem.get_attribute('title')
                 except:
                     user_handle = f"@{handle}"
                 
-                # Get tweet text
                 try:
                     content_div = tweet.find_element(By.CLASS_NAME, 'tweet-content')
                     tweet_text = content_div.text
                 except:
                     tweet_text = ""
                 
-                # Detect bias
                 bias = detect_bias(tweet_text)
-                
-                # Get engagement metrics
                 metrics = extract_metrics(tweet)
                 
-                # Check for media
                 has_media = False
                 try:
                     tweet.find_element(By.CLASS_NAME, 'attachments')
@@ -3528,21 +3520,20 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                     print(f"Screenshot: 05_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
                 continue
         
-        if len(current_batch) == 0:
-            consecutive_empty_scrolls += 1
-            print(f"No new tweets found in this scroll (consecutive: {consecutive_empty_scrolls}/5)")
+        if not found_recent_tweet:
+            consecutive_no_recent_tweets += 1
+            print(f"No recent tweets found in this scroll (consecutive: {consecutive_no_recent_tweets}/3)")
         else:
-            consecutive_empty_scrolls = 0
+            consecutive_no_recent_tweets = 0
         
         all_tweets.extend(current_batch)
         print(f"Added {len(current_batch)} new tweets (total: {len(all_tweets)}")
         
-        # Break conditions
-        if consecutive_old_tweets > 30:  # Increased limit
+        if consecutive_old_tweets > 30:
             print(f"30+ consecutive old tweets, stopping collection")
             break
-        if consecutive_empty_scrolls >= 5:
-            print(f"5 consecutive scrolls with no new tweets, stopping collection")
+        if consecutive_no_recent_tweets >= 3:
+            print(f"3 consecutive scrolls with no recent tweets, stopping collection")
             break
         if len(all_tweets) > 1000:
             print(f"Reached 1000 tweet limit, stopping collection")
