@@ -18,7 +18,22 @@ import re
 from classifiers import CLASSIFIERS  # Import CLASSIFIERS from classifiers.py
 
 # Configuration
-CREATOR_HANDLES = ["Ashcryptoreal"]
+CREATOR_HANDLES = [
+    "Ashcryptoreal", "StockSavvyShay", "RiskReversal", "CarterBWorth", "jonnajarian",
+    "GRDecter", "NorthmanTrader", "biancoresearch", "TommyThornton", "KeithMcCullough",
+    "Beth_Kindig", "RedDogT3", "alphatrends", "NYSEguru", "leadlagreport", "allstarcharts",
+    "markminervini", "unusual_whales", "stocktalkweekly", "BrianFeroldi", "morganhousel",
+    "LizAnnSonders", "fluentinfinance", "iancassel", "accentinvesting", "awealthofcs",
+    "deepakshenoy", "ajay_bagga", "grahamstephan", "michaelbatnick", "arunstockguru",
+    "abnormalreturns", "mashranivivek", "investmattallen", "valuestockgeek", "investmenttalkk",
+    "lti_finance", "petermallouk", "gunavanthvaid", "value_invest12", "cathyhc", "emmetlsavage",
+    "rwohlner", "barbfriedberg", "rossbaird", "franseegull", "arun_kumar_r", "joelsolomon",
+    "coachchadcarson", "lisagreenhall", "andrewbeebe", "financialmentor", "kcicoletti",
+    "jessmatthewsca", "iDesignStrategy", "JoeParys", "StackerSatoshi", "OfficialTravlad",
+    "dubzyxbt", "TedPillows", "IvanOnTech", "boxmining", "conorfkenny", "AltCryptoGems",
+    "RayDalio", "AswathDamodaran", "matt_levine", "davidfaber", "CNBC", "Benzinga",
+    "MarketWatch", "Reuters", "FinancialTimes", "Bloomberg", "WSJMarkets"
+]
 
 HEADLESS_MODE = True
 DEBUG_MODE = True
