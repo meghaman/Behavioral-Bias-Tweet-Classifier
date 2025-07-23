@@ -38,7 +38,7 @@ SCREENSHOT_DIR = "debug_screenshots"
 MAX_SCROLL_ATTEMPTS = 30
 SCROLL_PAUSE_TIME = 2.5
 REQUEST_DELAY = random.uniform(2, 5)  # Random delay between requests
-BASE_URL = "https://nitter.net"
+BASE_URL = os.getenv("NITTER_BASE_URL", "https://nitter.net")
 
 # Classifiers will be empty unless defined elsewhere
 CLASSIFIERS = {    
@@ -3376,7 +3376,7 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 print(f"Screenshot: 01_{handle}_creator.png saved")
             
             print("Waiting for timeline to load...")
-            WebDriverWait(driver, 60).until(
+            WebDriverWait(driver, 90).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'timeline'))
             )
             print("Timeline detected, waiting additional time for content...")
@@ -3386,10 +3386,17 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                 print(f"Screenshot: 02_{handle}_timeline_loaded.png saved")
             break
         except Exception as e:
-            print(f"Error loading timeline for @{handle} (attempt {attempt+1}/3): {str(e)}")
+            print(f"Error loading timeline for @{handle} (attempt {attempt+1}/3): {type(e).__name__}: {str(e)}")
             if DEBUG_MODE:
                 driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error_{attempt+1}.png")
                 print(f"Screenshot: 03_{handle}_timeline_error_{attempt+1}.png saved")
+                # Save page source for debugging
+                try:
+                    with open(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error_{attempt+1}.html", "w", encoding="utf-8") as f:
+                        f.write(driver.page_source)
+                    print(f"Page source: 03_{handle}_timeline_error_{attempt+1}.html saved")
+                except Exception as ex:
+                    print(f"Failed to save page source: {ex}")
             if attempt == 2:
                 return []
     
@@ -3425,7 +3432,7 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
         try:
             print("Locating tweet elements...")
             timeline = driver.find_element(By.CLASS_NAME, 'timeline')
-            tweet_elements = WebDriverWait(driver, 10).until(
+            tweet_elements = WebDriverWait(driver, 20).until(
                 EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "div[class*='timeline-item']"))
             )
             print(f"Found {len(tweet_elements)} tweet elements")
@@ -3598,8 +3605,12 @@ def main():
             duration = time.time() - start_time
             print(f"Scraped {len(tweets)} tweets in {duration:.1f} seconds")
             all_tweets.extend(tweets)
+            # Add random delay between accounts to avoid rate limiting
+            delay = random.uniform(5, 15)
+            print(f"Waiting {delay:.1f} seconds before next account...")
+            time.sleep(delay)
         except Exception as e:
-            print(f"Error scraping @{handle}: {str(e)}")
+            print(f"Error scraping @{handle}: {type(e).__name__}: {str(e)}")
             if DEBUG_MODE:
                 traceback.print_exc()
     
