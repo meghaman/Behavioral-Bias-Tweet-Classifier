@@ -16,21 +16,8 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-CREATOR_HANDLES = ["Ashcryptoreal", "StockSavvyShay",
-"RiskReversal",
-"CarterBWorth",
-"jonnajarian",
-"GRDecter",
-"NorthmanTrader",
-"biancoresearch",
-"KeithMcCullough",
-"Beth_Kindig",
-"RedDogT3",
-"alphatrends",
-"NYSEguru",
-"leadlagreport",
-"allstarcharts",
-"markminervini"]
+CREATOR_HANDLES = ["@LizAnnSonders", "@paulkrugman", "@elerianm", "@morganhousel", "@RayDalio", "@barronsonline", "@matt_levine", "@saxena_puru", "@michaelbatnick", "@AswathDamodaran", "@balajis", "@elonmusk", "@ErikVoorhees", "@VitalikButerin", "@rogerkver", "@cdixon", "@pmarca", "@paulg", "@laurashin", "@CryptoWendyO"]
+
 
 HEADLESS_MODE = True
 DEBUG_MODE = True
