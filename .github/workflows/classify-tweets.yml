@@ -1,8 +1,6 @@
 name: Daily Tweet Classifier
 
 on:
-  schedule:
-    - cron: '0 14 * * *'  # Runs at 2 PM UTC daily
   workflow_dispatch:
 
 permissions:
