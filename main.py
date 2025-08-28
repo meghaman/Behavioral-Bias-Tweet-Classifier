@@ -2,6 +2,7 @@ import os
 import time
 import random
 import json
+import requests
 from datetime import datetime, timedelta, timezone
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -18,6 +19,19 @@ import re
 # Configuration
 CREATOR_HANDLES = ["@LizAnnSonders", "@paulkrugman", "@elerianm", "@morganhousel", "@RayDalio", "@barronsonline", "@matt_levine", "@saxena_puru", "@michaelbatnick", "@AswathDamodaran", "@balajis", "@elonmusk", "@ErikVoorhees", "@VitalikButerin", "@rogerkver", "@cdixon", "@pmarca", "@paulg", "@laurashin", "@CryptoWendyO"]
 
+# Multiple NITTR instances as fallbacks
+NITTR_INSTANCES = [
+    "https://nitter.net",
+    "https://nitter.1d4.us", 
+    "https://nitter.kavin.rocks",
+    "https://nitter.unixfox.eu",
+    "https://nitter.privacydev.net",
+    "https://nitter.poast.org",
+    "https://nitter.mint.lgbt",
+    "https://nitter.foss.wtf",
+    "https://nitter.woodland.cafe",
+    "https://nitter.weiler.rocks"
+]
 
 HEADLESS_MODE = True
 DEBUG_MODE = True
@@ -3209,6 +3223,26 @@ CLASSIFIERS = {
 if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
     os.makedirs(SCREENSHOT_DIR)
 
+def test_nitter_instances():
+    """Test NITTR instances to find a working one"""
+    print("Testing NITTR instances to find a working one...")
+    
+    for instance in NITTR_INSTANCES:
+        try:
+            print(f"Testing {instance}...")
+            response = requests.get(f"{instance}/@elonmusk", timeout=10)
+            if response.status_code == 200 and "timeline" in response.text.lower():
+                print(f"✅ Working NITTR instance found: {instance}")
+                return instance
+            else:
+                print(f"❌ {instance} returned status {response.status_code}")
+        except Exception as e:
+            print(f"❌ {instance} failed: {type(e).__name__}")
+            continue
+    
+    print("❌ No working NITTR instances found. Using default.")
+    return NITTR_INSTANCES[0]
+
 def setup_driver():
     chrome_options = Options()
     
@@ -3348,8 +3382,10 @@ def calculate_time_threshold():
     return datetime.now(timezone.utc) - timedelta(hours=48)
 
 def scrape_creator_tweets(driver, handle, cutoff_time):
-    print(f"\nStarting scrape for @{handle}")
-    url = f"{BASE_URL}/{handle}"
+    print(f"\nStarting scrape for {handle}")
+    # Remove @ symbol if present for URL construction
+    clean_handle = handle.lstrip('@')
+    url = f"{BASE_URL}/{clean_handle}"
     print(f"Navigating to: {url}")
     
     for attempt in range(3):
@@ -3359,8 +3395,8 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
             time.sleep(5)
             
             if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{handle}_creator.png")
-                print(f"Screenshot: 01_{handle}_creator.png saved")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/01_{clean_handle}_creator.png")
+                print(f"Screenshot: 01_{clean_handle}_creator.png saved")
             
             print("Waiting for timeline to load...")
             WebDriverWait(driver, 90).until(
@@ -3369,19 +3405,19 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
             print("Timeline detected, waiting additional time for content...")
             time.sleep(3)
             if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/02_{handle}_timeline_loaded.png")
-                print(f"Screenshot: 02_{handle}_timeline_loaded.png saved")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/02_{clean_handle}_timeline_loaded.png")
+                print(f"Screenshot: 02_{clean_handle}_timeline_loaded.png saved")
             break
         except Exception as e:
-            print(f"Error loading timeline for @{handle} (attempt {attempt+1}/3): {type(e).__name__}: {str(e)}")
+            print(f"Error loading timeline for {handle} (attempt {attempt+1}/3): {type(e).__name__}: {str(e)}")
             if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error_{attempt+1}.png")
-                print(f"Screenshot: 03_{handle}_timeline_error_{attempt+1}.png saved")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/03_{clean_handle}_timeline_error_{attempt+1}.png")
+                print(f"Screenshot: 03_{clean_handle}_timeline_error_{attempt+1}.png saved")
                 # Save page source for debugging
                 try:
-                    with open(f"{SCREENSHOT_DIR}/03_{handle}_timeline_error_{attempt+1}.html", "w", encoding="utf-8") as f:
+                    with open(f"{SCREENSHOT_DIR}/03_{clean_handle}_timeline_error_{attempt+1}.html", "w", encoding="utf-8") as f:
                         f.write(driver.page_source)
-                    print(f"Page source: 03_{handle}_timeline_error_{attempt+1}.html saved")
+                    print(f"Page source: 03_{clean_handle}_timeline_error_{attempt+1}.html saved")
                 except Exception as ex:
                     print(f"Failed to save page source: {ex}")
             if attempt == 2:
@@ -3426,13 +3462,13 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
         except Exception as e:
             print(f"Error locating tweets: {str(e)}")
             if DEBUG_MODE:
-                driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_error_{scroll_count}.png")
-                print(f"Screenshot: 04_{handle}_scroll_error_{scroll_count}.png saved")
+                driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{clean_handle}_scroll_error_{scroll_count}.png")
+                print(f"Screenshot: 04_{clean_handle}_scroll_error_{scroll_count}.png saved")
             break
         
         if DEBUG_MODE and scroll_count % 10 == 0:
-            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{handle}_scroll_{scroll_count}.png")
-            print(f"Screenshot: 04_{handle}_scroll_{scroll_count}.png saved")
+            driver.save_screenshot(f"{SCREENSHOT_DIR}/04_{clean_handle}_scroll_{scroll_count}.png")
+            print(f"Screenshot: 04_{clean_handle}_scroll_{scroll_count}.png saved")
         
         current_batch = []
         found_recent_tweet = False
@@ -3474,7 +3510,7 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
                     username_elem = tweet.find_element(By.CLASS_NAME, 'username')
                     user_handle = username_elem.get_attribute('title')
                 except:
-                    user_handle = f"@{handle}"
+                    user_handle = handle
                 
                 try:
                     content_div = tweet.find_element(By.CLASS_NAME, 'tweet-content')
@@ -3510,8 +3546,8 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
             except Exception as e:
                 print(f"Error processing tweet: {str(e)}")
                 if DEBUG_MODE:
-                    driver.save_screenshot(f"{SCREENSHOT_DIR}/05_{handle}_tweet_error_{scroll_count}_{idx}.png")
-                    print(f"Screenshot: 05_{handle}_tweet_error_{scroll_count}_{idx}.png saved")
+                    driver.save_screenshot(f"{SCREENSHOT_DIR}/05_{clean_handle}_tweet_error_{scroll_count}_{idx}.png")
+                    print(f"Screenshot: 05_{clean_handle}_tweet_error_{scroll_count}_{idx}.png saved")
                 continue
         
         if not found_recent_tweet:
@@ -3540,7 +3576,7 @@ def scrape_creator_tweets(driver, handle, cutoff_time):
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(5)
     
-    print(f"Finished scrape for @{handle} - {len(all_tweets)} tweets collected")
+    print(f"Finished scrape for {handle} - {len(all_tweets)} tweets collected")
     print(f"Scraped {len(all_tweets)} tweets in {time.time() - start_time:.1f} seconds")
     return all_tweets
 
@@ -3577,6 +3613,11 @@ def main():
         HEADLESS_MODE = True
         print("Running in headless mode")
     
+    # Test and find working NITTR instance
+    global BASE_URL
+    BASE_URL = test_nitter_instances()
+    print(f"Using NITTR instance: {BASE_URL}")
+    
     driver = setup_driver()
     print("Driver initialized with stealth settings")
     
@@ -3586,7 +3627,7 @@ def main():
     all_tweets = []
     for handle in CREATOR_HANDLES:
         try:
-            print(f"\nScraping @{handle}...")
+            print(f"\nScraping {handle}...")  # Removed extra @ symbol
             start_time = time.time()
             tweets = scrape_creator_tweets(driver, handle, time_threshold)
             duration = time.time() - start_time
@@ -3597,7 +3638,7 @@ def main():
             print(f"Waiting {delay:.1f} seconds before next account...")
             time.sleep(delay)
         except Exception as e:
-            print(f"Error scraping @{handle}: {type(e).__name__}: {str(e)}")
+            print(f"Error scraping {handle}: {type(e).__name__}: {str(e)}")
             if DEBUG_MODE:
                 traceback.print_exc()
     
