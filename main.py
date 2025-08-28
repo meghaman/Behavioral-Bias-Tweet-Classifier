@@ -17,45 +17,7 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-ALL_CREATOR_HANDLES = [
-    # Major Financial News Outlets & Journalists
-    "@CNBC", "@WSJmarkets", "@Bloomberg", "@IBDinvestors", "@Benzinga", 
-    "@nytimesbusiness", "@TheEconomist", "@ReutersBiz", "@FinancialTimes", 
-    "@ZeroHedge", "@WSJDealJournal", "@bespokeinvest", "@TheStalwart", 
-    "@unusual_whales", "@Breakingviews", "@jasonzweigwsj", "@TheChartReport", 
-    "@TheLead_com", "@Stocktwits", "@LiveSquawk",
-    
-    # Individual Investors & Market Strategists
-    "@paulkrugman", "@morganhousel", "@LizAnnSonders", "@elerianm", "@matt_levine", 
-    "@ritholtz", "@Stephanie_Link", "@AswathDamodaran", "@michaelbatnick", 
-    "@charliebilello", "@PeterLBrandt", "@billackman", "@CathieDWood", 
-    "@joshbrownnyc", "@ProfGrantham", "@RayDalio", "@mcgeary_sean", 
-    "@CullenRoche", "@TaviCosta", "@DanielleDiMartinoBooth", "@Jeff__Snider", 
-    "@dailydirtnap", "@Noahpinion", "@FelixSalmon", "@ScottGalloway", 
-    "@HowardLindzon", "@MebFaber", "@patrickbetdavid", "@SamRo", 
-    "@biancoresearch", "@brianferoldi",
-    
-    # Personal Finance & Education
-    "@ramit", "@Budgetdog_", "@The_MMW", "@_haley_sako", "@jeffrosefp", 
-    "@Sharon_Epperson", "@MichelleSingletary", "@dougboneparth", 
-    "@MrMoneyMoustache", "@TheMoneyGuyShow",
-    
-    # Crypto & DeFi
-    "@APompliano", "@VitalikButerin", "@cz_binance", "@michael_saylor", 
-    "@aantonop", "@woonomic", "@balajis", "@TheWolfofAllStreets", 
-    "@PeterMcCormack", "@LayahHeilpern", "@ToneVays", "@CryptoWendyO", 
-    "@AltCoinDailyio", "@sassal0x", "@LynAldenContact", "@ChrisDixonVC", 
-    "@carlrunefelt", "@brian_armstrong", "@TheCryptoDog", "@Melt_Dem", 
-    "@CamiRusso", "@cryptohamster", "@loomdart", "@PrestonPysh", 
-    "@TheTIEIO", "@danheld", "@tyler", "@Gemini", "@hasheur", 
-    "@LauraShin", "@CryptoKaleo", "@benjamin_cowen", "@saylor", 
-    "@Coinbureau", "@BitcoinMagazine", "@WuBlockchain", "@DocumentingBTC", 
-    "@ercwl", "@gurgavin"
-]
-
-# Daily processing configuration
-DAILY_ACCOUNT_LIMIT = 15  # Process 15 accounts per day to stay within 15-minute timeout
-CREATOR_HANDLES = []  # Will be populated with random selection each day
+CREATOR_HANDLES = ["@LizAnnSonders", "@paulkrugman", "@elerianm", "@morganhousel", "@RayDalio", "@barronsonline", "@matt_levine", "@saxena_puru", "@michaelbatnick", "@AswathDamodaran", "@balajis", "@elonmusk", "@ErikVoorhees", "@VitalikButerin", "@rogerkver", "@cdixon", "@pmarca", "@paulg", "@laurashin", "@CryptoWendyO"]
 
 # Multiple NITTR instances as fallbacks
 NITTR_INSTANCES = [
@@ -3261,24 +3223,6 @@ CLASSIFIERS = {
 if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
     os.makedirs(SCREENSHOT_DIR)
 
-def select_daily_accounts():
-    """Randomly select accounts for daily processing to stay within timeout limits"""
-    import random
-    
-    # Use date as seed for consistent daily selection
-    today = datetime.now().strftime("%Y-%m-%d")
-    seed = hash(today) % (2**32)
-    random.seed(seed)
-    
-    # Randomly select accounts for today
-    selected_accounts = random.sample(ALL_CREATOR_HANDLES, min(DAILY_ACCOUNT_LIMIT, len(ALL_CREATOR_HANDLES)))
-    
-    print(f"📅 Daily account selection for {today}")
-    print(f"🎯 Processing {len(selected_accounts)} accounts today")
-    print(f"📊 Total accounts available: {len(ALL_CREATOR_HANDLES)}")
-    
-    return selected_accounts
-
 def test_nitter_instances():
     """Test NITTR instances to find a working one"""
     print("Testing NITTR instances to find a working one...")
@@ -3674,10 +3618,6 @@ def main():
     BASE_URL = test_nitter_instances()
     print(f"Using NITTR instance: {BASE_URL}")
     
-    # Select daily accounts for processing (15 accounts to stay within 15-minute timeout)
-    global CREATOR_HANDLES
-    CREATOR_HANDLES = select_daily_accounts()
-    
     driver = setup_driver()
     print("Driver initialized with stealth settings")
     
@@ -3705,14 +3645,6 @@ def main():
     # Save tweets to JSON file
     save_tweets_to_json(all_tweets, output_file)
     print(f"Total tweets collected: {len(all_tweets)}")
-    
-    # Print daily summary
-    print(f"\n📊 Daily Processing Summary:")
-    print(f"📅 Date: {datetime.now().strftime('%Y-%m-%d')}")
-    print(f"🎯 Accounts processed: {len(CREATOR_HANDLES)}")
-    print(f"📝 Tweets collected: {len(all_tweets)}")
-    print(f"⏱️  Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
-    print(f"📋 Accounts processed today: {', '.join(CREATOR_HANDLES)}")
     
     driver.quit()
     print(f"\nScraping completed. Tweets saved to {output_file}")

@@ -13,7 +13,7 @@ permissions:
 jobs:
   classify-tweets:
     runs-on: ubuntu-latest
-    timeout-minutes: 15  # Reduced timeout to 15 minutes for 20 accounts
+    timeout-minutes: 30  # Set overall job timeout
 
     steps:
       - name: Checkout repository
