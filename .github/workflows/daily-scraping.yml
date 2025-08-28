@@ -1,0 +1,65 @@
+name: Daily NITTR Scraping
+
+on:
+  schedule:
+    # Run every day at 10:30 AM EST (15:30 UTC)
+    # EST is UTC-5, so 10:30 AM EST = 15:30 UTC
+    - cron: '30 15 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  scrape-tweets:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Chrome and ChromeDriver
+      uses: nanasess/setup-chromedriver@v2
+      with:
+        chromedriver-version: 'latest'
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget gnupg
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install fake-useragent
+        
+    - name: Create data directory
+      run: mkdir -p data
+      
+    - name: Run NITTR scraper
+      run: |
+        python main.py
+      env:
+        HEADLESS_MODE: "true"
+        OUTPUT_FILE: "data/tweets_with_bias_$(date +%Y-%m-%d_%H-%M-%S).json"
+        
+    - name: Upload scraped data
+      uses: actions/upload-artifact@v3
+      with:
+        name: scraped-tweets-$(date +%Y-%m-%d)
+        path: data/
+        retention-days: 30
+        
+    - name: Commit and push data files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Daily tweet scraping $(date +%Y-%m-%d)" && git push)
