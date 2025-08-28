@@ -17,7 +17,41 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-CREATOR_HANDLES = ["@LizAnnSonders", "@paulkrugman", "@elerianm", "@morganhousel", "@RayDalio", "@barronsonline", "@matt_levine", "@saxena_puru", "@michaelbatnick", "@AswathDamodaran", "@balajis", "@elonmusk", "@ErikVoorhees", "@VitalikButerin", "@rogerkver", "@cdixon", "@pmarca", "@paulg", "@laurashin", "@CryptoWendyO"]
+CREATOR_HANDLES = [
+    # Major Financial News Outlets & Journalists
+    "@CNBC", "@WSJmarkets", "@Bloomberg", "@IBDinvestors", "@Benzinga", 
+    "@nytimesbusiness", "@TheEconomist", "@ReutersBiz", "@FinancialTimes", 
+    "@ZeroHedge", "@WSJDealJournal", "@bespokeinvest", "@TheStalwart", 
+    "@unusual_whales", "@Breakingviews", "@jasonzweigwsj", "@TheChartReport", 
+    "@TheLead_com", "@Stocktwits", "@LiveSquawk",
+    
+    # Individual Investors & Market Strategists
+    "@paulkrugman", "@morganhousel", "@LizAnnSonders", "@elerianm", "@matt_levine", 
+    "@ritholtz", "@Stephanie_Link", "@AswathDamodaran", "@michaelbatnick", 
+    "@charliebilello", "@PeterLBrandt", "@billackman", "@CathieDWood", 
+    "@joshbrownnyc", "@ProfGrantham", "@RayDalio", "@mcgeary_sean", 
+    "@CullenRoche", "@TaviCosta", "@DanielleDiMartinoBooth", "@Jeff__Snider", 
+    "@dailydirtnap", "@Noahpinion", "@FelixSalmon", "@ScottGalloway", 
+    "@HowardLindzon", "@MebFaber", "@patrickbetdavid", "@SamRo", 
+    "@biancoresearch", "@brianferoldi",
+    
+    # Personal Finance & Education
+    "@ramit", "@Budgetdog_", "@The_MMW", "@_haley_sako", "@jeffrosefp", 
+    "@Sharon_Epperson", "@MichelleSingletary", "@dougboneparth", 
+    "@MrMoneyMoustache", "@TheMoneyGuyShow",
+    
+    # Crypto & DeFi
+    "@APompliano", "@VitalikButerin", "@cz_binance", "@michael_saylor", 
+    "@aantonop", "@woonomic", "@balajis", "@TheWolfofAllStreets", 
+    "@PeterMcCormack", "@LayahHeilpern", "@ToneVays", "@CryptoWendyO", 
+    "@AltCoinDailyio", "@sassal0x", "@LynAldenContact", "@ChrisDixonVC", 
+    "@carlrunefelt", "@brian_armstrong", "@TheCryptoDog", "@Melt_Dem", 
+    "@CamiRusso", "@cryptohamster", "@loomdart", "@PrestonPysh", 
+    "@TheTIEIO", "@danheld", "@tyler", "@Gemini", "@hasheur", 
+    "@LauraShin", "@CryptoKaleo", "@benjamin_cowen", "@saylor", 
+    "@Coinbureau", "@BitcoinMagazine", "@WuBlockchain", "@DocumentingBTC", 
+    "@ercwl", "@gurgavin"
+]
 
 # Multiple NITTR instances as fallbacks
 NITTR_INSTANCES = [
