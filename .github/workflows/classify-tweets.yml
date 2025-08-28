@@ -1,7 +1,11 @@
 name: Daily Tweet Classifier
 
 on:
-  workflow_dispatch:
+  schedule:
+    # Run every day at 10:30 AM EST (15:30 UTC)
+    # EST is UTC-5, so 10:30 AM EST = 15:30 UTC
+    - cron: '30 15 * * *'
+  workflow_dispatch:  # Allow manual triggering
 
 permissions:
   contents: write
@@ -71,7 +75,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: 'data/*.json'
-          message: 'chore: update tweets classification data'
+          message: 'Auto-update: Daily tweet scraping ${{ env.TIMESTAMP }}'
           default_author: github_actions
 
       - name: Upload debug screenshots
