@@ -17,7 +17,7 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-CREATOR_HANDLES = [
+ALL_CREATOR_HANDLES = [
     # Major Financial News Outlets & Journalists
     "@CNBC", "@WSJmarkets", "@Bloomberg", "@IBDinvestors", "@Benzinga", 
     "@nytimesbusiness", "@TheEconomist", "@ReutersBiz", "@FinancialTimes", 
@@ -52,6 +52,10 @@ CREATOR_HANDLES = [
     "@Coinbureau", "@BitcoinMagazine", "@WuBlockchain", "@DocumentingBTC", 
     "@ercwl", "@gurgavin"
 ]
+
+# Daily processing configuration
+DAILY_ACCOUNT_LIMIT = 25  # Process 25 accounts per day to stay within timeout
+CREATOR_HANDLES = []  # Will be populated with random selection each day
 
 # Multiple NITTR instances as fallbacks
 NITTR_INSTANCES = [
@@ -3257,6 +3261,24 @@ CLASSIFIERS = {
 if DEBUG_MODE and not os.path.exists(SCREENSHOT_DIR):
     os.makedirs(SCREENSHOT_DIR)
 
+def select_daily_accounts():
+    """Randomly select accounts for daily processing to stay within timeout limits"""
+    import random
+    
+    # Use date as seed for consistent daily selection
+    today = datetime.now().strftime("%Y-%m-%d")
+    seed = hash(today) % (2**32)
+    random.seed(seed)
+    
+    # Randomly select accounts for today
+    selected_accounts = random.sample(ALL_CREATOR_HANDLES, min(DAILY_ACCOUNT_LIMIT, len(ALL_CREATOR_HANDLES)))
+    
+    print(f"📅 Daily account selection for {today}")
+    print(f"🎯 Processing {len(selected_accounts)} accounts today")
+    print(f"📊 Total accounts available: {len(ALL_CREATOR_HANDLES)}")
+    
+    return selected_accounts
+
 def test_nitter_instances():
     """Test NITTR instances to find a working one"""
     print("Testing NITTR instances to find a working one...")
@@ -3652,6 +3674,10 @@ def main():
     BASE_URL = test_nitter_instances()
     print(f"Using NITTR instance: {BASE_URL}")
     
+    # Select daily accounts for processing
+    global CREATOR_HANDLES
+    CREATOR_HANDLES = select_daily_accounts()
+    
     driver = setup_driver()
     print("Driver initialized with stealth settings")
     
@@ -3679,6 +3705,14 @@ def main():
     # Save tweets to JSON file
     save_tweets_to_json(all_tweets, output_file)
     print(f"Total tweets collected: {len(all_tweets)}")
+    
+    # Print daily summary
+    print(f"\n📊 Daily Processing Summary:")
+    print(f"📅 Date: {datetime.now().strftime('%Y-%m-%d')}")
+    print(f"🎯 Accounts processed: {len(CREATOR_HANDLES)}")
+    print(f"📝 Tweets collected: {len(all_tweets)}")
+    print(f"⏱️  Time range: {time_threshold.strftime('%Y-%m-%d %H:%M')} to {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+    print(f"📋 Accounts processed today: {', '.join(CREATOR_HANDLES)}")
     
     driver.quit()
     print(f"\nScraping completed. Tweets saved to {output_file}")
