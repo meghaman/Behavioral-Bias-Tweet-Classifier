@@ -54,7 +54,7 @@ ALL_CREATOR_HANDLES = [
 ]
 
 # Daily processing configuration
-DAILY_ACCOUNT_LIMIT = 20  # Process 20 accounts per day to stay within 15-minute timeout
+DAILY_ACCOUNT_LIMIT = 15  # Process 15 accounts per day to stay within 15-minute timeout
 CREATOR_HANDLES = []  # Will be populated with random selection each day
 
 # Multiple NITTR instances as fallbacks
@@ -3674,7 +3674,7 @@ def main():
     BASE_URL = test_nitter_instances()
     print(f"Using NITTR instance: {BASE_URL}")
     
-    # Select daily accounts for processing (20 accounts to stay within 15-minute timeout)
+    # Select daily accounts for processing (15 accounts to stay within 15-minute timeout)
     global CREATOR_HANDLES
     CREATOR_HANDLES = select_daily_accounts()
     
