@@ -17,8 +17,10 @@ from fake_useragent import UserAgent
 import re
 
 # Configuration
-CREATOR_HANDLES = ["@LizAnnSonders", "@paulkrugman", "@elerianm", "@morganhousel", "@RayDalio", "@barronsonline", "@matt_levine", "@saxena_puru", "@michaelbatnick", "@AswathDamodaran", "@balajis", "@elonmusk", "@ErikVoorhees", "@VitalikButerin", "@rogerkver", "@cdixon", "@pmarca", "@paulg", "@laurashin", "@CryptoWendyO"]
-
+CREATOR_HANDLES = ["@Ashcryptoreal", "@StockSavvyShay", "@RiskReversal", "@CarterBWorth", "@jonnajarian",
+                  "@GRDecter", "@NorthmanTrader", "@biancoresearch", "@TommyThornton", "@KeithMcCullough",
+                  "@Beth_Kindig", "@RedDogT3", "@alphatrends", "@NYSEguru", "@leadlagreport", "@allstarcharts",
+                  "@markminervini"]
 # Multiple NITTR instances as fallbacks
 NITTR_INSTANCES = [
     "https://nitter.net",
