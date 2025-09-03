@@ -18,9 +18,8 @@ import re
 
 # Configuration
 CREATOR_HANDLES = ["@Ashcryptoreal", "@StockSavvyShay", "@RiskReversal", "@CarterBWorth", "@jonnajarian",
-                  "@GRDecter", "@NorthmanTrader", "@biancoresearch", "@TommyThornton", "@KeithMcCullough",
-                  "@Beth_Kindig", "@RedDogT3", "@alphatrends", "@NYSEguru", "@leadlagreport", "@allstarcharts",
-                  "@markminervini"]
+                  "@GRDecter", "@NorthmanTrader", "@biancoresearch", "@KeithMcCullough",
+                  "@Beth_Kindig", "@RedDogT3", "@NYSEguru", "@leadlagreport"]
 # Multiple NITTR instances as fallbacks
 NITTR_INSTANCES = [
     "https://nitter.net",
