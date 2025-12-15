@@ -1,0 +1,296 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "A reminder that $NVDA is hosting a power summit this week because AI data centers are projected to face a 44 gigawatt power shortfall by 2028.\n\n• At the top of the stack are the companies that create the power itself like nuclear fuel producers, turbines, backup generators & renewables from names like $CCJ, $LEU, $OKLO, $GEV, $FSLR & $UUUU that produce the raw power inputs the AI buildout depends on.\n• In the middle are the operators like $NEEM $VST, $TLN & $NRG who take those raw inputs & convert them into the dependable electricity that data centers rely on.\n• At the bottom of the stack are the companies that keep the grid stable, including long-duration storage & battery names like $TSLA, $EOSE, $QS, $MVST & $FLNC. \n\nAll three layers now move together because AI data centers can only run at full capacity if fuel supply is secure, generation is steady & the grid can handle the load so if any part of that chain fails then utilization drops & even the strongest GPU demand curves break.\n\nPower has become the real bottleneck of the AI economy & this summit exists because Nvidia knows the next trillion dollars of growth depends on solving it.",
+    "bias": "None",
+    "id": "2000589275839271145"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA just dropped its Nemotron 3 family of open models giving enterprises a plug-and-play blueprint for building agentic AI directly on Nvidia’s stack.\n\nJensen is expanding the software layer around the hardware so the entire ecosystem becomes dependent on Nvidia rather than just GPUs.",
+    "bias": "None",
+    "id": "2000569807566258397"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "The S&P 100 in 2025 essentially separated into two groups: companies with real AI leverage outperformed and everything without it lagged.\n \nTop performers:\n1. $PLTR +146%\n2. $AMD +74%\n3. $GOOGL +63%\n4. $AVGO +52%\n5. $NVDA +31%",
+    "bias": "None",
+    "id": "2000567683318972604"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$Z does not like this move at all  👀",
+    "bias": "None",
+    "id": "2000558256629170341"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL is testing a mobile real-estate ad unit that pulls live MLS listings through partner ComeHome.\n\nIt includes full details, filters and a “Request a tour” button that routes buyers directly to top-rated agents.",
+    "bias": "None",
+    "id": "2000557653110763563"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL signed a deal in Malaysia to source power from a 30 MW solar farm starting in 2027",
+    "bias": "None",
+    "id": "2000539189717451094"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$AMD is testing next-gen CPUs with Samsung Foundry at the 2nm level, exploring an alternative to $TSM for future chips.\n\nEarly prototypes are expected soon to see if Samsung’s process can meet AMD’s performance bar.",
+    "bias": "None",
+    "id": "2000536678461813223"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ASTS BlueBird 6 has been fully encapsulated and handed off to the launcher, with the exact December liftoff date coming soon.\n\nThis mission kicks off a 2026 launch cadence of roughly 1 launch every 45 days.",
+    "bias": "None",
+    "id": "2000370290187293169"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$EOSE is my favorite name in this space because it sits at the exact fault line of the AI power problem that almost no one is pricing correctly yet. \n\nAI data centers create violent load swings that break grids and long-duration storage sits directly at that bottleneck.",
+    "bias": "None",
+    "id": "2000271728447222241"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$PLTR could give $HIMS a unified intelligence layer that turns its fragmented data into a real acquisition and retention engine. \n\nIf Hims ever wants to be valued like a $50B healthcare platform then this is the kind of system that gets them there.",
+    "bias": "None",
+    "id": "2000243039923851773"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NOW acquires Armis for ~$7B (its largest deal ever) adding device-level cyber security across IoT, medical & industrial endpoints.\n\nArmis has scaled ARR from $200M to $300M in under year which gives ServiceNow a native cyber visibility layer that fits directly into its enterprise workflow platform.",
+    "bias": "None",
+    "id": "2000228926233448545"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "THE 3 FIXES $HIMS NEEDS RIGHT NOW\n\n1. Fix the top of the funnel so new customers start growing again  \n\nHims built its whole business on being able to bring in huge numbers of new customers cheaply and easily. That stopped working when marketing got more expensive and net new subscribers slowed. Even though Hims has more than 2.5M subscribers today, the engine isn't adding people fast enough unless the company leans harder on raising ARPU.\n\nI also don’t buy the idea that this is ONLY a Sexual Health issue shifting from episodic to subscription SKUs. The broader truth is that digital ads are more expensive, more crowded and harder to win now that companies like $AMZN & $GOOGL are competing for the same customers.\n\nThe fastest way to reset sentiment is to stabilize CAC, and Hims can do that by publishing more transparent funnel metrics and shifting ~25% of marketing spend into high-intent, low-CAC channels that actually scale. Even one or two quarters where CAC flattens would flip the narrative because it proves the engine can still scale efficiently.\n\n2. Make Diagnostics the default onboarding path\n\nDiagnostics can change the business because it gives Hims a way to guide every new user into the correct treatment path instead of hoping they arrive through a single-category entry point like hair loss or sexual health. If diagnostics becomes the front door then someone might come in for one issue but stay for multiple conditions over time.\n\nThat increases retention, raises lifetime value and stabilizes revenue. For this to work Hims needs to route all new users into a single diagnostic intake, build a recommendation engine that automatically matches users to the right care categories and follow up with personalized plans that raise ARPU naturally instead of relying on blunt upsells.\n\n3. How Palantir’s ontology would help Hims fix acquisition\n\nHims has one of the richest data sets in consumer healthcare. They already know how different conditions convert, how long users stay on treatments, what causes churn, when people switch categories and what long-term health journeys look like. The problem is that this data lives in separate systems and teams, which means they see pieces of the puzzle but not the whole picture.\n\nThis is exactly the kind of problem $PLTR ontology is built to solve and if I were @AndrewDudum this would be one of my highest-priority initiatives. \n\nPalantir’s ontology acts like an organizational brain that connects data from every corner of the company and shows how everything fits together in real time. It would let Hims see the entire customer journey as one unified system from the moment someone clicks a TikTok ad, to their first prescription, to refill behavior, to switching into new categories and long-term retention.\n\nRight now Hims sees each part of the customer journey in isolation but Palantir would let them stitch it into one living system that updates in real time and actually explains why cohorts behave the way they do.",
+    "bias": "None",
+    "id": "2000222497661444561"
+  },
+  {
+    "user": "@WilfredFrost",
+    "text": "🚨NEW EPISODE with the great DAN IVES @DivesTech:\n\n- how to pick generational tech winners: bet on the innovators \n- growing competition for Nvidia & OpenAI\n- at least 2 yrs of tech bull mkt left \n- crypto bull mkt not over\n\n👀: piped.video/XFlxcF-9NmU?si=Zm4h…\n👂🏻:podfollow.com/1817702206",
+    "bias": "None",
+    "id": "2000449115268805114"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "6⃣0⃣ Seconds $IMNM $MICC $AGQ $VZLA $DOCS $ARGX $ARM Rebel's Edge 1pm 🕐 with @petenajarian  because #ITSNOTANOPTION 📙",
+    "bias": "None",
+    "id": "2000568035946741980"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Tragically, Rob Reiner, & his wife Michele Singer Reiner were found dead in their Brentwood, Los Angeles home from stab wounds. LAPD is investigating the incident as an apparent homicide. Reports indicate their son Nick may be involved, amid his past struggles with addiction.",
+    "bias": "None",
+    "id": "2000519233592070413"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Despite Fed cut volatility & hedge fund catch-up, panel stays bullish: strong earnings, $7T sidelined liquidity, CEO optimism, deregulation ahead, potential melt-up into 2026. Buy great names on dips! Great  segment on @larry_kudlow with @SteveForbesCEO @ntengler (CIO Laffer Tengler Investments), #ITSNOTANOPTION 📙",
+    "bias": "Euphoria / Greed",
+    "id": "2000270857524990075"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "What a proud day for the mother and grandmother of D'Brickashaw Ferguson, a three-time Pro Bowler and 10-year veteran with the @nyjets (retired in 2016), who was inspired by his mother and grandmother (both nurses) to give back by becoming a nurse!",
+    "bias": "None",
+    "id": "2000231038455591011"
+  },
+  {
+    "user": "@NorthmanTrader",
+    "text": "Daily Market Brief:\nnorthmantrader.com/2025/12/1…",
+    "bias": "None",
+    "id": "2000517408402891222"
+  },
+  {
+    "user": "@NorthmanTrader",
+    "text": "New Market Video:\nnorthmantrader.com/2025/12/1…",
+    "bias": "None",
+    "id": "2000320054504952172"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "Remember most of this is delayed data finally getting released.\n\nThe Fed has cut 75 bps since September.\n\nThis data will tell us if these cuts were justified, not what is coming next.",
+    "bias": "None",
+    "id": "2000243825907052773"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "This is a good interview. \n\nAnd, as the chart below shows, we have a horserace again for the next Fed Chairman.\n\nIf you're interested in Warsh's views, this is worth a listen,",
+    "bias": "None",
+    "id": "2000053249081258233"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Not many people are having a \"hard time\" with my $SLV $GLD and $PALL Longs, but that's ok. Read my book. Tone down The Feels. And stop short-term \"resulting\"",
+    "bias": "None",
+    "id": "2000593913300783569"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Instead of whining this morning, I was buying more of some of my Core Asset Allocations that were signaling to do so",
+    "bias": "None",
+    "id": "2000593351729348899"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "CHART OF THE DAY: We Have Been Diversifying Our Global Equity Holdings app.hedgeye.com/insights/175… via @hedgeye",
+    "bias": "None",
+    "id": "2000581468041449616"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I said I might buy it in Thursday. Bought it Friday. All Macro Pro and Portfolio Solutions subscribers saw that",
+    "bias": "None",
+    "id": "2000580651590783137"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "If you don't know what I mean by y/y GDP accelerating, that's a problem that you need to solve for. I don't think any power user of our Macro Process is \"seeing\" what you are on this front. Once you figure how to read the Quad Map, please do not tweet our GDP Nowcast here",
+    "bias": "None",
+    "id": "2000557141795758341"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "We're live with a bunch of stock picks including this $REAL that @HedgeyeRetail has nailed alongside $WRBY",
+    "bias": "None",
+    "id": "2000555054831370746"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Every assumption in this tweet is wrong because you're not reading the #Quad1 in Q1 y/y GDP acceleration correctly",
+    "bias": "None",
+    "id": "2000554799671193696"
+  },
+  {
+    "user": "@AlexDelarge73",
+    "text": "I'll bet Ken F hasn't read these below.\nI'll bet Keith M has #math\n\nlinkedin.com/posts/johannes-…",
+    "bias": "None",
+    "id": "2000545994392379539"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "“The way to train imagination: planning, planning, planning.”\n-US Army Special Ops",
+    "bias": "None",
+    "id": "2000540619203068134"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "CURVE: right on #Quad1 Cycle Time, the Yield Curve steepens to new Cycle Highs this morn",
+    "bias": "None",
+    "id": "2000515556634394767"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Our Core Asset Allocations to Gold and Silver are ripping (again) this morn too",
+    "bias": "None",
+    "id": "2000514324545360093"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Dr. Copper resumes its #Quad1 Bull Market, up another +1.2% for us this morn",
+    "bias": "None",
+    "id": "2000513860676227335"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "IMPACT\n@t1alpha \n\n34% of Friday's $SPY correction came from 2 stocks $AVGO $NVDA as the #Quad1 Bull Market broadened",
+    "bias": "None",
+    "id": "2000511509634674882"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "No Change to Cross Asset Class Vol during Friday's uniquely American panic attack in some widely owned Tech Stocks",
+    "bias": "None",
+    "id": "2000509245893300452"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Intel $INTC is in advanced talks to acquire AI chip startup SambaNova, with the deal potentially coming together as early as next month with a reported value of $1.6 billion. \n\n$NVDA $AMD $AVGO",
+    "bias": "None",
+    "id": "2000297020540547434"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$spy $685.50 proved good resistance",
+    "bias": "None",
+    "id": "2000586798674694198"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Get my #1 options idea each week: t3live.com/ppo",
+    "bias": "None",
+    "id": "2000567133160530277"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 $TSLA LOOKS READY FOR A RUN INTO THE $500s\n\n#Tesla is showing clear leadership in a choppy market, holding above key moving averages while most mega-cap names falter. \n\nThe setup remains one of the strongest in the entire market, with clean technical levels pointing to $470 → $474 → $488 → $500+ if momentum continues. \n\nIn this short video, I break down the key levels that could carry #TSLA higher and my trading plan. $TSLL",
+    "bias": "None",
+    "id": "2000567131557994599"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "I do like $CMG as a January effect name",
+    "bias": "None",
+    "id": "2000562796145311978"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$TSLA weekly chart looks awesome heading into year end.",
+    "bias": "None",
+    "id": "2000562686804050170"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 BOUNCE OR BULL TRAP? THE MARKET’S AT A TURNING POINT\n\n🛑 Get today's game plan on $TSLA $NVDA $AMZN and more: t3live.com/scott-free-newsle…\n\nThe market is at a crucial turning point, with $SPY and $QQQ facing major resistance.\n\nIn this short video, I break down whether today’s rebound will hold (is a real recovery that can build) or fade (is just an opportunity for trapped traders to sell into strength) and what it means for the broader market and small-cap $IWM leadership.",
+    "bias": "None",
+    "id": "2000559097419079931"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Friday felt heavy as tech weighed on most sectors and $SPX tagged 6801; futures +30 this morning as we see if early strength holds or fades into jobs (12/16) and CPI (12/18)",
+    "bias": "None",
+    "id": "2000551861628371154"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Santa Claus Rally or Lump of Coal? The Stock Market’s Final Two Weeks of December by Yours Fewly. open.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2000370957006114891"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Spend less time trolling people and more time trying to bench press your own body weight.",
+    "bias": "None",
+    "id": "2000563179907371072"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Currencies, Interest Rates and Cross-Asset Opportunity via @DynamicAlphaSol  open.substack.com/pub/dynami…",
+    "bias": "None",
+    "id": "2000335635266281763"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "That whole NFT craze was fucking batshit crazy stupid wasn't it",
+    "bias": "None",
+    "id": "2000327260109496551"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Lead-Lag Live: The Quiet Transformation Inside Emerging Markets by @ahern_brendan @KraneShares @Mela_Schaffer \nopen.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2000326964318756987"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Lead-Lag Live Deep Dive: Rethinking Cash in a Higher-Rate World by @Mela_Schaffer \n\nopen.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2000286658172960841"
+  }
+]
