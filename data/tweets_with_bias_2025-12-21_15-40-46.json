@@ -1,0 +1,272 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL SEARCH PRINTS $590M IN REVENUE EVERY SINGLE DAY  🤯",
+    "bias": "None",
+    "id": "2002759534474113422"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "3 REASONS I’M BULLISH ON $TSLA ENTERING 2026\n\n1. Robotaxis finally shift from “can it work” to “does the math work”\nIn 2026, Tesla starts proving whether autonomy is economically superior to human drivers. If Tesla can run a robotaxi cheaper than $UBER or $GOOGL Waymo on a fully loaded basis then the debate moves away from sensor philosophies and toward margins. Cost wins markets.\n\n2. Tesla’s data flywheel moat becomes visible\nTesla runs a closed loop where millions of vehicles generate real-world data and that data retrains the system and improvements are pushed back out via software. By 2026, the advantage shows up in how fast performance improves MoM. Autonomy becomes a learning rate problem and Tesla’s system learns faster.\n\n3. Energy storage becomes required infrastructure\nAI data centers drive uneven power demand, renewables add volatility and utilities need storage to stabilize the system. Tesla sells exactly that so as AI power consumption rises then energy scales alongside it creating a second growth engine independent of vehicle cycles.",
+    "bias": "Euphoria / Greed",
+    "id": "2002754826430521497"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ASML is projecting ~$55B in revenue by 2030 with gross margins approaching 60%.\n\nThat only works because every advanced chip built by $TSM and designed by $NVDA still has to pass through ASML’s tools.\n\nASML remains the AI kingmaker.",
+    "bias": "None",
+    "id": "2002745020751970444"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "IS $NVDA REALLY IN TROUBLE IN 2026?\n\nWhen people talk about custom silicon replacing Nvidia they tend to focus almost entirely on the chip itself which is the wrong place to focus. Designing a chip is hard but it is not the hardest part of running large-scale AI systems since the real difficulty begins after the chip exists when you still have to move massive amounts of data between chips, keep them synchronized, schedule workloads efficiently and maintain a software stack that developers can actually use without rewriting everything from scratch.\n\nThat is why the argument that ASICs will make Nvidia irrelevant in 2026 is absolutely absurd. Yes, hyperscalers like $GOOGL and $AMZN will continue to build their own chips and in some narrow, well-defined workloads those chips will perform very well. What most people underestimate is how difficult it is to build and sustain the networking layer, optical interconnects, memory hierarchy and developer tooling required to run reliable AI clusters at scale. Those systems take years to mature and they never stop evolving. Google’s TPU stack is a good example having taken multiple generations before becoming a broadly viable alternative even within Google’s own ecosystem.\n\nNvidia’s advantage is that it already owns this complexity end to end since it ships a complete system that includes networking, software, tooling, and a roadmap that advances every year. That cadence matters more than most people realize since internal chip teams typically move in multi-year cycles and by the time a custom system is fully deployed at scale, Nvidia is already shipping the next generation and resetting the performance baseline. The result is a persistent gap where internal teams are optimizing for yesterday’s constraints while Nvidia is solving tomorrow’s problems.\n\nThere will be cases where custom silicon makes sense over the long term, particularly for stable, repeatable workloads but for most companies the outcome is not replacement. It is coexistence since internal chips will be used where they fit best and Nvidia will be used everywhere else because it offers a full ecosystem that developers already know, trust and can deploy without operational risk. From a practical standpoint, that is usually the lowest-risk and most cost-effective choice.\n\nNvidia will be the world's first $10T company.",
+    "bias": "None",
+    "id": "2002737857992294595"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "So two years ago I started a Roth for my wife using the $HOOD match mostly to show how powerful long-term investing can be.\n\nThat account is now up ~4x with zero trades. Just a handful of buy-and-hold positions:\n\n• $RKLB building the future of space logistics\n• $EOSE zinc storage built for nonstop compute\n• $IONQ building the quantum layer beside GPUs\n• $MELI at the center of the digital product explosion across LATAM\n\nIt’s a reminder that in real super cycles that finding early disruptors and doing nothing is often the hardest and most effective strategy.",
+    "bias": "None",
+    "id": "2002726539981725978"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "China keeps finding ways to add power without waiting on land, permits or politics.\n\nOne example is a massive floating solar power plant built on water instead of land.",
+    "bias": "None",
+    "id": "2002712457127801216"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$RKLB just completed its 21st Electron launch of 2025.",
+    "bias": "None",
+    "id": "2002706681684439381"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$AMZN is building an $11B data center campus in Indiana dedicated to training and inference at scale.\n\nThe site will draw ~2.2 GW of power which is equivalent to powering 1M homes.",
+    "bias": "None",
+    "id": "2002348670201565510"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Here’s the full latest episode of the Futurum Equities podcast breaking down my top holding \n\npiped.video/HyPcY78ls_c?si=psYN…",
+    "bias": "None",
+    "id": "2002427511968596401"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "MY DRONE WATCHLIST  \n\n• $ONDS is about connectivity\n• $TDY is about sensing & targeting\n• $PLTR is about command, control & decision-making\n• $UMAC is about fleet orchestration & swarm management\n• $DPRO is about operations, training & real-world deployment\n• $AVAV, $KTOS, $RCAT & $TXT are about airframes & mission hardware\n• $ENVX is about battery tech that extends flight time & mission endurance",
+    "bias": "None",
+    "id": "2002415220610752691"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "This is bananas!\n\nSix Unitree G1 humanoid robots from the Chinese company Unitree Robotics, appearing during his \"Best Place Tour\" show on December 18 or 19, 2025",
+    "bias": "None",
+    "id": "2002755694093537646"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "always great to hang with Pomp @APompliano @petenajarian @MXLESQ",
+    "bias": "None",
+    "id": "2002718513367310603"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Grok says TRUE",
+    "bias": "None",
+    "id": "2002707635930329301"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "“at the end of the day, it’s F the Packers always.”",
+    "bias": "None",
+    "id": "2002699085867008279"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Da BEST! @ChicagoBears",
+    "bias": "None",
+    "id": "2002697042075041921"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Ursula von der Leyen is the biggest threat to free people",
+    "bias": "None",
+    "id": "2002345132390060298"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "“The stock market is a device for transferring money from the impatient to the patient.”\n-Warren Buffett",
+    "bias": "None",
+    "id": "2002722972738720009"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "What are the US Stock Market Bears missing? \n\nA: #Quad1 economic re-acceleration in Q1",
+    "bias": "None",
+    "id": "2002719381130973495"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "P3 = Preserve & Protect The Pile @naninani6",
+    "bias": "None",
+    "id": "2002424942995124682"
+  },
+  {
+    "user": "@naninani6",
+    "text": "P3 here..  retired and still slowly adding to the Pile using the @Hedgeye process and learning from the amazing team.",
+    "bias": "None",
+    "id": "2002378946935939076"
+  },
+  {
+    "user": "@mojoe7371",
+    "text": "Thank you guys for this article, iv been sitting on more cash than I need to in my IRA   , I will definitely check this out",
+    "bias": "None",
+    "id": "2002396073336123713"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Got Risk Free Returns? \n\nYour Cash Is Getting Killed. Here’s a Pro Move That Stops the Bleeding.   \n\napp.hedgeye.com/insights/175… via @hedgeye",
+    "bias": "None",
+    "id": "2002369001712767445"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Thanks. It's humbling to see how many people have downloaded my new book - I made that version of it free so as many of The People as possible can compete with the establishment",
+    "bias": "None",
+    "id": "2002364591955730694"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Global data center capex is estimated to reach $1.6 trillion by 2030, per Omdia, rising at a 17% CAGR, raising its investment forecasts for all market segments including neoclouds, hyperscalers, and Tier 1 and 2 colocation providers. \n\n$MSFT $AMZN $GOOG $CRWV $NVDA",
+    "bias": "None",
+    "id": "2002482843315007934"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Brookfield estimates that AI-dedicated data center capacity will reach 82GW by 2034, up more than 10X from 8GW in 2024, with inference taking majority share of this capacity.\n\n$NVDA $AMD $MSFT $AMZN $GOOG",
+    "bias": "None",
+    "id": "2002436576798994617"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "I'm in town and trading. Are you?\n\nJoin my Alpha Team VTF® for free this week - let's do our best to cash in before Christmas:\n\nt3live.com/at-trial",
+    "bias": "None",
+    "id": "2002747384015569307"
+  },
+  {
+    "user": "@joinfingrad",
+    "text": "Keltner Channels and Bollinger Bands are both volatility-based envelopes around a moving average, but Keltner uses ATR for smoother, steadier bands, while Bollinger uses standard deviation for bands that expand and contract sharply with volatility.",
+    "bias": "None",
+    "id": "2002280307832324179"
+  },
+  {
+    "user": "@TechnoFunda6",
+    "text": "📊 EMA vs. SMA – Which One Do You Use?\n\n🎯 Choose based on your trading style! What's your favourite?\n\n❤️ & 🔄 to share knowledge\n\n#Trading #TechnicalAnalysis #StockMarket #EMA #SMA #Investing 🚀📈",
+    "bias": "None",
+    "id": "2002325608274276386"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "This is how I approach the market using multiple timeframes.  Develop them over the years.  U can make a living in the markets and invest for retirement",
+    "bias": "None",
+    "id": "2002730480970391852"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "I make the 90% of my money and extra cash flow 9:15 -11:45    Then i adjust stops on my swing longs based on the active sequence we are in.",
+    "bias": "None",
+    "id": "2002501339893674167"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Sometimes I’m just very Simple!\nThese can make u more money than most analysts!",
+    "bias": "None",
+    "id": "2002381471709819144"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "It measures speed and commitment to a move as well.",
+    "bias": "None",
+    "id": "2002380839359828370"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Hmmmm. I’ll accumulate some Bitcoin monthly like Gold in an asset allocation model for the next Decade. Like 5% \n\nAnd then Buy $IBIT it for active cash flow when it’s above the 8/21day! $IBIT!!  \nWe had a few really nice moves this year",
+    "bias": "None",
+    "id": "2002380478364393756"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Dear Father in heaven, I’m not a praying man but if you’re up there and you can hear me show me the way. I’m at the end of my rope. Show me the way.\n\nAI will never come close to this.\n\nNever.\n\nLike and repost if you understand this.",
+    "bias": "None",
+    "id": "2002443770542108711"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I have said for the last 2 years that AI marks the blow off top for large cap US dominance.\n\nAn entirely new cycle is about to begin.",
+    "bias": "None",
+    "id": "2002753919882285290"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Going for that Fight Club Brad Pitt look.\n\nAlmost there.\n\nIn my 40s, 100 pounds down, strongest I’ve ever been.\n\nIt’s never too late.",
+    "bias": "None",
+    "id": "2002745420557234436"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I have a feeling next year @cogswell_seth is going to get annoying as fuck too $RUNN",
+    "bias": "None",
+    "id": "2002741251486175486"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "You’re from the Philippines.",
+    "bias": "None",
+    "id": "2002713076131578178"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Goodnight XRP army.\n\nTime to learn how to be the man.\n\nI wrote this song.\n\nIt's yours now.",
+    "bias": "None",
+    "id": "2002579164021600356"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Where is the XRP army",
+    "bias": "None",
+    "id": "2002578576571576476"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Should I release another song?",
+    "bias": "None",
+    "id": "2002565832963133784"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "$INTW: Intel’s Strategic Pivot by @graniteshares \nopen.substack.com/pub/granit…",
+    "bias": "None",
+    "id": "2002540583995519061"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I’ve been on this app since 2011 and have blocked most of you and your mothers.",
+    "bias": "None",
+    "id": "2002503238583828722"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Why the Fed’s December Rate Cut Signals a New Regime for 2026 Markets via @DynamicAlphaSol \nopen.substack.com/pub/dynami…",
+    "bias": "None",
+    "id": "2002465633993376054"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "The Lead-Lag Report: Fed Cut, Tight Credit, and a Market Priced for Certainty open.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2002448617941184788"
+  }
+]
