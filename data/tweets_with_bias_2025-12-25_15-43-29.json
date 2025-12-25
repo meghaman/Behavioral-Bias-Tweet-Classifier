@@ -1,0 +1,260 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "3 THINGS THAT MATTER ABOUT THE $NVDA + GROQ DEAL\n\n1. This was about owning inference economics, not fixing a chip gap \n\nNvidia didn't aqui-hired Groq because it was behind on chips since Nvidia already dominates training and most inference & its roadmap (GB300, Rubin) continues to push cost-per-token down while expanding performance faster than nearly anyone else. Training is a one-time event while inference is where the new AI business model lives so as AI moves into real products the money shifts to whoever controls runtime.\n\n2. The future where inference escapes Nvidia just got absorbed\n\nGroq was one of the few credible proofs that latency-sensitive inference could eventually move off GPUs and over time that would have chipped away at Nvidia’s “unavoidable” status. The risk was amplified by Groq’s founder Jonathan Ross, who previously built TPUs at $GOOGL and already proved that custom silicon can compete in real workloads. This deal shuts that door before it could scale. \n\n3. Deterministic inference was the missing layer\n\nGPUs excel at flexibility and scale but they were never designed to guarantee perfectly consistent response times. That matters because real-world AI breaks when latency jitters: voice assistants pause, live translation lags, agentic workflows compound delays. Groq solved this by designing around large amounts of SRAM by keeping data close to the processor and delivering quick responses every time. That made Groq uniquely suited for real-time AI where latency matters more than peak throughput.\n\nAt this point, it’s hard to argue Nvidia just sells chips when it’s clearly building the platform that owns training, networking, and now real-time inference.\n\n$20B today to avoid a $200B problem later.",
+    "bias": "None",
+    "id": "2004191171518545986"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA AI business now generates ~$458M per day.\n\nThat figure was ~$40M per day just three years ago.\n\nThis is the power of owning the compute every AI system has to run on.",
+    "bias": "None",
+    "id": "2004179825041592582"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL STOCK PORTFOLIO REVEALED\n\n1. $ASTS 18% \n2. $PL 17% \n3. $ARM 12% \n4. $MTSR 8% \n5. $RVMD 8% \n6. $FRSH 8% \n7. $TEM 5% \n8. $GTLB 5% \n9. $PATH 4% \n10. $PRME 4%",
+    "bias": "None",
+    "id": "2004173190357295124"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "FUTURUM EQUITIES PODCAST EPISODE #25\n\nOne of our favorite episodes to date since Daniel & I break down our 2026 market predictions:\n\n• Crypto Outlook | $BTC, $ETH, $SOL, $HOOD, $COIN, $SOFI\n• Why space becomes a real asset class | $RKLB, $ASTS, $RDW, $PL\n• Enterprise AI finally shows up | $PLTR, $SNOW, $MDB, $NOW, $CRM, $IBM\n• Who leads the Mag 7 in 2026 | $NVDA, $GOOGL, $MSFT, $META, $AAPL, $TSLA, $AMZN\n• Emerging markets benefit from collapsing digital build costs | $MELI, $JMIA, $SE, $CPNG, $BABA, $NU, $PDD\n• Why power constrains AI before models do | $CEG, $VST, $EOSE, $CRWV, $NBIS, $IREN, $CIFR, $OKLO, $BE\n• What the IPO market will look like | SpaceX, OpenAI, Databricks\n\nPlus a 20-minute live Q&A.\n\nWatch the full episode via the link below  ⤵️",
+    "bias": "None",
+    "id": "2003858020359672140"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ASTS BlueBird-7 is set to launch on a SpaceX Falcon 9 in January.\n\n2026 is shaping up to be a very active year.",
+    "bias": "None",
+    "id": "2003868989563510968"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "h/t: @spacanpanman (it wouldn't let me tag you)",
+    "bias": "None",
+    "id": "2003869087718690921"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "On the next Futurum Equities podcast we’ll spend time walking through why these names made the 2026 watchlist and what needs to go right from here.\n\npiped.video/@FuturumEquities",
+    "bias": "None",
+    "id": "2003866550437400590"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Link below to catch the full episode: \n\npiped.video/24vBgxh902k?si=GRLK…",
+    "bias": "None",
+    "id": "2003858114152747259"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "S&P 500 $SPY JUST HIT A NEW ALL-TIME HIGH",
+    "bias": "None",
+    "id": "2003848018450317807"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "He's a sith operator",
+    "bias": "None",
+    "id": "2003854642338496827"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Classic Christmas Special!",
+    "bias": "None",
+    "id": "2003839508773769561"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Bears 🐻 still at 6% #wannabet? kalshi.com/markets/kxsb/supe…",
+    "bias": "None",
+    "id": "2003828140515430401"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Merrry Christmas, Jonesy @HedgeyeDJ !",
+    "bias": "None",
+    "id": "2004161142013546601"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "“For God so loved the world that He gave his only begotten Son, that whoever believes in him will not perish, but have eternal life.”\n-John 3:16 #MerryChristmas",
+    "bias": "None",
+    "id": "2004160349071933908"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Gold is a currency. Metals are cyclicals\n\nWhen the Cycle accelerates out of #Quad4, you buy early — not after CNBC monkeys finds the charts\n\nSilver, Platinum, Copper, Lithium aren’t trades… they’re positioning.\n#Quad1",
+    "bias": "None",
+    "id": "2003965750319644743"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "“How much higher can Gold go?”\n\nA: As high as the Risk Range™ allows",
+    "bias": "None",
+    "id": "2003965358584238334"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "WATCH | The Fourth Turning Portfolio: How to Invest Through Today’s Chaos app.hedgeye.com/insights/175… via @hedgeye",
+    "bias": "None",
+    "id": "2003849998753268045"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Meltup continues with $SPY at all-time highs",
+    "bias": "None",
+    "id": "2003845946942333265"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "BREAKING: High Yield $HYG Breaks Out To All-Time Highs As Consensus \"Credit Concerns\" Bears Get Mauled For Christmas",
+    "bias": "None",
+    "id": "2003844906775883784"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Fat Hedgeye returns, no concerns",
+    "bias": "None",
+    "id": "2003840099059159100"
+  },
+  {
+    "user": "@rockfeathers1",
+    "text": "Keith.  Thank you for an AMAZING year.  Great performance. Wowie!!!❤️🎄❤️🎄❤️🎄❤️",
+    "bias": "None",
+    "id": "2003821470020190212"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Our growing community remains long of all 5 of these. Merry Christmas",
+    "bias": "None",
+    "id": "2003788762518802453"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "TSMC’s largest customer in 2026 is estimated to be Nvidia $NVDA, accounting for 20% of sales, followed by Apple $AAPL at 16% and Broadcom $AVGO at 11%, per Morgan Stanley",
+    "bias": "None",
+    "id": "2004012846187680040"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "ByteDance is reportedly planning to spend ~$23 billion in capex next year for AI infrastructure, with half of that allocated towards advanced AI chips, such as Nvidia’s $NVDA H200.\n\n$AMD",
+    "bias": "None",
+    "id": "2003953847484797226"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Think about a few hard things U might want to do in 2026",
+    "bias": "None",
+    "id": "2004193391001706998"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$qqq morning glance as stocks are taking turns and working well",
+    "bias": "None",
+    "id": "2003859183519850882"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 A LOOK INTO MAG 7 SETUPS\n\n– $AMZN delivered the cleanest, most profitable setup and still has room to go.\n– $AAPL is consolidating after a good entry but hasn’t broken out yet.\n– $MSFT is tightening after a rough period, with a potential trade setting up if it reclaims key resistance levels.\n– $TSLA needs more time to digest gains before another move, possibly next week or into January. \n– $META is behaving loosely and not offering clean momentum yet.",
+    "bias": "None",
+    "id": "2003833932383482358"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 $NVDA RED-TO-GREEN TRADE ABOVE $191\n\nI am watching $NVDA today for a possible short-term red-to-green day trade.\n\nCome to trade $NVDA with me for free today: t3live.com/at-trial\n\nKey resistance is around $191, with a viable intraday opportunity if the stock holds above ~$187.75–$188 and does not give back $186. \n\nIf those levels hold, #Nvidia could offer a clean, low-risk day trade back to green for quick profits.",
+    "bias": "None",
+    "id": "2003828169955057716"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$SPX started the Santa move as it cleared 6812 and hit a high of 6910 to manage. Feels quiet out there but Gold and Silver are on a tear, mega cap tech acts better, Tim Cook buys some $NKE, and $ASTS had a nice launch as crypto struggles.",
+    "bias": "None",
+    "id": "2003812500249415809"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "⏰ Scott Redler’s #630club - LIVE Premarket Stock Update $NVDA $TSLA $IBIT $SPY  ➡️ Get my #1 charting tool FREE: t3live.com/tsdeal nitter.net/i/broadcasts/1ZkKzZAgl…",
+    "bias": "None",
+    "id": "2003790786304041309"
+  },
+  {
+    "user": "@LeadLagMedia",
+    "text": "Introducing The Free Markets ETF ( $FMKT ): the first U.S. ETF focused on companies poised to benefit from deregulation. Position your portfolio to capture the upside of policy changes that others might miss.",
+    "bias": "None",
+    "id": "2004192334142148681"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "MERRY CHRISTMAS!!!!!!!",
+    "bias": "None",
+    "id": "2004166893452882297"
+  },
+  {
+    "user": "@JohnTinsman",
+    "text": "Earnings Built This Rally\n\n40% multiple expansion, 60% earnings.\n\nThat’s the return breakdown behind the Mag 7’s 191% run since Nov 2022.\n\n$AOTG focuses on long-term compounders, not short-term momentum trades.\n\nLearn more and view fund holdings at AOTETF.com. \n\nMag 7 refers to Magnificent 7, a group of large-cap US tech and growth stocks (Apple, Microsoft, Nvidia, Amazon, Alphabet, Meta, Tesla).\n\nDistributed by PINE Distributors LLC\n\nETFAC-5037726-12/25\n\nSource: JP Morgan, November 05, 2025",
+    "bias": "None",
+    "id": "2003856702047678662"
+  },
+  {
+    "user": "@JohnTinsman",
+    "text": "The Problem with Static P/E Charts\n\nMedia often cite elevated P/E ratios vs historical averages as proof of overvaluation.\n\nBut this assumes P/Es should be constant, ignoring shifts in growth, sentiment, capital costs, and demographics.\n\nLearn more and view fund holdings at AOTETF.com. \n\n#Valuation #Markets #BehavioralFinance\n\nThe Price-to-Earnings (P/E) ratio measures what investors are willing to pay for each $1 of a company’s earnings.\n\nFor example, a P/E of 20 means investors are paying $20 for every $1 of earnings. Higher P/Es can reflect growth expectations, but they’re not always a sign of overvaluation.\n\nDistributed by PINE Distributors LLC\n\nETFAC-5037726-12/25\n\nSource: Hudson Bay Capital, November 25, 2025",
+    "bias": "None",
+    "id": "2003917099693973966"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Was with a friend the other night over hookah.\n\nI told him I feel horribly alone.\n\nIt’s not about how many followers I have or how recognizable I’ve become in the industry.\n\nI feel horribly alone, and I know that I must feel this way to accomplish my goals.\n\nI must do it alone.",
+    "bias": "None",
+    "id": "2003973633014898876"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Raw moment - I’m finding it hard to get into Christmas this year.",
+    "bias": "None",
+    "id": "2003965462133252540"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "\"If opportunity doesn't knock, build a door.\" - Milton Berle\n\nThis quote haunts me.\n\nI think about this every day.",
+    "bias": "None",
+    "id": "2003952958170612120"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Highs and Lows in a “Goldilocks” Finale open.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2003951007068536957"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Hype vs Reality: Kai Wu on AI CapEx Risks, Market Concentration, and the Next Phase of AI Investing nitter.net/i/broadcasts/1YqGoldOY…",
+    "bias": "None",
+    "id": "2003947394086699453"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "You forgot $PLTM.",
+    "bias": "None",
+    "id": "2003942472163205263"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "After the Rate Cuts: Why Income, Small Caps, and Credit Could Lead Into 2026 with @mela_shaffer and @JDHatfield_ICAP \n\nopen.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2003897737931358647"
+  },
+  {
+    "user": "@IRON100USA",
+    "text": "leadlagreport.com/p/value-vs… Great article from @leadlagreport . Rotation, value, and a perspective of holding undervalued assets for the long-term over FOMO is the better path for now, even if it means a mean-reversion in risk assets (at least in my view) is pretty highly  likely in the next couple of years. If I had time to finish the FOMO series, which I do not, I would explain this concept in much greater detail, but I cannot at this time. This article expresses how to mitigate risk AND get alpha in the short and potentially longer-term timeframe. When I see what I want in terms of value in any asset class, I will return to paper assets in other than a trading mode. Everyone should educate themselves about the real nature of risk in the current market environment.",
+    "bias": "None",
+    "id": "2003880517213544877"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Value vs. Growth: Signs of a Long-Awaited Turn\n\nopen.substack.com/pub/leadla…",
+    "bias": "None",
+    "id": "2003878622340567492"
+  }
+]
