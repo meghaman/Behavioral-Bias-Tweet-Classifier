@@ -1,0 +1,254 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "Morgan Stanley is emerging as the favorite to lead the SpaceX IPO which is shaping up to be the most important listing of the decade.\n\nIf SpaceX debuts at premium multiples (65x 2026 price-to-sales) then the companies supplying components, building satellites or competing in adjacent segments will be re-rated upward simply because the benchmark has moved.\n\n$RKLB, $ASTS, $PL, $RDW, $FLY, $FJET, $BKSY, $LUNR",
+    "bias": "None",
+    "id": "2004574774513819685"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "The world’s most valuable assets are no longer commodities you extract once and store forever but AI platforms that continuously learn, adapt & monetize usage at scale.\n\n• $META uses AI to keep people engaged longer & sell better ads.\n• $NVDA makes money every time AI runs because all AI needs its chips.\n• $TSLA improves its software by learning from millions of cars in the real world.\n• $AMZN sells AI like electricity by renting the infrastructure behind it.\n• $MSFT monetizes AI through enterprise lock-in by embedding intelligence directly into workflows.\n• $GOOGL compounds intelligence by vertically integrating chips, models, distribution & advertising into a closed monetization loop.",
+    "bias": "None",
+    "id": "2004563749727097024"
+  },
+  {
+    "user": "@FuturumEquities",
+    "text": "FUTURUM EQUITIES PODCAST EPISODE #25\n\n• Crypto Outlook | $BTC, $ETH, $SOL, $HOOD, $COIN, $SOFI\n• Why space becomes a real asset class | $RKLB, $ASTS, $RDW, $PL\n• Enterprise AI finally shows up | $PLTR, $SNOW, $MDB, $NOW, $CRM, $IBM\n• Who leads the Mag 7 in 2026 | $NVDA, $GOOGL, $MSFT, $META, $AAPL, $TSLA, $AMZN\n• Emerging markets benefit from collapsing digital build costs | $MELI, $JMIA, $SE, $CPNG, $BABA, $NU, $PDD\n• Why power constrains AI before models do | $CEG, $VST, $EOSE, $CRWV, $NBIS, $IREN, $CIFR, $OKLO, $BE\n• What the IPO market will look like | SpaceX, OpenAI, Databricks\n\nPlus a 20-minute live Q&A with @StockSavvyShay.\n\npiped.video/24vBgxh902k?si=LQRt…",
+    "bias": "None",
+    "id": "2004554684263191024"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "5 BIGGEST WINNERS FROM $NVDA + GROQ DEAL\n\n1. $MSFT & $AMZN benefit because AI inference stays anchored to a unified Nvidia platform making it easier to deploy & scale AI services without managing fragmented hardware stacks.\n\n2. $AVGO & $ALAB win as real-time AI increases the amount of data moving between chips, servers & racks which raises demand for networking, interconnects & connectivity hardware.\n\n3. $ASML benefits because more AI pathways mean more total chips being built reinforcing its role as the critical supplier for advanced semiconductor manufacturing.\n\n4. $VST gains as deterministic inference pushes AI toward always-on, real-time usage, raising data center utilization & power intensity.\n\n5. $PLTR, $SNOW & $MDB benefit as cheaper/more predictable inference increases AI usage inside live applications driving higher query frequency & deeper integration into production workflows.",
+    "bias": "None",
+    "id": "2004553902440780136"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "WALL STREET IS PRICING A STRONG 2026\n\n• Deutsche Bank +16%\n• Morgan Stanley +13%\n• UBS +10%\n• Société Générale +9%\n• Bank of America +6%\n\nThis is the monetization phase of a rebuilt digital industrial base & it’s flowing straight into $NVDA, $META, $MSFT, $GOOGL & $AMZN.",
+    "bias": "None",
+    "id": "2004547150298943735"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA prior-gen Hopper still generates more revenue than all compute peers combined and that’s before Blackwell + Rubin fully scale.\n\nNvidia remains the kingpin of the AI economy.",
+    "bias": "None",
+    "id": "2004526376293192108"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Groq’s founder explains that inference is about speed cost and power which is why their architecture created a credible path for AI workloads to move off GPUs over time.\n\nBy absorbing Groq, $NVDA shut down the most convincing independent alternative to its platform and ensured that whether AI runs on flexible GPUs or ultra-low-latency inference, it still runs through Nvidia.",
+    "bias": "None",
+    "id": "2004518966069243917"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL Gemini moved from 5% to 18% of GenAI web traffic in a year while ChatGPT dropped from 87% to 68% which to me shows user changing behavior.\n\nGemini shows up where questions already happen inside Search, Chrome, Android & Workspace so when AI usage becomes routine the product with native distribution captures the flow and Google owns that surface.",
+    "bias": "None",
+    "id": "2004332674215715072"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Merry Christmas everyone!\n\nDays like today are a reminder of why we work as hard as we do to build a life of comfort for the people we love and feel responsible for.\n\nThis game is brutal and full of distractions where it constantly pulls at your attention. The only way to stay sane is to stay anchored to your why and let that keep you grounded when the noise gets loud.\n\nHope everyone gets to step away today to be fully present with family, enjoy the quiet moments Christmas gives you and remember that this is the reason the work matters in the first place.",
+    "bias": "None",
+    "id": "2004222777067557108"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "3 THINGS THAT MATTER ABOUT THE $NVDA + GROQ DEAL\n\n1. This was about owning inference economics, not fixing a chip gap \n\nNvidia didn't aqui-hired Groq because it was behind on chips since Nvidia already dominates training and most inference & its roadmap (GB300, Rubin) continues to push cost-per-token down while expanding performance faster than nearly anyone else. Training is a one-time event while inference is where the new AI business model lives so as AI moves into real products the money shifts to whoever controls runtime.\n\n2. The future where inference escapes Nvidia just got absorbed\n\nGroq was one of the few credible proofs that latency-sensitive inference could eventually move off GPUs and over time that would have chipped away at Nvidia’s “unavoidable” status. The risk was amplified by Groq’s founder Jonathan Ross, who previously built TPUs at $GOOGL and already proved that custom silicon can compete in real workloads. This deal shuts that door before it could scale. \n\n3. Deterministic inference was the missing layer\n\nGPUs excel at flexibility and scale but they were never designed to guarantee perfectly consistent response times. That matters because real-world AI breaks when latency jitters: voice assistants pause, live translation lags, agentic workflows compound delays. Groq solved this by designing around large amounts of SRAM by keeping data close to the processor and delivering quick responses every time. That made Groq uniquely suited for real-time AI where latency matters more than peak throughput.\n\nAt this point, it’s hard to argue Nvidia just sells chips when it’s clearly building the platform that owns training, networking, and now real-time inference.\n\n$20B today to avoid a $200B problem later.",
+    "bias": "None",
+    "id": "2004191171518545986"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA AI business now generates ~$458M per day.\n\nThat figure was ~$40M per day just three years ago.\n\nThis is the power of owning the compute every AI system has to run on.",
+    "bias": "None",
+    "id": "2004179825041592582"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL STOCK PORTFOLIO REVEALED\n\n1. $ASTS 18% \n2. $PL 17% \n3. $ARM 12% \n4. $MTSR 8% \n5. $RVMD 8% \n6. $FRSH 8% \n7. $TEM 5% \n8. $GTLB 5% \n9. $PATH 4% \n10. $PRME 4%",
+    "bias": "None",
+    "id": "2004173190357295124"
+  },
+  {
+    "user": "@ByronDonalds",
+    "text": "We will never forget the patriots who heroically forged our independence.\n\n249 yrs ago TONIGHT, George Washington crossed an icy Delaware River & attacked the German-Hessian mercenary forces at Trenton, NJ.\n\nWashington & his 2,400 men decisively won the pivotal Battle of Trenton.",
+    "bias": "None",
+    "id": "2004304300672164293"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "A true Christmas gift, thank you Michele",
+    "bias": "None",
+    "id": "2004539798590255439"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Yippee ki-ya",
+    "bias": "None",
+    "id": "2004322150614712453"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "While I may not be \"working\" on my shows today, I am trading my books - you can follow that in-Game Coaching via Real-Time Alerts",
+    "bias": "None",
+    "id": "2004570795239149680"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Dr. Copper ripping $CPER",
+    "bias": "None",
+    "id": "2004567667177668894"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Our community is blessed to be long of all 5 of these metals with Lithium and Platinum ripping higher (again) this morning",
+    "bias": "None",
+    "id": "2004513496084721989"
+  },
+  {
+    "user": "@Hedgeye",
+    "text": "On behalf of @KeithMcCullough and everyone at Hedgeye, we wish you and your family much Peace, Love and Joy!!!",
+    "bias": "None",
+    "id": "2004232117719552135"
+  },
+  {
+    "user": "@The_Huntsman23",
+    "text": "Want to take the time out to wish everyone a Merry Xmas to thank the Mucker @KeithMcCullough & the @Hedgeye team for an education that I couldn't get anywhere else or a community like this...yes I pay for it but the team goes above & beyond to always bring more than they promised",
+    "bias": "None",
+    "id": "2004266512727920933"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Merrry Christmas, Jonesy @HedgeyeDJ !",
+    "bias": "None",
+    "id": "2004161142013546601"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "“For God so loved the world that He gave his only begotten Son, that whoever believes in him will not perish, but have eternal life.”\n-John 3:16 #MerryChristmas",
+    "bias": "None",
+    "id": "2004160349071933908"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "TSMC’s largest customer in 2026 is estimated to be Nvidia $NVDA, accounting for 20% of sales, followed by Apple $AAPL at 16% and Broadcom $AVGO at 11%, per Morgan Stanley",
+    "bias": "None",
+    "id": "2004012846187680040"
+  },
+  {
+    "user": "@t3live",
+    "text": "#FF Follow the gang!\n\nGet the oh so sexy candlestick training from JR Romero: t3live.com/jr-free-training-…\n\n@itzstockchartz\n@RedDogT3\n@epictrades1\n@KirasEpicTrades\n@CrankyRicky\n@picardtrades\n@AmCapTrader\n@GretaLWall\n@SIBOptionPro\n@prospertrading\n@DiscipleofTrend\n@Andy__Moss\n@TWPTrade\n@WOLF_Financial\n@The_RockTrading\n@Gino_Vlntino\n@vwaptrader1\n@AllxDayxRayx\n@armyguynyc\n@trendspider\n@MomAngtrades\n@MightySoldiers\n@javicharts\n@1991Wolfpack\n@koyfman\n@KoyfinCharts\n@Jake__Wujastyk\n@theresa_perrin\n@izzyonit\n@SpencerParsons0\n@Star_WSB\n@MazeOrBowie\n@Satoshisview\n@CraigMiera\n@candicemoh1\n@ProDeskVTF\n@izzyonit\n@ronald_rhd64\n@alphatrends\n@basso_tom\n@Robinson_Ortiz_\n@relentlesswrx\n@AkilStokesRTM\n@TedHZhang\n@AlmanacTrader\n@blondebroker1",
+    "bias": "None",
+    "id": "2004540919928745998"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$gs looking to follow $ms and $JPM",
+    "bias": "None",
+    "id": "2004540358257226038"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$TSLA held where it had to Wednesday",
+    "bias": "None",
+    "id": "2004540127339819447"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "⏰ Scott Redler’s #630club - LIVE Premarket Stock Update $NVDA $TSLA $IBIT $SPY  ➡️ Get my #1 charting tool FREE: t3live.com/tsdeal nitter.net/i/broadcasts/1djGXWRAO…",
+    "bias": "None",
+    "id": "2004515124229591496"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$spx futures -1 after four strong sessions. \nLots of great names and trades in this sequence. Let’s end the week on a good note. \n$spy holding $688ish keeps active bulls in control.",
+    "bias": "None",
+    "id": "2004494606193643709"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Think about a few hard things U might want to do in 2026",
+    "bias": "None",
+    "id": "2004193391001706998"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "$KMLI: MercadoLibre’s Push Into Robotics via @kraneshares open.substack.com/pub/kranes…",
+    "bias": "None",
+    "id": "2004580579501887909"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Unpopular opinion: the surge in metals is a warning sign of coming deflation.",
+    "bias": "None",
+    "id": "2004561594009915416"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "The irony would be Oil starting a super spike after a peace deal is struck between Ukraine and Russia.",
+    "bias": "None",
+    "id": "2004559499034517505"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "$PLTM",
+    "bias": "None",
+    "id": "2004554419762024592"
+  },
+  {
+    "user": "@MBAeconomics1",
+    "text": "Drill baby drill. Oversupply of oil…. Undersupply of silver. I respectfully disagree. Im not bullish oil",
+    "bias": "Euphoria / Greed",
+    "id": "2004549949699285480"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Holy shit $PLTM",
+    "bias": "None",
+    "id": "2004542877649748164"
+  },
+  {
+    "user": "@graniteshares",
+    "text": "GraniteShares announced distribution rates for the YieldBOOST™ Single Stock Universe ETF (YBST) as of December 26, 2025\n$YBST",
+    "bias": "None",
+    "id": "2004540914677711105"
+  },
+  {
+    "user": "@graniteshares",
+    "text": "GraniteShares announced distribution rates for the YieldBOOST™ TopYielders ETF (YBTY) as of December 26, 2025\n$YBTY",
+    "bias": "None",
+    "id": "2004541539801075931"
+  },
+  {
+    "user": "@graniteshares",
+    "text": "GraniteShares announced distribution rates for all GraniteShares YieldBOOST™ FoF ETFs today, as listed in the table below.",
+    "bias": "None",
+    "id": "2004539947643195552"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "It’s wild to me how people think they know you based on 280 characters.",
+    "bias": "None",
+    "id": "2004380994980479234"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "This is by far the most powerful Christmas video you will ever watch.\n\nThank you @Mela_Schaffer (GO FOLLOW HER).",
+    "bias": "None",
+    "id": "2004365489729163770"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "This is the collision nobody wants to talk about.\n\nAI and data-center power demand is exploding.\nIntermittent energy wasn’t built for 24/7 load.\n\nSolar doesn’t run all night.\nWind doesn’t answer latency.\n\nBaseload wins when uptime matters.\nThat’s why nuclear is back in the conversation.\n\nThe math doesn’t care about narratives.",
+    "bias": "None",
+    "id": "2004336359104815575"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Sugar Supply Chains and Consumer Food Prices: From Field to Grocery Aisle via @TeucriumETFs  open.substack.com/pub/teucri…",
+    "bias": "None",
+    "id": "2004333922474217911"
+  }
+]
