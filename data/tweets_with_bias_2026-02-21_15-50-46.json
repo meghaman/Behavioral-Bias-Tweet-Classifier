@@ -1,0 +1,362 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "The popular narrative right now is that AI is “coming for security” after the Claude Code Security announcement.\n\nClaude Code Security is just static application security testing (SAST) where it reviews source code pre-deployment & flags issues like SQL injection. \n\nThe market just repriced $50B+ of cybersecurity market cap off a headline that doesn’t actually threaten the core security stack: \n\n• $CRWD secures live endpoints & cloud workloads after code is deployed while code scanning never sees what’s happening on the machine.\n• $ZS controls access & traffic between users, agents & applications while code scanning can’t see or block real-time network activity.\n• $NET runs a global network handling millions of requests per second while code scanning doesn’t see web traffic in flight.\n• $RBRK backs up & recovers data after ransomware and breaches while code scanning doesn’t restore anything once systems are hit.\n• $PANW inspects traffic across network, cloud & SecOps in production while code scanning doesn’t touch runtime environments.\n• $OKTA manages identity for humans & machine agents in production while code scanning doesn’t control logins or access.\n• $FTNT secures physical & virtual networks moving real packets while code scanning looks at source code rather than live traffic.\n• $S protects endpoints & workloads at runtime while code scanning only happens before deployment.\n\nClaude Code Security looks at code before it ships but these platforms protect what happens after so this selloff is fear-driven and an opportunity.",
+    "bias": "None",
+    "id": "2025226189351387605"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$MSFT is near decade-low multiples with Azure sold out and Copilot embedding AI into 450M+ enterprise users.\n\nThey don’t need to “win AI” but just need to monetize the distribution they already own. No other company has this level of distribution for enterprise AI.",
+    "bias": "None",
+    "id": "2025212928551780808"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "THE AGENTIC AI SECURITY CHEAT SHEET\n\nThe selloff in cybersecurity after Anthropic announced Claude Code Security is a perfect example of the market reacting to a headline instead of the actual product. \n\nThis is what the real security stack looks like:\n\nIdentity & Access (who/what is allowed to act in production)\n• $ZS controls agent access & traffic across apps + networks\n• $OKTA manages identity & access for humans + machine agents\n\nEndpoint & Workload Security (what runs on machines)\n• $S protects the machines & workloads agents run on\n• $CRWD is the interactive response layer for agents across endpoints & cloud workloads\n\nData Protection & Recovery (what must be protected after compromise)\n• $RBRK is the “undo button” for AI agents when things go wrong\n\nNetwork & Edge Security (how attacks move through systems)\n• $NET gatekeeper of agentic AI traffic on the modern internet\n• $FTNT secures AI traffic moving inside enterprise networks\n• $PANW coordinates security across network, cloud & SecOps\n• $AKAM protects applications & APIs at the edge where traffic hits first\n\nCloud Runtime & Vulnerability Exposure  (what is exploitable in production)\n• $RPD protects cloud workloads at runtime as deployments scale\n• $TENB maps & prioritizes exploitable vulnerabilities across live assets & cloud\n\nSecurity Operations & Observability (how incidents are detected & acted on)\n• $DDOG provides real-time visibility into the infrastructure agents run on\n• $DT provides deep runtime visibility into applications  & APIs agents interact with\n\nClaude Code Security sits at the application security layer scanning code for vulnerabilities and suggesting patches for human review. It's a useful feature but represents a VERY small slice of one layer of the broader security stack. \n\nAI doesn’t replace cybersecurity but will actually expand the attack surface.",
+    "bias": "None",
+    "id": "2025204913077399639"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Former $GOOGL CEO Eric Schmidt frames AI as an infrastructure + national security race with the U.S. structurally ahead of China on chips, capital and hyperscalers.\n\nEvery dollar of AI infrastructure spend is really a moat being built.",
+    "bias": "None",
+    "id": "2025191634233950540"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Sam Altman calls space-based data centers “ridiculous” given launch costs and power economics today.\n\nThis also reads like a direct rebuttal to the SpaceX + xAI orbital compute narrative Elon Musk has been pushing.",
+    "bias": "None",
+    "id": "2025187064665522645"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "This constant “doomsday” narrative that we get every week about AI coming for software is getting nuts. \n\nA perfect example is Anthropic rolling out Claude Code Security today where this “feature” isn’t going to replace full cybersecurity ecosystems.\n\nIt’s like saying your apartment has a smoke detector so cities don’t need fire departments.. the smoke detector beeps but you still need the fire department to put out the fire and save the building. \n\nClaude Code can flag an issue but $CRWD responds to it, contains it and remediates across thousands of endpoints.\n\nWhat are we even saying here  😅",
+    "bias": "None",
+    "id": "2024944092179038683"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "People think Claude Code security is coming for $CRWD, $ZS, $PANW, $NET or $RBRK.\n\nThis is what “AI-native security” looks like in practice.",
+    "bias": "None",
+    "id": "2024933310804488653"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Anthropic launched Claude Code Security in limited research preview, scanning codebases for vulnerabilities and suggesting targeted fixes.\n\nCybersecurity stocks like $PANW, $FTNT, $ZS, $RBRK & $CRWD are lower on fears AI-native security tools could pressure parts of the stack.",
+    "bias": "None",
+    "id": "2024927124629717125"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL trying to build a TPU ecosystem outside of GCP by exploring spinning TPU into standalone unit while financing third-party data center partners to compete with $NVDA stack.\n\nThat includes investing ~$100M in Fluidstack at ~$8B valuation & backing projects tied to $CIFR, $HUT & $WULF to drive TPU demand.",
+    "bias": "None",
+    "id": "2024903278195310784"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$CRWV down ~12% after reports that $OWL couldn’t secure financing for a $4B data center project the two are co-developing.\n\nEvery megawatt CoreWeave can’t build is demand that flows to $AMZN AWS, $MSFT Azure or $GOOGL Cloud.\n\nThe AI workloads don’t disappear.",
+    "bias": "None",
+    "id": "2024899012902748317"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Link to the stream:\n\npiped.video/live/C4ZbWnuPAKs…",
+    "bias": "None",
+    "id": "2024896019683786896"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "Is “De-dollarization” just a myth?\n\n@UrbanKaoboy joins @GuyAdami to explain why the dollar’s adoption is still unassailable and why gold’s parabolic move looks more like speculation than regime change.\n\nYouTube: piped.video/AVi5q7M2ttc\nApple: apple.co/3RzvgpD\nSpotify: tinyurl.com/5x9hn37h",
+    "bias": "Euphoria / Greed",
+    "id": "2024834166362128770"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "\"If truly we were on the cusp of some sort of fourth turning a new monetary order where the world is moving away from US treasuries as a central, reserve asset to gold. Well, what's what's going to be the cost of that? The cost will be economic austerity and a significant slowing of global GDP growth, in my opinion.\"\n\n🎙️ @UrbanKaoboy x @GuyAdami on RiskReversal Podcast",
+    "bias": "None",
+    "id": "2024865627140203003"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "Weird things are happening in the stock market. @NiaWarfield breaks it down. \n\nCheck out the full conversation with Dan and @guyadami piped.video/live/pq5vnBieQR8",
+    "bias": "None",
+    "id": "2024858330745729489"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "6⃣0⃣ Seconds $GRAL $AKAM $OPEN Have a great weekend Bang! 💥",
+    "bias": "None",
+    "id": "2024841940756283578"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "TB laying down the truth",
+    "bias": "None",
+    "id": "2025188044060463152"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "So how ecactly does that happen?",
+    "bias": "None",
+    "id": "2024983126917734833"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "A tax on any of us is a tax on all of us. \nYou get the camel's nose under the tent & its OVER my friends. Some may think \"taxing the rich\" or tax on wealth will only hurt a few, they'd better learn quick that the bullseye is on EVERYONE if we let that happen!",
+    "bias": "None",
+    "id": "2024887884382126586"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Coffee ☕️ and 🏈 NAJARIAN SPORTS 🏴‍☠️ with @petenajarian",
+    "bias": "None",
+    "id": "2024824914767745482"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "They should put her in the Guinness Book of World Records! Pass the SAVE Act!",
+    "bias": "None",
+    "id": "2024808928886878292"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "No team has clearly surpassed the 2026 US women's stats in key defensive metrics like goals allowed (tied for lowest ever) combined with an undefeated run, a massive goal differential in a modern 7-game format, and record-setting shutout streaks. USA, USA, USA!!",
+    "bias": "None",
+    "id": "2024807259700711770"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I've personally posted every tweet (and Real-Time Alert) since 2008",
+    "bias": "None",
+    "id": "2025200147399880873"
+  },
+  {
+    "user": "@naninani6",
+    "text": "Nice! Not surprised!  I’m tickling ATH not as heavy in metals but International leading the way.  As an Olde Wall guy I never had a GoAnywhere process.. turns out there’s one out there available for the Fam!  Eh?",
+    "bias": "None",
+    "id": "2025184533318869305"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Johannes Høsflot Klæbo",
+    "bias": "None",
+    "id": "2025180821120856568"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I cleaned toilets at Port Arthur Motors. I'll never be too big to admit when a position is wrong. \n\nThe timestamp is always there. That's the accountability. No curtain. No CNBC wizard. Just the work. #EarlyLook",
+    "bias": "None",
+    "id": "2025176753732518210"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Friday was a great day for The Fam with The MFO (Mucker Family Office) Long Only Account printing new ATHs (all-time highs)\n\nI've worked 27 years to get this #GoAnywhere Diversified Portfolio into the proper positioning \n\nIf you want to see ALL of my positions daily, you can",
+    "bias": "None",
+    "id": "2025175585996083473"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Who's Bryn? Is she long of our Core Cyber Short $CIBR?",
+    "bias": "None",
+    "id": "2025174551600996541"
+  },
+  {
+    "user": "@PStreible",
+    "text": "@HedgeyeFins Besides your “Early Look” being rock solid, I’d love that cartoon for the wall in the office. Tell @KeithMcCullough to put that one in the next charity auction!",
+    "bias": "None",
+    "id": "2024987874567876716"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Modern market structure doesn’t wait for narratives. When TRADE breaks, divergence opens fast",
+    "bias": "None",
+    "id": "2024922858116305101"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "There's a better way for people with moral compasses",
+    "bias": "None",
+    "id": "2024884876424499571"
+  },
+  {
+    "user": "@Trhediger",
+    "text": "+28 bps on the day because of Macro Pro + monitoring ranges/vol. TY Mucker",
+    "bias": "None",
+    "id": "2024866019546656864"
+  },
+  {
+    "user": "@j49576",
+    "text": "A short but concentrated message snippet from Keith.\n\nFocusing in on High Yield Market Volatility while avoiding distraction in the Blue Owl outlook.\n\n@KeithMcCullough\n@HedgeyeAI\n@Hedgeye\n\nTo provide proper credit, video clip taken from the Macro Show airing on 2/20/2026 hosted by Keith McCullough and Ryan Ricci.",
+    "bias": "None",
+    "id": "2024858926684975106"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Post tariff news, important Portfolio Coaching Notes via Real-Time Alerts",
+    "bias": "None",
+    "id": "2024864277325033763"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "CHART OF THE DAY: This Is A First Round Knockout, YTD We Are Crushing The Competition app.hedgeye.com/insights/178… via @hedgeye",
+    "bias": "None",
+    "id": "2024860672329392596"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Drago is reviewing Private Equity implosions and our many US Financials Shorts #TheCall",
+    "bias": "None",
+    "id": "2024836085218517367"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "We're on a LIVE wire with the only Independent Research you can get PRE MARKET daily",
+    "bias": "None",
+    "id": "2024831052926038189"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "They can \"see\" our Macro Returns after they happen",
+    "bias": "None",
+    "id": "2024830802664489147"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Citi on Nvidia $NVDA: \"We expect continued strong ramp of B300 with Rubin launch to drive a 34% H/H acceleration in CY2H26 sales vs. 27% in CY1H26.\"",
+    "bias": "None",
+    "id": "2024871906436960408"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Taiwan’s exports rose 69.9% YoY to $65.8 billion in January, the fastest growth in 16 years and accelerating sharply from 43.3% growth in December on strong AI demand. US exports rose 151.8% YoY to $21.3 billion. \n\n$NVDA $TSM $AVGO $AMD",
+    "bias": "None",
+    "id": "2024913989155618849"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Cisco reported AI infrastructure orders from hyperscalers up more than 61% QoQ to $2.1 billion in FQ2, guiding for >$5 billion in orders in FY26 and AI revenue of $3 billion. \n\n$CSCO $NVDA $ANET $AMD",
+    "bias": "None",
+    "id": "2024938428920365144"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "UBS now projects Broadcom $AVGO to ship 5 million TPUs in calendar 2027, up more than 35% YoY, while modeling Broadcom’s AI revenue to be ~$60 billion in FY26, up 200%, before rising another 80% to $106 billion in FY27 and nearly 42% to $150 billion in FY28.\n\n$NVDA $AMD $GOOG $META",
+    "bias": "None",
+    "id": "2024973912350884036"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "U must cost average ur career!",
+    "bias": "None",
+    "id": "2025204425367666951"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "RIP Eric \nThey don’t discriminate when it’s ur time \nLive life!",
+    "bias": "None",
+    "id": "2024986212675559752"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "If u missed the #630club this week. It did happen all week. There are Twitter problems. \nFriends and family will always get the link. Even if it isn’t on demand.",
+    "bias": "None",
+    "id": "2024953277406744871"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "See you next week for $NVDA earnings.\n\nMake sure you get on my list for monday: t3live.com/rd",
+    "bias": "None",
+    "id": "2024950183977750837"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$spy morning glance as we had a fast tape",
+    "bias": "None",
+    "id": "2024883989689885034"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$amzn nice week. RDR Tuesday around $197 pivot. Cleared $207 and now it’s $210+ to manage.",
+    "bias": "None",
+    "id": "2024874228323901713"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$aapl nice RDR buy as it reclaimed yesterday’s low. $260.50. Trimmed some",
+    "bias": "None",
+    "id": "2024874039357903274"
+  },
+  {
+    "user": "@wallstengine",
+    "text": "US ADVANCE Q4 GDP +1.4% (EST +3.0%)",
+    "bias": "None",
+    "id": "2024839164072775815"
+  },
+  {
+    "user": "@wallstengine",
+    "text": "PCE 2.9% YoY, (Est. 2.8%)\nPCE 0.4% MoM, (Est. 0.3%)\n\nCORE PCE 3.0% YoY, (Est. 2.9%)\nCORE PCE 0.4% MoM, (Est. 0.3%)\n\nPERSONAL SPENDING 0.4% MoM, (Est. 0.3%)\nPERSONAL INCOME 0.3% MoM, (Est. 0.3%)\nREAL PERSONAL SPENDING 0.1% MoM, (Est. 0.1%)",
+    "bias": "None",
+    "id": "2024839291076297073"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$ASTS held 100day and rebuilds well",
+    "bias": "None",
+    "id": "2024837967169142983"
+  },
+  {
+    "user": "@netflix",
+    "text": "“I hope I've demonstrated that you can face anything, you can face the end of your days, you can face hell with dignity. Fight, girls, and hold your heads high. Billie and Georgia, you are my heart, you are my everything. Goodnight. I love you.\n\nEric Dane leaves his daughters — and the world — with one final message in Famous Last Words.",
+    "bias": "None",
+    "id": "2024908511876952474"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Markets are pricing cuts.\n\nBut spreads are 2.92%.\nNot 6%.\nNot 8%.\n\nThat’s repricing.\nNot stress.\n\nWhen panic is fake, positioning breaks first.",
+    "bias": "None",
+    "id": "2024992469469872290"
+  },
+  {
+    "user": "@TuttleCapital",
+    "text": "Maybe my best timing ever on an ETF launch",
+    "bias": "None",
+    "id": "2024655199252476254"
+  },
+  {
+    "user": "@UnicusResearch",
+    "text": "🚩 $OWL is the tip of the iceberg.\nPrivate credit is increasingly intertwined with BNPL and the banking system. It gets way worse. \n\nBanks provide funding to private credit vehicles, and private credit can, in turn, enter into forward-flow and similar financing arrangements with BNPL platforms such as $AFRM and Klarna.\n\nWe first laid out these risks (deep dive) for our Confidential Insights subscribers on November 30, 2025, and the logic has only become more relevant as the market searches for what sits behind the “isolated events” narrative.\n\nImportant note below.",
+    "bias": "None",
+    "id": "2024787331345985677"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Affordable housing is 30% of income.\n\nReality?\n\n43.2%.\n\nMedian income: $85,000\nMedian home: $405,300\n\nThat’s not a vibes recession.\nThat’s a structural squeeze.",
+    "bias": "None",
+    "id": "2024947173184373155"
+  },
+  {
+    "user": "@graniteshares",
+    "text": "GraniteShares announced distribution rates for all GraniteShares YieldBOOST™ ETFs today, as listed in the table below.",
+    "bias": "None",
+    "id": "2024833918113829198"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "America will spend over $1 trillion on interest this year.\n\nNot defense.\nNot healthcare.\n\nInterest.\n\nBy 2036?\n~$2.1 trillion.\n\nCompounding works both ways.",
+    "bias": "None",
+    "id": "2024891829661917226"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I love when people say this.\n\nI launched a long-only ETF focused on deregulation.\n\nIt costs $70k up front to launch an ETF, then minimum $20k a month just to keep it open.\n\nSit the fuck down.",
+    "bias": "None",
+    "id": "2024888995084222578"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "🚨 Chasing “safe” income? Think again.\n\nYYY may look like yield…\n\nBut under the hood:\n\n⚠️ CEF leverage\n⚠️ Discount risk\n⚠️ Hidden credit stress\n\nIt’s not just income. It’s a credit barometer.\n\nRead before the next shake-out 👇\nleadlagreport.com/p/yyy-the-…",
+    "bias": "None",
+    "id": "2024884371530903961"
+  }
+]
