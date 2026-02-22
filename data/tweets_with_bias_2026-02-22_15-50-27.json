@@ -1,0 +1,224 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA is re-entering the laptop market this year by pushing CUDA onto AI PCs.\n\nMargins won’t look like data center but Nvidia now spans the full AI stack: \n• Training (H100, Blackwell)\n• Inference (data center)\n• Edge (Jetson)\n• Device (AI PCs)",
+    "bias": "None",
+    "id": "2025596814804824535"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "THE SAASPOCALYPSE 2026 SCORECARD\n\nSaaS in 2026 is getting repriced from growth engine to plumbing layer in an Agentic AI stack and the YTD damage has been brutal: \n\n• $DDOG −15%\n• $CRWD −17%\n• $MDB −18%\n• $ZETA −20%\n• $SNOW −21%\n• $SHOP −22%\n• $PLTR −24%\n• $ADBE −26%\n• $ZS −29%\n• $GTLB −30%\n• $CRM −30%\n• $FIG −30%\n• $NOW −32%\n• $PATH −34%\n• $RBRK −34%\n• $WDAY −36%\n• $FROG −40%\n• $HUBS −42%\n• $MNDY −49%\n• $TEAM −53%",
+    "bias": "None",
+    "id": "2025579260619174148"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL CLOUD HAS A RULE-OF-40 SCORE OF 78\n\nGoogle spent a decade building TPUs before anyone cared about custom AI chips, built BigQuery before enterprises modernized data stacks & kept investing in Gemini while the market fixated on OpenAI.\n\nNow those bets are converging into a full-stack AI platform of custom silicon (TPUs), data (BigQuery), models (Gemini), enterprise AI (Vertex) & global network infrastructure.\n\nNo other company has all five at scale and it’s the only credible $NVDA alternative.",
+    "bias": "None",
+    "id": "2025569686075953429"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$BMNR Tom Lee says Bitcoin has a narrative problem since $BTC is failing the “store of value” test amid geopolitics, Fed volatility and rising quantum-risk fears.",
+    "bias": "None",
+    "id": "2025556851719557227"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Sam Altman says meeting global AI demand will eventually require hundreds of gigawatts of power. \n\nWhoever controls power controls the AI value chain.",
+    "bias": "None",
+    "id": "2025283882246177255"
+  },
+  {
+    "user": "@FuturumEquities",
+    "text": "FUTURUM EQUITIES PODCAST EPISODE #31\n\nDaniel & I dove into four big themes:\n• Earnings prep | $SNOW, $MELI, $HIMS, $CIFR, $RKLB, $IONQ, $AXON\n• Which software names survive AI | $NOW, $ADBE, $MNDY, $CRM, $TEAM, $ZETA, $FIG, $WDAY, $HUBS, $PATH\n• Agentic AI Stack | $PLTR, $RBRK, $CRWD, $NET, $PANW, $ZS, $SNOW, $MDB \n• Why $NVDA might save the market\n\nPlus a 10-minute live Q&A at the end.",
+    "bias": "None",
+    "id": "2025252280707285302"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Me trying to buy AI stocks in 2026 while demand explodes but the market keeps tripping over tariff theater & “Claude disruption” every week.",
+    "bias": "None",
+    "id": "2025247631656845810"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "The popular narrative right now is that AI is “coming for security” after the Claude Code Security announcement.\n\nClaude Code Security is just static application security testing (SAST) where it reviews source code pre-deployment & flags issues like SQL injection. \n\nThe market just repriced $50B+ of cybersecurity market cap off a headline that doesn’t actually threaten the core security stack: \n\n• $CRWD secures live endpoints & cloud workloads after code is deployed while code scanning never sees what’s happening on the machine.\n• $ZS controls access & traffic between users, agents & applications while code scanning can’t see or block real-time network activity.\n• $NET runs a global network handling millions of requests per second while code scanning doesn’t see web traffic in flight.\n• $RBRK backs up & recovers data after ransomware and breaches while code scanning doesn’t restore anything once systems are hit.\n• $PANW inspects traffic across network, cloud & SecOps in production while code scanning doesn’t touch runtime environments.\n• $OKTA manages identity for humans & machine agents in production while code scanning doesn’t control logins or access.\n• $FTNT secures physical & virtual networks moving real packets while code scanning looks at source code rather than live traffic.\n• $S protects endpoints & workloads at runtime while code scanning only happens before deployment.\n\nClaude Code Security looks at code before it ships but these platforms protect what happens after so this selloff is fear-driven and an opportunity.",
+    "bias": "None",
+    "id": "2025226189351387605"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$MSFT is near decade-low multiples with Azure sold out and Copilot embedding AI into 450M+ enterprise users.\n\nThey don’t need to “win AI” but just need to monetize the distribution they already own. No other company has this level of distribution for enterprise AI.",
+    "bias": "None",
+    "id": "2025212928551780808"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Join us in Chicago @Cboe for a fabulous 2 days of trade strategies with CBOE Global Markets at the Options Institute! Sign up now as tickets are limited to 75 lucky traders/investors! @petenajarian #ITSNOTANOPTION 📙 👉 tinyurl.com/4jrypm63",
+    "bias": "None",
+    "id": "2025282134240301567"
+  },
+  {
+    "user": "@MarketRebels",
+    "text": "Armenian 🇦🇲 legends show! Market's resilient despite tariffs/CPI noise—earnings rock, Dow over 50k. Bullish on $GOOGL (AI beast), $CAT (build the future), $SLV (industrial demand heating up), & exchanges like $CME $CBOE   as vol tollbooths. Stocks shrugging off noise! @petenajarian @JackBouroudjian @LarryKudlowShow @77WABCradio #ITSNOTANOPTION 📙",
+    "bias": "Euphoria / Greed",
+    "id": "2025562681541877999"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "I applaud LeBron for his I Promise School, but some adult needs to explain why - Overall proficiency across the school (grades 3–8) remains very low: around 9–10% in math and 6–12% in reading/English, among the worst in Ohio. What is going on?",
+    "bias": "None",
+    "id": "2025523392032485752"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Jim Crow? \n\nTo register to shovel snow in NYC you need:\n- At least 18 years old\n- Eligible to work in the US\n- Able to do heavy labor\n- And paperwork: two small passport-style photos, two original forms of ID + copies, and your Social Security card",
+    "bias": "None",
+    "id": "2025519993887027500"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "TB laying down the truth",
+    "bias": "None",
+    "id": "2025188044060463152"
+  },
+  {
+    "user": "@Danwils97604894",
+    "text": "The quantitative rigor that @Hedgeye uses results in demonstrable results:  up 25% in the last 3 months. Forget feelings, make a difference with their process. Not a paid endorsement, merely a recent subscriber",
+    "bias": "None",
+    "id": "2025317725506031814"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Define Insanity. Wall Street's economic forecasting evolution rivals the horse and buggy whip",
+    "bias": "None",
+    "id": "2025266527956505043"
+  },
+  {
+    "user": "@PoolFeline",
+    "text": "Just a mucker among us muckers. This is why I trust you and team @Hedgeye.",
+    "bias": "None",
+    "id": "2025215338095214727"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I've personally posted every tweet (and Real-Time Alert) since 2008",
+    "bias": "None",
+    "id": "2025200147399880873"
+  },
+  {
+    "user": "@naninani6",
+    "text": "Nice! Not surprised!  I’m tickling ATH not as heavy in metals but International leading the way.  As an Olde Wall guy I never had a GoAnywhere process.. turns out there’s one out there available for the Fam!  Eh?",
+    "bias": "None",
+    "id": "2025184533318869305"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Johannes Høsflot Klæbo",
+    "bias": "None",
+    "id": "2025180821120856568"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I cleaned toilets at Port Arthur Motors. I'll never be too big to admit when a position is wrong. \n\nThe timestamp is always there. That's the accountability. No curtain. No CNBC wizard. Just the work. #EarlyLook",
+    "bias": "None",
+    "id": "2025176753732518210"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Friday was a great day for The Fam with The MFO (Mucker Family Office) Long Only Account printing new ATHs (all-time highs)\n\nI've worked 27 years to get this #GoAnywhere Diversified Portfolio into the proper positioning \n\nIf you want to see ALL of my positions daily, you can",
+    "bias": "None",
+    "id": "2025175585996083473"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Who's Bryn? Is she long of our Core Cyber Short $CIBR?",
+    "bias": "None",
+    "id": "2025174551600996541"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "AMD’s $AMD x86 server CPU market share surpassed 40% for the first time at 41.3% in Q4, up 1.8 points QoQ and 4.9 points YoY, per Mercury Research.\n\n$INTC $ARM $NVDA",
+    "bias": "None",
+    "id": "2025314266245406782"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "UBS on $AMZN AWS: “As its methodology for AWS demand forecast likely has not changed (and still functioning well), our base case forecast now contemplates that segment growth rate in 2026 should double to 38% vs 2025’s 19%.”\n\n$MSFT $GOOG $ORCL $NVDA",
+    "bias": "None",
+    "id": "2025333558491972081"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "3 on 3 gives Canada major advantage. Mcdavid (97) McKinnon (29) makar(8) 3 of the fastest players in the world on ice same time. \n\nLet’s Go USA!",
+    "bias": "None",
+    "id": "2025598667030143268"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Make sure you get my newsletter 2X a week:\n\nt3live.com/rd\n\nRegular updates on $SPY $QQQ $NVDA $AAPL $AMZN $TSLA $IBIT and more!",
+    "bias": "None",
+    "id": "2025580218115846364"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "U must cost average ur career!",
+    "bias": "None",
+    "id": "2025204425367666951"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Japan bond issuance projected up to ¥38T (FY2029)\n\nDebt service projected ¥40.3T\n\nMeanwhile, equities at record highs.\n\nFiscal strain + risk-on euphoria = unstable mix.",
+    "bias": "None",
+    "id": "2025591377174671869"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "BREAKING: NO ONE ON X IS INTELLIGENT",
+    "bias": "None",
+    "id": "2025571074251833580"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "FOLLOW @UnicusResearch SHE IS AMONG THE FEW WHO UNDERSTANDS THIS",
+    "bias": "None",
+    "id": "2025553018502996153"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Credit looks calm.\n\nSpreads are tight. Risk appetite feels easy.\n\nBut credit usually moves first — not stocks.\n\nWorth reading from @JDHatfield_ICAP @InfraCap:\ninfrastructurecapital.substa…",
+    "bias": "None",
+    "id": "2025329898584187377"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "AI is shifting from chatbots to agentic systems that act in the real world.\n\nIt’s not just software anymore.\n\nWorth reading from @graniteshares @willrhind:\n👉 graniteshares.substack.com/p…",
+    "bias": "None",
+    "id": "2025327931434709020"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Precious metals don’t just go up.\n\nThey move on real yields, the dollar, positioning, and macro shifts.\n\nIf you don’t understand the volatility, you don’t understand the trade.\n\n@DynamicAlphaSol \n\nRead this:\ndynamicwealth.substack.com/p…",
+    "bias": "None",
+    "id": "2025322552613019677"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Humanoid robots: reality or fantasy?\n\nDerek Yan of @KraneShares and @Mela_Schaffer break down AI hype vs actual deployment — and what investors may be mispricing.\n\nRead:\nleadlagreport.com/p/hype-vs-…",
+    "bias": "None",
+    "id": "2025311442564473168"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I understand this.",
+    "bias": "None",
+    "id": "2025277582204145885"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Epstein totally going to be in the alien files",
+    "bias": "None",
+    "id": "2025270534196343239"
+  }
+]
