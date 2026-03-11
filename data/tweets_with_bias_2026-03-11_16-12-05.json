@@ -1,0 +1,392 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "Anthropic is upgrading Claude for Excel & PowerPoint with deeper context-sharing across both add-ins with the new skills rolling out to all paid plans starting today.\n\nAvailable through $AMZN Bedrock, $GOOGL Cloud Vertex AI & $MSFT Foundry, the update makes Claude easier to deploy across enterprise workflows.",
+    "bias": "None",
+    "id": "2031764079560507683"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Elon Musk announces Digital Optimus which is a joint xAI-Tesla project that uses Grok to process real-time screen activity and user inputs.\n\nHe says the system is built to run on low-cost $TSLA AI4 hardware and could eventually replicate the functions of entire companies.",
+    "bias": "None",
+    "id": "2031754888519331977"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVTS is up ~20% after launching two 1200V GeneSiC 5th-gen SiC MOSFET packages built for AI power racks with claims of ~35% better switching efficiency.\n\nThese parts are aimed at the power density and thermal limits inside high-density AI data center systems.",
+    "bias": "None",
+    "id": "2031746552159666179"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "THREE REASONS $NBIS IS UP 16% TODAY\n\n1. The Rubin access is the real prize (not the $2B investment) because that is Jensen giving Nebius early access to Nvidia’s next-generation platform beyond Blackwell, something reserved for partners expected to play a specific role in bringing $NVDA hardware roadmap to the enterprise at scale. Rubin access suggests this relationship is being built for the next several years of the AI cycle.\n\n2. The 5GW commitment by 2030 is massive. Gigawatts are how real competitive scale is measured in AI infrastructure right now and 5GW is a hyperscaler-level buildout from a company many folks still view as a niche neocloud.\n\n3. Jensen just told you which neoclouds he believes can actually scale. The big question around Nebius was whether it was just a speculative infrastructure play or a legitimate AI-native cloud platform. Today’s $2B check helps answer that. Nvidia made a similar call with $CRWV and the list of neoclouds receiving investments of this size is now just two companies long with Nebius now being one of them.",
+    "bias": "None",
+    "id": "2031732752710881462"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ORCL ripping today up ~12% after earnings",
+    "bias": "None",
+    "id": "2031725330202087818"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ONDS is acquiring BIRD Aerosystems to expand into airborne missile protection & strengthen its defense platform with proven ISR + countermeasure systems.\n\nBIRD’s technology is already deployed on 700+ aircraft across 40+ platforms including with the U.S. Army, NATO & UN fleets.",
+    "bias": "None",
+    "id": "2031721573397447006"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$AMZN Zoox plans to make its robotaxis available to hail on the $UBER app in Las Vegas later this year.\n\nThe partnership would integrate Zoox autonomous vehicles into Uber’s ride-hailing network.",
+    "bias": "None",
+    "id": "2031718012831793581"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$NVDA is investing $2B in $NBIS as part of a strategic partnership to expand AI cloud infrastructure.\n\nNebius plans to deploy 5GW+ of capacity by 2030 with access to Nvidia’s next-gen platforms including Rubin.",
+    "bias": "None",
+    "id": "2031714642079428905"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Robinhood Banking just crossed $1B in deposits from 65K funded customers showing users are moving more of their financial lives onto the platform.\n\nOnce paychecks flow through $HOOD, each added product raises switching costs and strengthens ecosystem lock-in.",
+    "bias": "None",
+    "id": "2031509872756535673"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Why is $NVDA letting NemoClaw run on any chip?\n\nBecause Jensen is no longer trying to win only at the silicon layer against $AMD, $GOOGL TPUs or $AMZN Trainium but trying to own the orchestration layer above the hardware.\n\nNemoClaw decides how AI agents are deployed, what tasks they take on & how work flows across an enterprise. If those agents run through its system then it still owns the workflow even when it doesn’t own the chip.\n\nThat is how Nvidia turns agentic AI orchestration into Workforce-as-a-Service.",
+    "bias": "None",
+    "id": "2031502759061762505"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ORCL RPO growth is absolutely wild. \n\nOracle’s buildout looks oversized relative to its revenue base but if OCI turns that capacity into durable AI demand then the market may be underestimating what Oracle is becoming.",
+    "bias": "None",
+    "id": "2031469472268304412"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ORCL Q3 EARNINGS\n\n• Revenue $17.2B vs Est. $16.9B\n• EPS $1.79 vs Est. $1.69\n• Operating Income $7.4B vs Est. $7.2B\n• RPO: $553B (+325% YoY)\n\nFY27 Guidance\n• Revenue $90B vs Est. $86B",
+    "bias": "None",
+    "id": "2031462014099558823"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "GOING LIVE NOW!",
+    "bias": "None",
+    "id": "2031747473606103478"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "Another day, another MRKT Call LIVE at 11am ET on YouTube!\n\nWATCH: piped.video/live/CK9mSoNUhhM",
+    "bias": "None",
+    "id": "2031739026399518841"
+  },
+  {
+    "user": "@OnTheTapePod",
+    "text": "\"It's the same type of thing we saw 26 or 27 years ago... you can spend a lot of money, but if you're not, getting the return market will reward you in the short term. But it'll punish you on the back end.\"\n\n🎙️ @GuyAdami & Dan Nathan of @RiskReversal fame join @dmoses34 on the latest pod!",
+    "bias": "None",
+    "id": "2031736652419534897"
+  },
+  {
+    "user": "@dmoses34",
+    "text": "It was great to \"flip the script\" & ask both @GuyAdami and Dan Nathan the questions. We discussed the current state of the markets as well as the content that @RiskReversal has been producing and how @CNBC @CNBCFastMoney has been adapting to changes in the media landscape.",
+    "bias": "None",
+    "id": "2031720001682411652"
+  },
+  {
+    "user": "@OnTheTapePod",
+    "text": "The OGs are back! Dan Nathan & @GuyAdami join @dmoses34 on the latest episode🎙️\n\n💀 Wealth effect unwinding now\n🦅 Warsh walks into a mess\n⚙️ CapEx sanctity is gone\n\nWATCH: piped.video/15gyaEKNIsE\nAPPLE: apple.co/3MZKzJU\nSPOTIFY: tinyurl.com/5hy6axvn",
+    "bias": "None",
+    "id": "2031715057084629478"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "GOING LIVE NOW!!!",
+    "bias": "None",
+    "id": "2031385085354914284"
+  },
+  {
+    "user": "@RiskReversal",
+    "text": "Oil sits near $90 a barrel, stocks are muted after yesterday's afternoon rally... let's break it all down!\n\nMRKT Call is LIVE at 11am ET with Dan & @GuyAdami 📺\n\nWATCH: piped.video/live/qZxDL7VtFK4",
+    "bias": "None",
+    "id": "2031372070760673786"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "🐢Baby Turtles in San Juan 🇵🇷 $NBIS $ORCL $UNF $CMX $KMX $HMY $NVDA fill clip at the end because #ITSNOTANOPTION 📙",
+    "bias": "None",
+    "id": "2031725169463513309"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Washington must not have watched what is happening in California. Jack up taxes, watch high wage earners leave for TX, FL, NV etc.",
+    "bias": "None",
+    "id": "2031742925365825879"
+  },
+  {
+    "user": "@ksorbs",
+    "text": "This footage is clear as day: the muslim terrorist literally drops his homemade bomb at the feet of the cops. And the media is trying to tell you it was too far away to cause any real damage. Give me a break",
+    "bias": "None",
+    "id": "2031429883411488773"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Jennifer Siebel Newsom, wife of California Governor Gavin Newsom, and her firm received $3.7 million from her gender equity non-profit, The Representation Project, over several years.",
+    "bias": "None",
+    "id": "2031741124184830459"
+  },
+  {
+    "user": "@BreitbartNews",
+    "text": "Yamaha Motor Corp. USA is moving its headquarters to Georgia, beginning later this year. The company had operated in Southern California since 1980.",
+    "bias": "None",
+    "id": "2031375236134748483"
+  },
+  {
+    "user": "@petenajarian",
+    "text": "Massive day of markets chat, but add to that the Free Agency markets are ripping, and we will provide details on how this is getting crazier by the day .....",
+    "bias": "None",
+    "id": "2031730350473269586"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Oracle $ORCL Pre-market 163.25 +13.85 (9.27%) video below from Feb 11th ..more on Rebel's Edge 🏴‍☠️ today 1pm. with @petenajarian  also on with @OJRenick 2pm CST LIVE @CBOE Bang! 💥 Joins us in Chicago April\n👉tinyurl.com/4jrypm63",
+    "bias": "None",
+    "id": "2031715987192422550"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "Coffee ☕️and 🏈 NAJARIAN SPORTS 🏴‍☠️ with @petenajarian more on Rebel's Edge 1pm",
+    "bias": "None",
+    "id": "2031675814643716549"
+  },
+  {
+    "user": "@MarketRebels",
+    "text": "#VIX 25.55 #10Year 4.13% Good Day Traders 🌧️",
+    "bias": "Panic / Capitulation",
+    "id": "2031675442810298778"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "If you want to protect your portfolio against geopolitical events, you need itsnotanoption.com",
+    "bias": "None",
+    "id": "2031367634449531250"
+  },
+  {
+    "user": "@jonnajarian",
+    "text": "6⃣0⃣ Seconds About that bounce in #oil more on Rebel's Edge 1pm 🕐 with @petenajarian",
+    "bias": "None",
+    "id": "2031360874120704442"
+  },
+  {
+    "user": "@mercoglianos",
+    "text": "Everyone...there is no need to panic about mines. \n\nThe US Navy has kept four mine countermeasure vessels in the Persian Gulf for the past 35 years.  These ships and crews have trained for this very circumstance. \n\nWAIT...what is that?  \n\nThe minesweepers just arrived in Philadelphia yesterday to be decommissioned, but we have three Littoral Combat Ships (LCSs) that took their place.",
+    "bias": "None",
+    "id": "2031460764545081729"
+  },
+  {
+    "user": "@johnkonrad",
+    "text": "BREAKING\n\n“U.S. INTELLIGENCE ASSETS HAVE BEGUN TO SEE INDICATIONS IRAN IS TAKING STEPS TO DEPLOY MINES IN STRAIT OF HORMUZ SHIPPING LANE” -CBS NEWS",
+    "bias": "None",
+    "id": "2031437985577615471"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "This Bloomberg headline crossing now may explain the new downturn in crude oil prices (repost)\n---\n*US NAVY ESCORTED AN OIL TANKER THROUGH THE STRAIT OF HORMUZ",
+    "bias": "None",
+    "id": "2031420011819184289"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "*US OIL PRICES EXTEND DECLINE, FALL 15% TO TRADE NEAR $80/BBL\n\nApril 2026 WTI futures are now down ~32% since Sunday night's peak",
+    "bias": "None",
+    "id": "2031419235671617785"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "2/2\n\nAnd the backwardation is the most extreme in 30 years, meaning the market is pricing a spot price much lower in 3 to 6 months.",
+    "bias": "None",
+    "id": "2031401568239759598"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "1/2\n\nYou can see the repost in the Crude Oil Futures Curve.\n\nThe drop off (backwardation) over the next 3 to 6 months is huge, then it levels out. \n\nIt suggests the market thinks the disruption lasts about another month, then 6 weeks to 2 months to get everything back to normal.",
+    "bias": "None",
+    "id": "2031401563714191546"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "Good color from @0xCarlos_ \n\nThis pipeline was built in the 1980s as a hedge against the Iran-Iraq War. It was designed for exactly this scenario — but it hasn't operated anywhere near 7M bpd in decades.\n\nThe pumping stations along 1,200 km need to work flawlessly at 7x throughput. These aren't parallel redundant systems — one pump station failure and throughput drops to zero until repaired.\n\nRunning aging infrastructure at nameplate capacity under emergency conditions is a roll of the dice.",
+    "bias": "None",
+    "id": "2031384918564155723"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "The east‑to‑west pipeline is known as the Petroline (East–West Crude Oil Pipeline). It runs from Abqaiq, near the Ras Tanura oil terminal on the Persian Gulf, to the Red Sea export terminals at Yanbu and Al Muajjiz (left image).\n\nBefore the war, this pipeline carried roughly 1 million b/d east‑to‑west. Saudi officials now say they are only a few days away from ramping throughput to capacity of about 7 million b/d (repost). Tankers are lining up in the Red Sea to lift these redirected cargos.\n\nThe right image is a real-time Marine Traffic map of Yanbu, the end of the pipeline. The 18 red dots are anchored tankers, the red arrows are moving tankers (green is containerships). A Suezmax tanker, the largest that fit through the Suez Canal to the north, is 1MM barrels. So, ~18mm of capacity is waiting.\n\nThis will not \"fix\" the Strait of Hormuz problem, but getting another 6MM b/d out will definitely help (the pipeline was 1mm b/d, about to be 7mm b/d).\n\n@mercoglianos @johnkonrad",
+    "bias": "None",
+    "id": "2031371630811992126"
+  },
+  {
+    "user": "@zerohedge",
+    "text": "Strait ship traffic starting to move (chart GS)",
+    "bias": "None",
+    "id": "2031340672494571784"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "When I go Net Short in Real-Time Alerts, pay attention",
+    "bias": "None",
+    "id": "2031756940552917227"
+  },
+  {
+    "user": "@chuckmcluck",
+    "text": "No better feeling in the world than when you hit the button yourself and see the KM real time alert in the inbox shortly after #Aiiiii #DannyIves",
+    "bias": "None",
+    "id": "2031746639669407776"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Looking forward to it, DDB!",
+    "bias": "None",
+    "id": "2031747826779353568"
+  },
+  {
+    "user": "@therealrmd",
+    "text": "@Hedgeye process in three bullets. Well said. Thanks @KeithMcCullough",
+    "bias": "None",
+    "id": "2031722788550058176"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Danny A-Ives blocked me today, lol",
+    "bias": "None",
+    "id": "2031741093079916748"
+  },
+  {
+    "user": "@j49576",
+    "text": "Some good perspective regarding the process from Keith today.   And Hedgeye does it from a fair and ethical point of view.\n\n@KeithMcCullough\n@HedgeyeDJ\n@Hedgeye\n\nTo provide proper credit, video clip taken from the Macro Show airing on 3/11/2026 hosted by Keith McCullough and Daryl Jones.",
+    "bias": "None",
+    "id": "2031731889824735685"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Just got off the call with Hong Kong, Buds @HedgeyeDJ",
+    "bias": "None",
+    "id": "2031739525991485890"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "We're LIVE reiterating Short $IVES",
+    "bias": "None",
+    "id": "2031706327865569620"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "In today's Early Look: \"#Quad3 Long/Short Book\"\n\nWe have a process here. The roster changes. The position weights get re-ranked. The Signaldecides who starts.\n\nEvery day is a new Game Day.",
+    "bias": "None",
+    "id": "2031691452741218568"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "\"Who Gets the Big Money in AI?\" | Short $MSFT app.hedgeye.com/insights/179… via @hedgeye",
+    "bias": "None",
+    "id": "2031667816571482401"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "All the new geopolitical experts are at Future \"Proof\"",
+    "bias": "None",
+    "id": "2031666469470195754"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "LOL",
+    "bias": "None",
+    "id": "2031666251827695702"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "German Stocks do not like this #Quad3 breakout in German Bund Yields, fyi",
+    "bias": "FOMO",
+    "id": "2031665755394027591"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "I've never seen this volume of useless commentary about when/where the price of oil is going next",
+    "bias": "None",
+    "id": "2031664234270986592"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Dell $DELL is guiding for AI server shipments of $50 billion in fiscal 2027, representing >25X growth in just three years from $1.9 billion in FY24. \n\n$NVDA $SMCI $AMD",
+    "bias": "None",
+    "id": "2031437584526721082"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Get tomorrow's newsletter with a fresh look at $NVDA $ORCL $AVGO $MRVL etc. into the Nvidia GTC conference:\n\nt3live.com/rd",
+    "bias": "None",
+    "id": "2031723300670365840"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 $ORCL EARNINGS TRADE & WILL MONEY ROTATE TO $IGV?\n\nIn this Short video, I go through my defined-risk earnings trade in $ORCL using a $160–$170 call spread that costs $2 and could return $8 if the stock closes above $170. \n\nThe setup depends not just on $ORCL but on the broader software sector $IGV. \n\nThe key level now is around $84.90. If $IGV holds and rebuilds toward the 50-day, software could stabilize and help $ORCL push higher. \n\nIf it fails, the sector may stay under pressure.\n\nIf you enjoyed this video, please ❤️like and 🔁retweet",
+    "bias": "None",
+    "id": "2031723298439008452"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$AAOI needs a digestion day after a huge move",
+    "bias": "None",
+    "id": "2031719773105533300"
+  },
+  {
+    "user": "@RatPackTrader",
+    "text": "Another great one Scott.   I never start my day without the 6:30club!",
+    "bias": "None",
+    "id": "2031719441105367506"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "We’ll see if $IGV holds $84.90 area. That’s a key for software and how much of early strength $orcl holds",
+    "bias": "None",
+    "id": "2031719596093268098"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "How I Find Levels:\n\npiped.video/watch?v=JbyqtUy1…",
+    "bias": "None",
+    "id": "2031709648051437819"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "📺 HEADLINES MOVE MARKETS… BUT LEVELS MAKE MONEY\n\nIn volatile markets driven by nonstop geopolitical headlines and oil spikes, those who focus on price levels rather than emotions are still finding opportunities. Flexible bias always wins fixed one.\n\nThis week offered a clear example: $SPY bounced from roughly 5% off the highs, reclaimed key levels near $669 and pushed toward resistance around $683–$685, creating tactical setups to buy dips and sell strength.\n\n$QQQ and $IWM showed similarly orderly moves, allowing for the execution of structured trades rather than chasing chaos.\n\n#CrudeOil $USO has been a major macro driver, with equity markets being inversely correlated with oil prices. When oil rises sharply, equities tend to struggle. This inverse correlation between oil and equity will eventually break down.\n\nSo, headlines may move markets in the short term, but it’s support, resistance, and disciplined execution that ultimately create profitable trades.\n\nIf you enjoyed this video, please ❤️like and 🔁retweet",
+    "bias": "None",
+    "id": "2031709646092706146"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$SPX went 6636 to 6845 yesterday and pulled back, and now 6759 (yesterday’s low) is the key—if it can’t hold, it gets sloppier. Most things are just range trades, and keep an eye on oil.",
+    "bias": "None",
+    "id": "2031699658184044894"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "⏰ Scott Redler’s #630club - LIVE Premarket Stock Update $NVDA $TSLA $IBIT $SPY  ➡️ Free VIP List Newsletter: t3live.com/rd nitter.net/i/broadcasts/1PKqrEavQ…",
+    "bias": "None",
+    "id": "2031679437838930364"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "$spx futures-12 after $spy went from $662 up to $683 and pulled back a bit. See how $spy handles yesterday’s low around $674 watch Oil.  We’ll see if $Orcl holds early gains",
+    "bias": "None",
+    "id": "2031661017298620485"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "20@520 and #630club can get u ready for the day.  The Pre-pre market Prep! \nGet the mind right to execute on the X’s and 0’s -",
+    "bias": "None",
+    "id": "2031660772921606625"
+  }
+]
