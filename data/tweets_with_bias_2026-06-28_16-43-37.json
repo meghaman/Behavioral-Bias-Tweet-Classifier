@@ -1,0 +1,236 @@
+[
+  {
+    "user": "@StockSavvyShay",
+    "text": "$AMZN is on track to become the first company to cross $1 trillion in annual revenue by 2028.\n\nWhat makes that possible is that Amazon has become one of the most important infrastructure companies in the world compounding across commerce, cloud, logistics, ads and AI all at once",
+    "bias": "None",
+    "id": "2071271426452250741"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$SPCX is expected to approach ~$100B of revenue by 2028 which would make SpaceX one of the fastest-scaling businesses in the world at this size.\n\nThe reason that ramp is even possible is that SpaceX controls the launch layer, uses that launch capacity to scale Starlink, uses Starlink cash flow to fund Starship and is now adding direct-to-cell, V3 satellites, AI compute leasing and Grok/X distribution on top.\n\nStarlink has scaled past 10M subscribers in under five years and is still early with next-gen V3 satellites carrying 10x the downlink capacity of V2 and direct-to-cell already reaching millions of devices across 30+ countries through partnerships with 30+ mobile carriers.\n\nStarship is the piece that widens the lead further because at ~10x payload of Falcon 9 and built for full reusability where it can collapse the cost per kg to orbit and deploy V3 satellites at scale so every Starship improvement feeds directly back into cheaper launch and a denser Starlink network.\n\nThe new wildcard is AI compute where SpaceX is leasing spare Colossus capacity to $GOOGL and Anthropic at a combined ~$26B annualized run rate. What makes that even more interesting is that the recent Cursor acquisition also gives SpaceX a direct play in the application layer meaning it can own the compute, own software that runs on it and use X as a distribution channel.\n\nThe path to ~$100B by 2028 comes from launch, Starlink, direct-to-cell, Starship, AI compute and software distribution all compounding inside the same platform in a theme that's just getting started.",
+    "bias": "None",
+    "id": "2071260936099528888"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "This is Peter Lynch’s favorite metric and I like it too because it ties valuation to growth. I prefer using a 2026 to 2028 window so the multiple adjusts for how fast the business is actually compounding.  For example\n\n$AMD may trade at ~60x forward earnings but earnings are expected to grow from $5.37 in 2026 to $16.00 in 2028 implying a ~73% earnings CAGR and a PEG of ~0.8x.",
+    "bias": "None",
+    "id": "2071248348288622777"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "SEMICONDUCTOR STOCKS BY PEG RATIO\n\nPEG < 1 usually means mispriced growth\nPEG > 2 starts to push into the danger zone\n\nHere’s how they stack up:\n• $ALAB ~3.6x\n• $INTC ~2.7x\n• $LRCX ~2.6x\n• $KLAC ~2.4x\n• $AMAT ~2.2x\n• $ARM ~1.9x\n• $ASML ~1.7x\n• $ANET ~1.7x\n• $LITE ~1.1x\n• $TSM ~1.1x\n• $COHR ~1.0x\n• $AMD ~0.8x\n• $CRDO ~0.7x\n• $NVDA ~0.7x\n• $MRVL ~0.6x\n• $AAOI ~0.6x\n• $AVGO ~0.5x\n• $ON ~0.4x\n• $MU ~0.2x\n• $SNDK ~0.2x",
+    "bias": "None",
+    "id": "2071247796787896483"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Here are the current 2030 revenue estimates for companies capitalizing on compute capacity as the AI overflow layer\n\n• $CRWV ~$66.9B revenue w/ 68% EBITDA margins\n• $NBIS ~$39.7B revenue w/ 90% EBITDA margins\n• $IREN ~$10.9B revenue w/ 74% EBITDA margins\n• $WULF ~$4.3B revenue w/ 70% EBITDA margins\n• $DOCN ~$3.1B revenue w/ 63% EBITDA margins\n• $CIFR ~$1.5B revenue w/ 31% EBITDA margins\n• $APLD ~$521M revenue w/ 48% EBITDA margins",
+    "bias": "None",
+    "id": "2071238766187147734"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "Absolutely wild that $MU, Samsung and SK Hynix went from losing money to generating a combined ~$775B in annual profit within five years.\n\nAI has turned memory into the bottleneck of bottlenecks with data center demand bidding up HBM, tightening DRAM supply and making memory the tax every AI workload has to pay.",
+    "bias": "None",
+    "id": "2071229036114927905"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$GOOGL has reportedly capped $META Gemini access after Meta requested more AI compute capacity than Google could support. \n\nThe limits reportedly delayed some internal Meta AI projects and forced teams to become more token-efficient.",
+    "bias": "None",
+    "id": "2071219846361342433"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "THE 5 BIGGEST BOTTLENECKS POWERING THE AI ECONOMY\n\nThe way I'm thinking about AI winners today is that the market is moving beyond the simple question of which mega-cap company spends most on AI and has been rewarding the companies that control the scarce inputs, contracted capacity, data movement, power infrastructure, edge compute and workflow layers that make the AI economy function.\n\nThese are the five bottlenecks I'm watching most: \n\n• Memory | $MU, Samsung, SK Hynix\nMemory is the clearest scarce input because HBM feeds the accelerator, only a few companies can make it at volume and buyers are locking in supply through long-term agreements that create revenue visibility through the end of the decade.\n\n• Connectivity | $AVGO, $MRVL, $ALAB, $CRDO, $AAOI, $ANET \nConnectivity determines whether AI clusters can move data fast enough because training runs span tens of thousands of chips that need to act like one machine. Once copper runs out of reach that causes the cluster depends on optics, retimers, switches and custom silicon to keep the system moving.\n\n• Power | $CEG, $VST, $GEV, $FPS, $VRT, $NVTS, $TLN, $ON\nPower determines whether new AI data centers can actually come online because the binding constraint is shifting from getting chips to getting megawatts so the value flows to the companies that control generation, grid equipment, power delivery, thermal management and efficiency.\n\n• Compute | $NBIS, $CIFR, $IREN, $APLD, $WULF, $CORZ, $CRWV \nCompute capacity is overflow layer when hyperscalers are sold out. Capital alone doesn't guarantee GPU access which is why buyers are signing multi-year contracts for clusters before they are even fully built.\n\n• CPU | $NVDA, $AMD, $INTC, $ARM, $QCOM\nOn-device CPU (edge compute) becomes next bottleneck as AI moves into inference, agents, PCs, phones, vehicles and physical devices.",
+    "bias": "None",
+    "id": "2070902930216263746"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "You can find all the videos here:\n\npiped.video/@FuturumEquities",
+    "bias": "None",
+    "id": "2070895118404784467"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "HERE ARE THE TOP 15 PERFORMERS OF 2026\n\n1. $SNDK +781%\n2. $AEHR +355%\n3. $AXTI +329%\n4. $MU +297%\n5. $AAOI +289%\n6. $INTC +248%\n7. $WDC +240%\n8. $PENG +218%\n9. $TWST +215%\n10. $MRVL +214%\n11. $DELL +213%\n12. $ARM +206%\n13. $BE +191%\n14. $DOCN +190%\n15. $NBIS +187%",
+    "bias": "None",
+    "id": "2070886265789267979"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "A bullish setup for me is when the 9-day EMA is above the 21-day EMA & the stock is holding both the 50-day & 200-day SMA so both momentum + structure are moving in the same direction.\n\nIf the only level a stock is holding is the 200-day SMA then the long-term trend is still intact but the momentum has faded so I treat it as a hold.\n\nWhen the price breaks below all three levels then that is when I consider the trend bearish because the short-term, intermediate & long-term signals are all pointing the same way.",
+    "bias": "Euphoria / Greed",
+    "id": "2070883463906083007"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$ORCL just had its worst one-week stock performance in 25 years. \n\nOracle is borrowing at scale to build AI data centers for a customer base heavily tied to OpenAI and I think the market is starting to price the risk of funding a hyperscale buildout without $MSFT, $GOOGL, $AMZN or $META level cash generation a bit too aggressively.\n\nThe question now is whether that risk is already getting reflected in the multiple with Oracle now trading at less than 15x 2028 earnings: \n\nRevenue\n• 2026 ~$89.9B (+33% YoY)\n• 2027 ~$128.6B (+43% YoY)\n• 2028 ~$184.7B (+44% YoY)\n• 2029 ~$206.2B (+12% YoY)\n• 2030 ~$230.5B (+11% YoY)\n\nEPS\n• 2026 ~$8.09 (+5% YoY)\n• 2027 ~$11.01 (+36% YoY)\n• 2028 ~$15.57 (+42% YoY)\n• 2029 ~$19.71 (+27% YoY)\n• 2030 ~$22.27 (+13% YoY)\n\nThe opportunity is that OCI now has one of the largest AI backlogs in the market at ~$638B and if that backlog converts into durable revenue then Oracle can still become the fourth major AI cloud platform in an economy that is just getting started.\n\nThe catch is that more than half of that backlog is tied to OpenAI, so this is largely a bet on backlog conversion and OpenAI honoring its commitments. At under 15x 2028 earnings, I do think that risk is finally starting to look reflected in Oracle's stock price.",
+    "bias": "None",
+    "id": "2070875765261103536"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "$AAPL IPHONE 18 PRO COST BREAKDOWN\n\nApple’s bill of materials reportedly rises from $582 to $726 while retail price moves from $1,099 to an estimated $1,299 which means ~$144 increase in memory and storage costs is driving most of the $200 price hike once Apple protects its margin.\n\nWhats wild to see is that the processor, camera array, display and battery are mostly flat (areas where Apple has decades of supplier leverage) but line item exploding is memory and storage which is the exact bottleneck benefiting $MU, Samsung and SK Hynix.\n\nAI data center demand bids up HBM, pulls capacity away from commodity DRAM + NAND and eventually that scarcity shows up in a device most consumers view as a necessity.",
+    "bias": "None",
+    "id": "2070858855052181908"
+  },
+  {
+    "user": "@StockSavvyShay",
+    "text": "KEY LEVELS TO WATCH FOR POPULAR STOCKS\n\n• Bullish: $AMD, $MU, $NBIS, $CIFR, $HIMS\n• Hold: $NVDA, $AVGO, $HOOD, $AEHR, $RKLB, $SOFI, $AAOI\n• Bearish: $TSLA, $PLTR, $ONDS, $OKLO, $ASTS, $IONQ, $OPEN, $IREN",
+    "bias": "Euphoria / Greed",
+    "id": "2070849337694061018"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "Over the last week or so, the $SPX is down ~2% (black)\n\nAI-related stocks (red) have slumped ~4.52%. This is ~50/75 of the S&P 500.\n\nNon-Al stocks (orange) have soared ~2.31%. This is ~425 to 450.\n\nIs this market telling us it is bullish for the economy if AI stocks get crushed?",
+    "bias": "Euphoria / Greed",
+    "id": "2071268650405798006"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "The outrage is allowing minutes of unbridled celebration and then telling everyone the goal is disallowed. \n\nThe sport needs is a real time signal of offsides before the goal is scored. Then immediately put it on the score board for all to see.\n\nLike tennis has with automated line calls.",
+    "bias": "None",
+    "id": "2071138153105092703"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "Heat wave is hitting the US starting Monday. The map is Wednesday’s projected highs.  Yellow is 90s, red is 100s.\n\nJust in time for the knock out round.\n\nThe hydration break is going from a commercial gimmick to a matter of survival.",
+    "bias": "None",
+    "id": "2071135780156678206"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "What if they flipped the offsides rule from any part of your body in front of the defender is offsides to any part of your body behind the defender is not offsides?\n\n(hockey uses a fixed blue line for offsides. The puck has to cross the blue line first. A player is not offsides if any part of his body is on or behind the blue line when the puck crosses. So what I suggested is the way hockey defines a player being offsides.)",
+    "bias": "None",
+    "id": "2071125201111191607"
+  },
+  {
+    "user": "@biancoresearch",
+    "text": "Iran shot at a second tanker this morning (below).\n\nThis headline crossed Bloomberg in the last 15 minutes.\n\n*US SAYS IT CONDUCTED ADDITIONAL STRIKES ON IRANIAN TARGETS",
+    "bias": "None",
+    "id": "2070991590303084740"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Bitcoin TREND Tracker\n\nThink of how much money you'd have made then saved by paying for our Signal on #BTC \n\nIt's easily the most underpriced risk mgt tool/product we have",
+    "bias": "None",
+    "id": "2070985783507382416"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "When the Music Stops in Private Markets | Protect the Pile Episode 17 w/ Leyla Kunimoto app.hedgeye.com/insights/183… via @hedgeye",
+    "bias": "None",
+    "id": "2070936934625550350"
+  },
+  {
+    "user": "@HedgeyeAM",
+    "text": "New episode of Protect The Pile is live!\n\n@RPKent, @dsaleminvestor & @SamofAmerica sit down with @LeylaKuni of Accredited Investor Insights to unpack what investors aren't being told about private markets.\n\nFull episode:\nhedgeyeam.com/protect-the-pi…",
+    "bias": "None",
+    "id": "2070880352327881072"
+  },
+  {
+    "user": "@waquoitwonder",
+    "text": "Joe still has a job - Ratings remain robust?! Imagine ANY broker-dealer research analyst or broker recommending that clients actually sell stocks...I knew only one such analyst - @realsteveeisman  Steve Eisman at OPCO.  Now, it's Hedgeye and @KeithMcCullough. Hedgeye sells math.",
+    "bias": "None",
+    "id": "2070848930699481209"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Top of the morn Hedgeye Nation! \n\nInstead of reading narratives, your Weekend Reading of the numbers is ready",
+    "bias": "None",
+    "id": "2070808011900092826"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "That was supposed to be the financial \"engineering\" - one of the great scams of our time, fully supported by @CNBC",
+    "bias": "None",
+    "id": "2070806670507119069"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "\"It is hard to imagine a more stupid or more dangerous way of making decisions than by putting those decisions in the hands of people who pay no price for being wrong.\"",
+    "bias": "None",
+    "id": "2070664870735782277"
+  },
+  {
+    "user": "@KeithMcCullough",
+    "text": "Evidently the bloviating Kernen forgets what he and his CNBC crew did to people in 2008 to create the \"only up from there\" stock market price #donkey",
+    "bias": "None",
+    "id": "2070664466622988513"
+  },
+  {
+    "user": "@Beth_Kindig",
+    "text": "Micron signed a strategic agreement with Anthropic earlier this week which will see it become the AI firm’s primary memory and storage component supplier, with Micron also making a strategic investment in Anthropic’s Series H round. \n\n$MU $NVDA $AMD",
+    "bias": "None",
+    "id": "2070960877440819468"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "30 years of experience wrapped up in 8 minutes. It can help  you develop your overall process. \n\npiped.video/zftA5Y69tVY?is=hBbB…",
+    "bias": "None",
+    "id": "2071223147655737450"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "We usually race with Pink socks and blue tops! This way Breast cancer is represented and the American Cancer Society.  Memories for over a decade.  ! So I love when many comment on my socks.  Couldn’t be prouder to wear them.",
+    "bias": "None",
+    "id": "2070934503166542206"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "This is what going  “extra”  looks like. \nIt makes a difference!!  OG!!!!!!",
+    "bias": "None",
+    "id": "2070840481408237868"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "Cost Average your career! \n\n3 months a year, make your year!\n3 years a Decade, make your decade!\n\npiped.video/j0rBGT7TNp0?is=_bvZ…",
+    "bias": "None",
+    "id": "2070839575761625417"
+  },
+  {
+    "user": "@RedDogT3",
+    "text": "You could have used this strategy for $CBRS $MU and so many others:",
+    "bias": "None",
+    "id": "2070833269562646932"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Going to start doing some threads on peptides I take.",
+    "bias": "None",
+    "id": "2071180340224258216"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Going to be on CNBC tomorrow fuck it",
+    "bias": "None",
+    "id": "2071056855007195558"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I spent over 1,000 hours busting my ass getting the CFA Charter after passing each exam on the first try.\n\nAnd I’m damn fucking proud of that.",
+    "bias": "None",
+    "id": "2071056429109129316"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "Agreed. We are at peak arrogance by Nouveaux Bulls.",
+    "bias": "None",
+    "id": "2071056293779890369"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "It’s also my father’s last name.\n\nAn immigrant from Egypt who owed $200 dollars to his sister, who worked at a gas station while learning the language facing discrimination, finding his way to markets, building companies.\n\nYou’re God damn right my last name explains everything.",
+    "bias": "None",
+    "id": "2070908430810824709"
+  },
+  {
+    "user": "@leadlagreport",
+    "text": "I’ve become the king of peptides",
+    "bias": "None",
+    "id": "2070883390232879348"
+  }
+]
